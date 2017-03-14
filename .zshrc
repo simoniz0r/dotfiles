@@ -44,3 +44,4 @@ if [ -f ~/.zsh_aliases ]; then
     . ~/.zsh_aliases
 fi
 export SHELL=/bin/zsh
+export TERM=xterm-256color
