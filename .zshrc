@@ -45,3 +45,4 @@ if [ -f ~/.zsh_aliases ]; then
 fi
 export SHELL=/bin/zsh
 export TERM=xterm-256color
+export EDITOR=/usr/bin/code
