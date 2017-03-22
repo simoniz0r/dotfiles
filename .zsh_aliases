@@ -1,6 +1,6 @@
 alias discorddownloader='~/discorddownloader/discorddownloader.sh'
 alias betterdiscord='DiscordCanary'
-alias wttr='curl wttr.in/53554'
+alias wttr='curl wttr.in/YOURZIP'
 alias aptu='sudo apt update'
 alias aptg='sudo apt upgrade'
 alias apti='sudo apt install'
