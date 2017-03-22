@@ -1,6 +1,6 @@
 alias discorddownloader='~/discorddownloader/discorddownloader.sh'
 alias betterdiscord='DiscordCanary'
-alias wttr='curl wttr.in/YOURZIP'
+alias wttr='curl wttr.in/53554'
 alias aptu='sudo apt update'
 alias aptg='sudo apt upgrade'
 alias apti='sudo apt install'
@@ -18,3 +18,4 @@ alias cpzsh='cp ~/.zshrc ~/dotfiles/.zshrc; cp ~/.zsh_aliases ~/dotfiles/.zsh_al
 alias aliasnano='nano ~/.zsh_aliases'
 alias zshnano='nano ~/.zshrc'
 alias chx='chmod +x'
+alias speedtest='/home/simonizor/UsefulScripts/speedtest.sh'

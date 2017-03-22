@@ -44,6 +44,7 @@ qtdeclarative5-dev
 rambox
 rar
 screenfetch
+slurm
 terminator
 ttf-ancient-fonts
 twitch-indicator
