@@ -1,5 +1,6 @@
 apg
 audacious
+bb
 byzanz
 chromium-browser
 cmake
@@ -16,6 +17,7 @@ git
 gitkraken
 google-chrome-stable
 google-play-music-desktop-player
+gpa
 htop
 inkscape
 inxi
@@ -44,7 +46,6 @@ qtdeclarative5-dev
 rambox
 rar
 screenfetch
-slurm
 terminator
 ttf-ancient-fonts
 twitch-indicator
