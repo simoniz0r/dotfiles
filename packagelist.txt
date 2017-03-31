@@ -18,9 +18,10 @@ gitkraken
 google-chrome-stable
 google-play-music-desktop-player
 gpa
+gpick
 htop
+i-nex
 inkscape
-inxi
 kdenlive
 libc++1
 libffi-dev
