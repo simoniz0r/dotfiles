@@ -49,4 +49,3 @@ export TERM=xterm-256color
 export EDITOR=/usr/bin/code
 /usr/bin/numlockx on
 clear
-neofetch
