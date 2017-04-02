@@ -43,7 +43,10 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 if [ -f ~/.zsh_aliases ]; then
     . ~/.zsh_aliases
 fi
+
 export SHELL=/bin/zsh
 export TERM=xterm-256color
 export EDITOR=/usr/bin/code
 /usr/bin/numlockx on
+clear
+neofetch
