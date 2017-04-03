@@ -46,7 +46,6 @@ python-pip
 qtdeclarative5-dev
 rambox
 rar
-screenfetch
 terminator
 ttf-ancient-fonts
 twitch-indicator
