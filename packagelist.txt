@@ -45,7 +45,6 @@ peek
 python3-pip
 python-pip
 qtdeclarative5-dev
-rambox
 rar
 speedometer
 terminator

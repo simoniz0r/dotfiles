@@ -1,12 +1,7 @@
 # Set up the prompt
 
 setopt PROMPT_SUBST
-PROMPT='%B%F{green}%n@%m%f%F{yellow}[%D{%L:%M:%S}]%f:%F{blue}${${(%):-%~}}%f$ %b'
-TMOUT=1
-
-TRAPALRM() {
-    zle reset-prompt
-}
+PROMPT='%K{black}%S%U%B%F{green}%n%u%f%s@%U%F{green}%S%m%u%s%k%f:%F{green}~%f$ %b'
 
 setopt histignorealldups sharehistory
 
@@ -48,4 +43,4 @@ export SHELL=/bin/zsh
 export TERM=xterm-256color
 export EDITOR=/usr/bin/code
 /usr/bin/numlockx on
-clear
+tput reset
