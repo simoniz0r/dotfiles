@@ -1,7 +1,7 @@
 # Set up the prompt
 
 setopt PROMPT_SUBST
-PROMPT='%K{black}%S%U%B%F{green}%n%u%f%s@%U%F{green}%S%m%u%s%k%f:%F{green}~%f$ %b'
+PROMPT='%K{black}%S%U%B%F{green}%n%u%f%s@%U%F{green}%S%m%u%s%k%f:%F{green}%~/%f %b'
 
 setopt histignorealldups sharehistory
 
