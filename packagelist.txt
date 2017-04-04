@@ -34,6 +34,7 @@ libkf5xmlgui-dev
 libnotify-bin
 libqt5x11extras5-dev
 linux-generic-hwe-16.04-edge
+mc
 mtpaint
 neofetch
 nodejs-dev
