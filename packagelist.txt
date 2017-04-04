@@ -47,6 +47,7 @@ python-pip
 qtdeclarative5-dev
 rambox
 rar
+speedometer
 terminator
 ttf-ancient-fonts
 twitch-indicator
