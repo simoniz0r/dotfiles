@@ -39,6 +39,10 @@ if [ -f ~/.zsh_aliases ]; then
     . ~/.zsh_aliases
 fi
 
+# if [ -f ~/.smaptaliases ]; then
+#     . ~/.smaptaliases
+# fi
+
 export SHELL=/bin/zsh
 export TERM=xterm-256color
 export EDITOR=/usr/bin/code

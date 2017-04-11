@@ -7,6 +7,7 @@ cmake
 cmake-extras
 code
 curl
+dialog
 extra-cmake-modules
 fonts-droid-fallback
 fonts-play
