@@ -1,8 +1,8 @@
 alias aliasmce='mcedit ~/.zsh_aliases; zsh'
 alias cfe='tput reset; neofetch'
 alias chx='chmod +x'
-alias clear='tput reset'
-alias clr='tput reset'
+alias clear="printf '\033[;H'"
+alias clr="printf '\033[;H'"
 alias cpzsh='cp ~/.zshrc ~/dotfiles/.zshrc; cp ~/.zsh_aliases ~/dotfiles/.zsh_aliases'
 alias mce='mcedit'
 alias sdi='sudo dpkg -i'
