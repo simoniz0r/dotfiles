@@ -1,7 +1,7 @@
 # Set up the prompt
 
 setopt PROMPT_SUBST
-PROMPT='%K{black}%S%U%B%F{green}%n%u%f%s@%U%F{green}%S%m%u%s%k%f:%F{green}%~/%f %b'
+PROMPT='%K{black}%S%U%B%F{blue}%n%u@%U%m%u%s%k%f:%F{blue}%~/%f %b'
 
 setopt histignorealldups sharehistory
 
@@ -43,7 +43,7 @@ export SHELL=/bin/zsh
 export TERM=xterm-256color
 export EDITOR=/usr/bin/code
 /usr/bin/numlockx on
-printf '\033[;H'
+tput reset
 
 if [ -f ~/.smapt_aliases ]; then
     . ~/.smapt_aliases

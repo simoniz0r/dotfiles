@@ -6,6 +6,7 @@ chromium-browser
 cmake
 cmake-extras
 code
+colortest
 curl
 dialog
 extra-cmake-modules
@@ -48,7 +49,7 @@ python-pip
 qtdeclarative5-dev
 rar
 speedometer
-terminator
+tilix
 ttf-ancient-fonts
 twitch-indicator
 ubuntu-make
