@@ -23,7 +23,6 @@ gpa
 gpick
 htop
 i-nex
-inkscape
 kdenlive
 libc++1
 libffi-dev
@@ -40,7 +39,6 @@ mc
 mtpaint
 neofetch
 nodejs-dev
-notify-osd
 npm
 numlockx
 peek
@@ -51,10 +49,7 @@ rar
 speedometer
 tilix
 ttf-ancient-fonts
-twitch-indicator
 ubuntu-make
 xclip
-xfishtank
-xsel
 zenity
 zsh
