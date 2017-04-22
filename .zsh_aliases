@@ -15,7 +15,6 @@ alias strapg='apg -s -a 1 -m 30 -n 4'
 alias sudo='sudo '
 alias timewatch="printf '\e[?25l'; watch -tn 1 date +%t%D%t%t%t%t%t%t%t%I:%M:%S"
 alias vtb='vtop --theme brew'
-alias wttr='curl "wttr.in/YOURZIP"'
 alias zshmce='mcedit ~/.zshrc; zsh'
 alias aptm='/home/simonizor/UsefulScripts/aptmarklist/aptmarklist.sh'
 alias aptt='/home/simonizor/UsefulScripts/apttool/apttool.sh'
@@ -26,4 +25,45 @@ alias passman='/home/simonizor/UsefulScripts/gpgpassman/gpgpassman.sh'
 alias speedtest='/home/simonizor/UsefulScripts/speedtest/speedtest.sh'
 alias sudoBot='/home/simonizor/sudoBot/sudostart.sh'
 alias urltotmp='/home/simonizor/Scripts/urltotmp.sh'
-alias wttrref='/home/simonizor/UsefulScripts/misc/wttrrefresh.sh'
+alias wttrref='clr; /home/simonizor/UsefulScripts/misc/wttrrefresh.sh'
+
+wttr (){
+    LOCATION="$1"
+    FLOCATION="$2"
+    case $1 in
+        0*)
+            if [ -z "$FLOCATION" ]; then
+                FLOCATION="$location"
+            fi
+            tput reset
+            curl "wttr.in/$FLOCATION?0"
+            LOCATION=""
+            FLOCATION=""
+            ;;
+        1*)
+            if [ -z "$FLOCATION" ]; then
+                FLOCATION="$location"
+            fi
+            tput reset
+            curl "wttr.in/$FLOCATION?1"
+            LOCATION=""
+            FLOCATION=""
+            ;;
+        2*)
+            if [ -z "$FLOCATION" ]; then
+                FLOCATION="$location"
+            fi
+            tput reset
+            curl "wttr.in/$FLOCATION?2"
+            LOCATION=""
+            FLOCATION=""
+            ;;
+        *)
+            if [ -z "$LOCATION" ]; then
+                LOCATION="$location"
+            fi
+            tput reset
+            curl "wttr.in/$LOCATION"
+            LOCATION=""
+    esac
+}

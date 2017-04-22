@@ -35,11 +35,15 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
+# Adds check for zsh aliases file for separate loading of aliases like bash
 if [ -f ~/.zsh_aliases ]; then
     . ~/.zsh_aliases
 fi
 
+# Set zsh as SHELL
 export SHELL=/bin/zsh
+
+# Change/remove these to match your settings
 export TERM=xterm-256color
 export EDITOR=/usr/bin/code
 /usr/bin/numlockx on
