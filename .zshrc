@@ -13,7 +13,18 @@ print_dir () {
   esac
 }
 
-PROMPT='%K{black}%S%U%B%F{blue}%n%u@%U%m%u:%F{blue}$(print_dir)%s%k%f%b '
+FCLR () {
+  case $PWD in
+  (/home/$USER*)
+    echo "%F{blue}"
+    ;;
+  (*)
+    echo "%F{yellow}"
+    ;;
+  esac
+}
+
+PROMPT='%K{black}%S%U%B$(FCLR)%n%u@%U%m%u:$(FCLR)$(print_dir)%s%k%f%b '
 
 setopt histignorealldups sharehistory
 
