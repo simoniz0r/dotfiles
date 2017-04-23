@@ -8,7 +8,7 @@ print_dir () {
     echo "⾕/${PWD:16} ᗘ" # 16 = length of /home/$USER; adjust to your needs
     ;;
   (*)
-    echo "💻 /${PWD:1} ᗘ"
+    echo "💻 $PWD ᗘ"
     ;;
   esac
 }
