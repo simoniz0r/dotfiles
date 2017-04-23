@@ -75,4 +75,4 @@ export EDITOR=/usr/bin/code
 if [ -f ~/.smapt_aliases ]; then
     . ~/.smapt_aliases
 fi
-echo "zsh started!"
+echo "$USER@$HOST"
