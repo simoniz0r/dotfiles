@@ -5,15 +5,15 @@ setopt PROMPT_SUBST
 print_dir () {
   case $PWD in
   (/home/$USER*)
-    echo "🏠 ${PWD:15}" # 15 = length of /home/$USER; adjust to your needs
+    echo "⾕/${PWD:16} ᗘ" # 15 = length of /home/$USER; adjust to your needs
     ;;
   (*)
-    echo "💻 $PWD"
+    echo "💻 /${PWD:1} ᗘ"
     ;;
   esac
 }
 
-PROMPT='%K{black}%S%U%B%F{blue}%n%u@%U%m%u:%F{blue}$(print_dir)%1(~./.)%s%k%f %b'
+PROMPT='%K{black}%S%U%B%F{blue}%n%u@%U%m%u:%F{blue}$(print_dir)%s%k%f%b '
 
 setopt histignorealldups sharehistory
 
@@ -63,3 +63,4 @@ export EDITOR=/usr/bin/code
 if [ -f ~/.smapt_aliases ]; then
     . ~/.smapt_aliases
 fi
+echo "zsh started!"
