@@ -5,7 +5,7 @@ setopt PROMPT_SUBST
 print_dir () {
   case $PWD in
   (/home/$USER*)
-    echo "🏠 ${PWD:15}"
+    echo "🏠 ${PWD:15}" # 15 = length of /home/$USER; adjust to your needs
     ;;
   (*)
     echo "💻 $PWD"
@@ -13,7 +13,7 @@ print_dir () {
   esac
 }
 
-PROMPT='%K{black}%S%U%B%F{blue}%n%u@%U%m%u%s%k%f:%F{blue}%0(~../)$(print_dir)%1(~./.)%f %b'
+PROMPT='%K{black}%S%U%B%F{blue}%n%u@%U%m%u%s%k%f:%F{blue}$(print_dir)%1(~./.)%f %b'
 
 setopt histignorealldups sharehistory
 
