@@ -5,10 +5,10 @@ setopt PROMPT_SUBST
 print_dir () {
   case $PWD in
   (/home/$USER*)
-    echo "⾕/${PWD:16} ᗘ" # 16 = length of /home/$USER; adjust to your needs
+    echo "⾕/${PWD:16} " # 16 = length of /home/$USER; adjust to your needs
     ;;
   (*)
-    echo "💻 $PWD ᗘ"
+    echo "💻 $PWD "
     ;;
   esac
 }
@@ -24,8 +24,8 @@ FCLR () {
   esac
 }
 
-# with username and host on left: PROMPT='%K{black}%S%U%B$(FCLR)%n%u@%U%m%u:$(FCLR)$(print_dir)%s%k%f%b '
-PS1='%K{black}%S%B$(FCLR)$(print_dir)%s%k%f%b '
+# with username and host on left: PROMPT='%K{black}%S%U%B$(FCLR)%n%u@%U%m%u:$(FCLR)$(print_dir)%s%k%f%b '
+PS1='%K{black}%S%B$(FCLR)$(print_dir)%s%k%f%b '
 # username and host on right: RPS1='%K{black}%S%B$(FCLR)%n@%m'
 
 setopt histignorealldups sharehistory
