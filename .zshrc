@@ -1,7 +1,19 @@
 # Set up the prompt
 
 setopt PROMPT_SUBST
-PROMPT='%K{black}%S%U%B%F{blue}%n%u@%U%m%u%s%k%f:%F{blue}%~/%f %b'
+
+print_dir () {
+  case $PWD in
+  (/home/$USER*)
+    echo "🏠 ${PWD:15}"
+    ;;
+  (*)
+    echo "💻 $PWD"
+    ;;
+  esac
+}
+
+PROMPT='%K{black}%S%U%B%F{blue}%n%u@%U%m%u%s%k%f:%F{blue}%0(~../)$(print_dir)%1(~./.)%f %b'
 
 setopt histignorealldups sharehistory
 
