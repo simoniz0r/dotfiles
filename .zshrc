@@ -24,7 +24,8 @@ FCLR () {
   esac
 }
 
-PROMPT='%K{black}%S%U%B$(FCLR)%n%u@%U%m%u:$(FCLR)$(print_dir)%s%k%f%b '
+# with username and host: PROMPT='%K{black}%S%U%B$(FCLR)%n%u@%U%m%u:$(FCLR)$(print_dir)%s%k%f%b '
+PROMPT='%K{black}%S%B$(FCLR)$(print_dir)%s%k%f%b '
 
 setopt histignorealldups sharehistory
 
