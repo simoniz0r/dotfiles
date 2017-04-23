@@ -13,7 +13,7 @@ print_dir () {
   esac
 }
 
-PROMPT='%K{black}%S%U%B%F{blue}%n%u@%U%m%u%s%k%f:%F{blue}$(print_dir)%1(~./.)%f %b'
+PROMPT='%K{black}%S%U%B%F{blue}%n%u@%U%m%u:%F{blue}$(print_dir)%1(~./.)%s%k%f %b'
 
 setopt histignorealldups sharehistory
 
