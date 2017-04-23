@@ -5,7 +5,7 @@ setopt PROMPT_SUBST
 print_dir () {
   case $PWD in
   (/home/$USER*)
-    echo "⾕/${PWD:16} ᗘ" # 15 = length of /home/$USER; adjust to your needs
+    echo "⾕/${PWD:16} ᗘ" # 16 = length of /home/$USER; adjust to your needs
     ;;
   (*)
     echo "💻 /${PWD:1} ᗘ"
