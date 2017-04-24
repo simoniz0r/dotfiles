@@ -4,8 +4,14 @@ setopt PROMPT_SUBST
 
 print_dir () {
   case $PWD in
+  (/home/$USER/github*)
+    echo " /${PWD:23} " # 23 = length of /home/$USER/github/; adjust to your needs
+    ;;
+  (/home/$USER/.config*)
+    echo "✎ /${PWD:24} " # 24 = length of /home/$USER/.config/; adjust to your needs
+    ;;
   (/home/$USER*)
-    echo "⾕/${PWD:16} " # 16 = length of /home/$USER; adjust to your needs
+    echo "⾕/${PWD:16} " # 16 = length of /home/$USER/; adjust to your needs
     ;;
   (*)
     echo "💻 $PWD "
@@ -15,6 +21,12 @@ print_dir () {
 
 FCLR () {
   case $PWD in
+  (/home/$USER/github*)
+    echo "%F{green}"
+    ;;
+  (/home/$USER/.config*)
+    echo "%F{magenta}"
+    ;;
   (/home/$USER*)
     echo "%F{blue}"
     ;;
