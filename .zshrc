@@ -25,13 +25,13 @@ FCLR () {
     echo "%F{green}"
     ;;
   (/home/$USER/.config*)
-    echo "%F{magenta}"
+    echo "%F{yellow}"
     ;;
   (/home/$USER*)
-    echo "%F{blue}"
+    echo "%F{cyan}"
     ;;
   (*)
-    echo "%F{yellow}"
+    echo "%F{red}"
     ;;
   esac
 }
