@@ -38,6 +38,7 @@ FCLR () {
 
 # with username and host on left: PROMPT='%K{black}%S%U%B$(FCLR)%n%u@%U%m%u:$(FCLR)$(print_dir)%s%k%f%b '
 PS1='%K{black}%S%B$(FCLR)$(print_dir)%s%k%f%b '
+# Alternate that doesn't look as good if above symbol doesn't display properly: PS1='%K{black}%S%B$(FCLR)$(print_dir)%s%k⯈%f%b '
 # username and host on right: RPS1='%K{black}%S%B$(FCLR)%n@%m'
 
 setopt histignorealldups sharehistory
