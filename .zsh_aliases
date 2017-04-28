@@ -27,6 +27,12 @@ alias sudoBot='/home/simonizor/sudoBot/sudostart.sh'
 alias urltotmp='/home/simonizor/Scripts/urltotmp.sh'
 alias wttrref='clr; /home/simonizor/github/UsefulScripts/misc/wttrrefresh.sh'
 
+conf="/home/$USER/.config"
+docs="/home/$USER/Documents"
+down="/home/$USER/Downloads"
+pics="/home/$USER/Pictures"
+github="/home/$USER/github"
+
 dirsize () {
     du -H --max-depth=1 "$@" | sort -n -r
 }
