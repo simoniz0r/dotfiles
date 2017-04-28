@@ -8,7 +8,16 @@ print_dir () {
     echo " /${PWD:23} " # 23 = length of /home/$USER/github/; adjust to your needs
     ;;
   (/home/$USER/.config*)
-    echo "✎ /${PWD:24} " # 24 = length of /home/$USER/.config/; adjust to your needs
+    echo "⚒ /${PWD:24} " # 24 = length of /home/$USER/.config/; adjust to your needs
+    ;;
+  (/home/$USER/Documents*)
+    echo "䷁ /${PWD:26} " # 26 = length of /home/$USER/Documents/; adjust to your needs
+    ;;
+  (/home/$USER/Downloads*)
+    echo "⛛ /${PWD:26} " # 26 = length of /home/$USER/Downloads/; adjust to your needs
+    ;;
+  (/home/$USER/Pictures*)
+    echo "💟 /${PWD:25} " # 25 = length of /home/$USER/Pictures/; adjust to your needs
     ;;
   (/home/$USER*)
     echo "⾕/${PWD:16} " # 16 = length of /home/$USER/; adjust to your needs
@@ -27,6 +36,15 @@ FCLR () {
   (/home/$USER/.config*)
     echo "%F{yellow}"
     ;;
+  (/home/$USER/Documents*)
+    echo "%F{blue}"
+    ;;
+  (/home/$USER/Downloads*)
+    echo "%F{white}"
+    ;;
+  (/home/$USER/Pictures*)
+    echo "%F{magenta}"
+    ;;
   (/home/$USER*)
     echo "%F{cyan}"
     ;;
@@ -39,7 +57,7 @@ FCLR () {
 # with username and host on left: PROMPT='%K{black}%S%U%B$(FCLR)%n%u@%U%m%u:$(FCLR)$(print_dir)%s%k%f%b '
 PS1='%K{black}%S%B$(FCLR)$(print_dir)%s%k%f%b '
 # Alternate that doesn't look as good if above symbol doesn't display properly: PS1='%K{black}%S%B$(FCLR)$(print_dir)%s%k⯈%f%b '
-# username and host on right: RPS1='%K{black}%S%B$(FCLR)%n@%m'
+# username and host on right: RPS1='%K{black}%S%B$(FCLR)%K{black}%n@%m%k%s%b'
 
 setopt histignorealldups sharehistory
 

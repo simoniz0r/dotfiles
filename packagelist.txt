@@ -1,5 +1,4 @@
 apg
-audacious
 chromium-browser
 code
 curl
@@ -10,15 +9,14 @@ gimp
 git
 google-chrome-stable
 google-play-music-desktop-player
-gpa
 gpick
 htop
 i-nex
 kdenlive
+kgpg
 libc++1
 linux-generic-hwe-16.04-edge
 mc
-mtpaint
 nodejs-dev
 npm
 numlockx
@@ -27,6 +25,7 @@ python3-pip
 python-pip
 speedometer
 synergy
+teamviewer:i386
 tilix
 ttf-ancient-fonts
 xclip
