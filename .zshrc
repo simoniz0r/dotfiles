@@ -31,7 +31,7 @@ print_dir () {
 FCLR () {
   case $PWD in
   (/home/$USER/github*)
-    echo "%F{green}"
+    echo "%F{cyan}"
     ;;
   (/home/$USER/.config*)
     echo "%F{yellow}"
@@ -46,7 +46,7 @@ FCLR () {
     echo "%F{magenta}"
     ;;
   (/home/$USER*)
-    echo "%F{cyan}"
+    echo "%F{green}"
     ;;
   (*)
     echo "%F{red}"
