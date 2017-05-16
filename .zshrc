@@ -54,10 +54,18 @@ FCLR () {
   esac
 }
 
+EXSTATUS () {
+    if [ "$?" != "0" ]; then
+        echo "%B$(FCLR)%S%K{black}Exit status of last command != 0%k%s%b"
+    else
+        echo ""
+    fi
+}
+
 # with username and host on left: PROMPT='%K{black}%S%U%B$(FCLR)%n%u@%U%m%u:$(FCLR)$(print_dir)%s%k%f%b '
 PS1='%K{black}%S%B$(FCLR)$(print_dir)%s%k%f%b '
-# Alternate that doesn't look as good if above symbol doesn't display properly: PS1='%K{black}%S%B$(FCLR)$(print_dir)%s%k⯈%f%b '
-# username and host on right: RPS1='%K{black}%S%B$(FCLR)%K{black}%n@%m%k%s%b'
+RPS1='$(EXSTATUS)'
+
 
 setopt histignorealldups sharehistory
 
