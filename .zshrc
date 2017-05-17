@@ -57,10 +57,10 @@ FCLR () {
 EXSTATUS () {
     case $? in
         1)
-            echo "%B%F$(FCLR)%S%K{black}Exit 1%k%s%b"
+            echo "%F$(FCLR)%S%K{black} Exit 1 %k%s"
             ;;
         2)
-            echo "%B%F$(FCLR)%S%K{black}Exit 2%k%s%b" 
+            echo "%F$(FCLR)%S%K{black} Exit 2 %k%s" 
             ;;
         0)
             echo ""
