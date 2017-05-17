@@ -5,25 +5,28 @@ setopt PROMPT_SUBST
 print_dir () {
   case $PWD in
   (/home/$USER/github*)
-    echo " /${PWD:23} " # 23 = length of /home/$USER/github/; adjust to your needs
+    echo " ${PWD:22}" # 22 = length of /home/$USER/github; adjust to your needs
     ;;
   (/home/$USER/.config*)
-    echo "⚒ /${PWD:24} " # 24 = length of /home/$USER/.config/; adjust to your needs
+    echo "⚒ ${PWD:23}" # 23 = length of /home/$USER/.config; adjust to your needs
     ;;
   (/home/$USER/Documents*)
-    echo "䷁ /${PWD:26} " # 26 = length of /home/$USER/Documents/; adjust to your needs
+    echo "䷁ ${PWD:25}" # 25 = length of /home/$USER/Documents; adjust to your needs
     ;;
   (/home/$USER/Downloads*)
-    echo "⛛ /${PWD:26} " # 26 = length of /home/$USER/Downloads/; adjust to your needs
+    echo "⛛ ${PWD:25}" # 25 = length of /home/$USER/Downloads; adjust to your needs
     ;;
   (/home/$USER/Pictures*)
-    echo "💟 /${PWD:25} " # 25 = length of /home/$USER/Pictures/; adjust to your needs
+    echo "💟 ${PWD:24}" # 24 = length of /home/$USER/Pictures; adjust to your needs
     ;;
   (/home/$USER*)
-    echo "⾕/${PWD:16} " # 16 = length of /home/$USER/; adjust to your needs
+    echo "⾕${PWD:15}" # 15 = length of /home/$USER; adjust to your needs
+    ;;
+  (/)
+    echo "💻 ${PWD:1}"
     ;;
   (*)
-    echo "💻 $PWD "
+    echo "💻 $PWD"
     ;;
   esac
 }
