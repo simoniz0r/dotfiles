@@ -71,7 +71,7 @@ EXSTATUS () {
 }
 
 PS1='%K{black}%F$(FCLR)%n@%m %K{black}%S%F$(FCLR)%F$(FCLR)%K{black}%S$(print_dir)%s%k%f '
-# Without username and host: PS1='%B%F$(FCLR)%K{black}%S$(print_dir)%s%k%f%b '
+# Without username and host: PS1='%F$(FCLR)%K{black}%S$(print_dir)%s%k%f '
 RPS1='$(EXSTATUS)'
 
 
