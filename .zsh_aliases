@@ -50,6 +50,10 @@ filesize-a () {
     du -a "$@" | sort -n -r
 }
 
+sdif () {
+    sudo  dpkg -i $2 || sudo apt install -f
+}
+
 wttr (){
     LOCATION="$1"
     FLOCATION="$2"

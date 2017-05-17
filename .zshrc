@@ -31,39 +31,47 @@ print_dir () {
 FCLR () {
   case $PWD in
   (/home/$USER/github*)
-    echo "%F{cyan}"
+    echo "{cyan}"
     ;;
   (/home/$USER/.config*)
-    echo "%F{yellow}"
+    echo "{yellow}"
     ;;
   (/home/$USER/Documents*)
-    echo "%F{blue}"
+    echo "{blue}"
     ;;
   (/home/$USER/Downloads*)
-    echo "%F{white}"
+    echo "{white}"
     ;;
   (/home/$USER/Pictures*)
-    echo "%F{magenta}"
+    echo "{magenta}"
     ;;
   (/home/$USER*)
-    echo "%F{green}"
+    echo "{green}"
     ;;
   (*)
-    echo "%F{red}"
+    echo "{red}"
     ;;
   esac
 }
 
 EXSTATUS () {
-    if [ "$?" != "0" ]; then
-        echo "%B$(FCLR)%S%K{black}Exit status of last command != 0%k%s%b"
-    else
-        echo ""
-    fi
+    case $? in
+        1)
+            echo "%B%F$(FCLR)%S%K{black}Exit 1%k%s%b"
+            ;;
+        2)
+            echo "%B%F$(FCLR)%S%K{black}Exit 2%k%s%b" 
+            ;;
+        0)
+            echo ""
+            ;;
+        # On right:
+        # echo "%B$(FCLR)%S%K{black}Exit status of last command != 0%k%s%b" 
+    esac
 }
 
-# with username and host on left: PROMPT='%K{black}%S%U%B$(FCLR)%n%u@%U%m%u:$(FCLR)$(print_dir)%s%k%f%b '
-PS1='%K{black}%S%B$(FCLR)$(print_dir)%s%k%f%b '
+PS1='%K{black}%F$(FCLR)%n@%m %K{black}%S%F$(FCLR)%F$(FCLR)%K{black}%S$(print_dir)%s%k%f '
+# Without username and host: PS1='%B%F$(FCLR)%K{black}%S$(print_dir)%s%k%f%b '
 RPS1='$(EXSTATUS)'
 
 
@@ -115,4 +123,3 @@ export EDITOR=/usr/bin/code
 if [ -f ~/.smapt_aliases ]; then
     . ~/.smapt_aliases
 fi
-echo "$USER@$HOST"
