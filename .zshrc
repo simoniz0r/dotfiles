@@ -68,8 +68,6 @@ EXSTATUS () {
         0)
             echo ""
             ;;
-        # On right:
-        # echo "%B$(FCLR)%S%K{black}Exit status of last command != 0%k%s%b" 
     esac
 }
 
