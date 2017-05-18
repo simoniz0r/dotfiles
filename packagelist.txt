@@ -1,4 +1,5 @@
 apg
+audacious
 chromium-browser
 code
 curl
@@ -10,11 +11,13 @@ gimp
 git
 google-chrome-stable
 google-play-music-desktop-player
+gpick
 htop
 i-nex
 kdenlive
 kgpg
 libc++1
+linux-generic
 linux-generic-hwe-16.04-edge
 mc
 mpv
@@ -22,7 +25,6 @@ nodejs-dev
 npm
 numlockx
 peek
-pick-colour-picker
 python3-pip
 python-pip
 speedometer
