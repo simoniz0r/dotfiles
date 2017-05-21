@@ -12,8 +12,10 @@ git
 google-chrome-stable
 google-play-music-desktop-player
 gpick
+grub-customizer
 htop
 i-nex
+irssi
 kdenlive
 kgpg
 libc++1
@@ -25,6 +27,7 @@ nodejs-dev
 npm
 numlockx
 peek
+playonlinux
 python3-pip
 python-pip
 speedometer
@@ -32,6 +35,7 @@ synergy
 teamviewer:i386
 tilix
 ttf-ancient-fonts
+virtualbox
 xclip
 zenity
 zsh

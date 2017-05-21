@@ -9,6 +9,7 @@ alias cursorshow="printf '\e[?25h'"
 alias mce='mcedit'
 alias nohup='nohup '
 alias reset='tput reset'
+alias rex='remote-exec'
 alias S='sudo '
 alias sdi='sudo dpkg -i'
 alias speedo='speedometer -s -r ens33 -c -s -t ens33'
@@ -27,6 +28,7 @@ alias speedtest='/home/simonizor/github/UsefulScripts/speedtest/speedtest.sh'
 alias sudoBot='cursorhide; /home/simonizor/sudoBot/sudostart.sh'
 alias urltotmp='/home/simonizor/Scripts/urltotmp.sh'
 alias wttrref='clr; /home/simonizor/github/UsefulScripts/misc/wttrrefresh.sh'
+alias colortest='bash -c "$(wget --quiet https://github.com/fikovnik/bin-scripts/raw/master/color-test.sh -O -)"'
 
 conf="/home/$USER/.config"
 docs="/home/$USER/Documents"
@@ -48,6 +50,10 @@ filesize () {
 
 filesize-a () {
     du -a "$@" | sort -n -r
+}
+
+remote-exec () {
+    bash -c "$(wget --quiet $@ -O -)"
 }
 
 sdif () {
