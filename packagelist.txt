@@ -30,6 +30,7 @@ npm
 numlockx
 peek
 playonlinux
+ppa-purge
 python3-pip
 python-pip
 rocketchat-desktop
