@@ -3,9 +3,13 @@ alias cfe='tput reset; neofetch'
 alias chx='chmod +x'
 alias clear='tput reset'
 alias clr='tput reset'
-alias cpzsh='cp ~/.zshrc ~/github/dotfiles/.zshrc; cp ~/.zsh_aliases ~/github/dotfiles/.zsh_aliases'
+alias cpdots='cp ~/.zshrc ~/github/dotfiles/.zshrc && cp ~/.zsh_aliases ~/github/dotfiles/.zsh_aliases && cp ~/packagelist.txt ~/github/dotfiles/packagelist.txt && echo "dotfiles copied to gihub dir!"'
+alias csi='clr; neofetch -L; inxi -I'
+alias csif='clr; neofetch -L; inxi -F'
 alias cursorhide="printf '\e[?25l'"
 alias cursorshow="printf '\e[?25h'"
+alias drivespeed='hdparam -Tt'
+alias inxi='inxi -c 10'
 alias mce='mcedit'
 alias nohup='nohup '
 alias reset='tput reset'
@@ -29,6 +33,7 @@ alias sudoBot='cursorhide; /home/simonizor/sudoBot/sudostart.sh'
 alias urltotmp='/home/simonizor/Scripts/urltotmp.sh'
 alias wttrref='clr; /home/simonizor/github/UsefulScripts/misc/wttrrefresh.sh'
 alias colortest='bash -c "$(wget --quiet https://github.com/fikovnik/bin-scripts/raw/master/color-test.sh -O -)"'
+alias colorinvaders='bash -c "$(wget --quiet https://github.com/chrisduerr/dotfiles/raw/master/cache/home/undeadleech/Scripts/test_colors0 -O -)"'
 
 conf="/home/$USER/.config"
 docs="/home/$USER/Documents"
@@ -58,6 +63,40 @@ remote-exec () {
 
 sdif () {
     sudo  dpkg -i $2 || sudo apt install -f
+}
+
+todo () {
+    echo
+    echo "TODO LIST:"
+    cat ~/TODO.txt
+    echo
+}
+
+todo-a () {
+    echo "$@" >> ~/TODO.txt
+    echo
+    echo "TODO LIST:"
+    cat ~/TODO.txt
+    echo
+}
+
+todo-r () {
+    TODOITEM="$(grep -a "$@" ~/TODO.txt)"
+    DELNUM="$(echo "$TODOITEM" | wc -l)"
+    if ! grep -q "$@" ~/TODO.txt; then
+        echo "$@ not found in TODO list!"
+        exit 1
+    fi
+    if [[ "$DELNUM" != "1" ]]; then
+        echo "$DELNUM results found; refine your input."
+        exit 1
+    fi
+    sed -i s:"$TODOITEM"::g ~/TODO.txt
+    sed -i '/^$/d' ~/TODO.txt
+    echo
+    echo "TODO LIST:"
+    cat ~/TODO.txt
+    echo
 }
 
 wttr (){

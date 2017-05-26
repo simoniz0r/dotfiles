@@ -1,5 +1,6 @@
 apg
 audacious
+audacity
 chromium-browser
 code
 curl
@@ -15,6 +16,7 @@ gpick
 grub-customizer
 htop
 i-nex
+inxi
 irssi
 kdenlive
 kgpg
@@ -30,9 +32,9 @@ peek
 playonlinux
 python3-pip
 python-pip
+rocketchat-desktop
 speedometer
 synergy
-teamviewer:i386
 tilix
 ttf-ancient-fonts
 virtualbox

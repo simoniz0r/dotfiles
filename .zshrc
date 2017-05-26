@@ -43,13 +43,13 @@ FCLR () {
     echo "{blue}"
     ;;
   (/home/$USER/Downloads*)
-    echo "{white}"
+    echo "{green}"
     ;;
   (/home/$USER/Pictures*)
     echo "{magenta}"
     ;;
   (/home/$USER*)
-    echo "{green}"
+    echo "{white}"
     ;;
   (*)
     echo "{red}"
@@ -124,3 +124,5 @@ export EDITOR=/usr/bin/code
 if [ -f ~/.smapt_aliases ]; then
     . ~/.smapt_aliases
 fi
+
+todo
