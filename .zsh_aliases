@@ -66,18 +66,26 @@ sdif () {
 }
 
 todo () {
-    echo
-    echo "TODO LIST:"
-    cat ~/TODO.txt
-    echo
+    if [ ! -f ~/TODO.list ]; then
+        touch ~/TODO.list
+    fi
+    TODOLIST="$(cat ~/TODO.list)"
+    if [ ! -z "$TODOLIST" ]; then
+        echo
+        echo "TODO.list:"
+        cat ~/TODO.list
+        echo
+    else
+        echo "No items in TODO.list; yay!"
+    fi
 }
 
 todo-a () {
     TODOADD="$(echo "$@" | tr -d ':')"
-    echo "$TODOADD" >> ~/TODO.txt
+    echo "$TODOADD" >> ~/TODO.list
     echo
-    echo "TODO LIST:"
-    cat ~/TODO.txt
+    echo "TODO.list:"
+    cat ~/TODO.list
     echo
 }
 
@@ -94,10 +102,15 @@ todo-r () {
     fi
     sed -i s:"$TODOITEM"::g ~/TODO.txt
     sed -i '/^$/d' ~/TODO.txt
-    echo
-    echo "TODO LIST:"
-    cat ~/TODO.txt
-    echo
+    TODOLIST="$(cat ~/TODO.list)"
+    if [ ! -z "$TODOLIST" ]; then
+        echo
+        echo "TODO.list:"
+        cat ~/TODO.txt
+        echo
+    else
+        echo "No items in TODO.list; yay!"
+    fi
 }
 
 wttr (){
