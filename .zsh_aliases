@@ -68,7 +68,7 @@ sdif () {
 
 todo () {
     case $1 in
-        -a*)
+        -a*|--a*)
             TODOADD="$(echo "$@" | tr -d ':')"
             echo "${TODOADD:3}" >> ~/TODO.list
             echo
@@ -76,7 +76,7 @@ todo () {
             cat ~/TODO.list
             echo
             ;;
-        -r*)
+        -r*|--r*)
             TODOITEM="$(grep -a "$2" ~/TODO.list)"
             DELNUM="$(echo "$TODOITEM" | wc -l)"
             if ! grep -q "$2" ~/TODO.list; then
@@ -98,6 +98,14 @@ todo () {
             else
                 echo "No items in TODO.list; yay!"
             fi
+            ;;
+        -h*|--h*)
+            echo
+            echo "TODO.list usage:"
+            echo "todo    : Lists items in TODO.list"
+            echo "todo -a : Adds items to TODO.list"
+            echo "todo -r : Removes items from TODO.list"
+            echo
             ;;
         *)
             if [ ! -f ~/TODO.list ]; then
