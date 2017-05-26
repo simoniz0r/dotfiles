@@ -57,8 +57,8 @@ FCLR () {
   esac
 }
 
-PS1="%K{black}%F$(FCLR)%n@%m %S$(print_dir)%s%k%f "
-# Without username and host: PS1="%F$(FCLR)%K{black}%S$(print_dir)%s%k%f "
+PS1='%K{black}%F$(FCLR)%B%n@%m %S$(print_dir)%s%k%f '
+# Without username and host: PS1='%F$(FCLR)%K{black}%S$(print_dir)%s%k%f '
 RPS1="%(?..%F$(FCLR)%K{black}%S%f Exit %? )"
 
 
