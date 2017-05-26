@@ -5,6 +5,7 @@ alias clear='tput reset'
 alias clr='tput reset'
 alias cpdots='cp ~/.zshrc ~/github/dotfiles/.zshrc && cp ~/.zsh_aliases ~/github/dotfiles/.zsh_aliases && cp ~/packagelist.txt ~/github/dotfiles/packagelist.txt && echo "dotfiles copied to gihub dir!"'
 alias csi='clr; neofetch -L; inxi -I -S; echo'
+alias csic='clr; neofetch -L; inxi -I -S; colorinvaders'
 alias csif='clr; neofetch -L; inxi -F -v 4; echo'
 alias cursorhide="printf '\e[?25l'"
 alias cursorshow="printf '\e[?25h'"
@@ -32,7 +33,7 @@ alias speedtest='/home/$USER/github/UsefulScripts/speedtest/speedtest.sh'
 alias sudoBot='cursorhide; /home/$USER/sudoBot/sudostart.sh'
 alias urltotmp='/home/$USER/Scripts/urltotmp.sh'
 alias wttrref='clr; /home/$USER/github/UsefulScripts/misc/wttrrefresh.sh'
-alias colortest='bash -c "$(wget --quiet https://github.com/fikovnik/bin-scripts/raw/master/color-test.sh -O -)"'
+alias colortest='bash -c "$(wget --quiet https://gist.githubusercontent.com/wagnermoschini/8893311/raw/9de710eea1a86fb955fb221e847d722e9bc3b024/colortest.sh -O -)"'
 alias colorinvaders='bash -c "$(wget --quiet https://github.com/chrisduerr/dotfiles/raw/master/cache/home/undeadleech/Scripts/test_colors0 -O -)"'
 
 conf="/home/$USER/.config"
@@ -90,9 +91,9 @@ todo-a () {
 }
 
 todo-r () {
-    TODOITEM="$(grep -a "$@" ~/TODO.txt)"
+    TODOITEM="$(grep -a "$@" ~/TODO.list)"
     DELNUM="$(echo "$TODOITEM" | wc -l)"
-    if ! grep -q "$@" ~/TODO.txt; then
+    if ! grep -q "$@" ~/TODO.list; then
         echo "$@ not found in TODO list!"
         exit 1
     fi
@@ -100,13 +101,13 @@ todo-r () {
         echo "$DELNUM results found; refine your input."
         exit 1
     fi
-    sed -i s:"$TODOITEM"::g ~/TODO.txt
-    sed -i '/^$/d' ~/TODO.txt
+    sed -i s:"$TODOITEM"::g ~/TODO.list
+    sed -i '/^$/d' ~/TODO.list
     TODOLIST="$(cat ~/TODO.list)"
     if [ ! -z "$TODOLIST" ]; then
         echo
         echo "TODO.list:"
-        cat ~/TODO.txt
+        cat ~/TODO.list
         echo
     else
         echo "No items in TODO.list; yay!"
