@@ -57,9 +57,26 @@ FCLR () {
   esac
 }
 
+EXSTATUS () {
+    case $? in
+        1)
+            echo "%F$(FCLR)%S%K{black} Exit 1 %k%s"
+            ;;
+        2)
+            echo "%F$(FCLR)%S%K{black} Exit 2 %k%s" 
+            ;;
+        127)
+            echo "%F$(FCLR)%S%K{black} Exit 127 %k%s" 
+            ;;
+        0)
+            echo ""
+            ;;
+    esac
+}
+
 PS1='%K{black}%F$(FCLR)%B%n@%m %S$(print_dir)%s%k%f '
 # Without username and host: PS1='%F$(FCLR)%K{black}%S$(print_dir)%s%k%f '
-RPS1="%(?..%F$(FCLR)%K{black}%S%f Exit %? )"
+RPS1='$(EXSTATUS)'
 
 
 setopt histignorealldups sharehistory
