@@ -57,23 +57,9 @@ FCLR () {
   esac
 }
 
-EXSTATUS () {
-    case $? in
-        1)
-            echo "%F$(FCLR)%S%K{black} Exit 1 %k%s"
-            ;;
-        2)
-            echo "%F$(FCLR)%S%K{black} Exit 2 %k%s" 
-            ;;
-        0)
-            echo ""
-            ;;
-    esac
-}
-
-PS1='%K{black}%F$(FCLR)%n@%m %S$(print_dir)%s%k%f '
-# Without username and host: PS1='%F$(FCLR)%K{black}%S$(print_dir)%s%k%f '
-RPS1='$(EXSTATUS)'
+PS1="%K{black}%F$(FCLR)%n@%m %S$(print_dir)%s%k%f "
+# Without username and host: PS1="%F$(FCLR)%K{black}%S$(print_dir)%s%k%f "
+RPS1="%(?..%F$(FCLR)%K{black}%S%f Exit %? )"
 
 
 setopt histignorealldups sharehistory
@@ -124,5 +110,3 @@ export EDITOR=/usr/bin/code
 if [ -f ~/.smapt_aliases ]; then
     . ~/.smapt_aliases
 fi
-
-todo
