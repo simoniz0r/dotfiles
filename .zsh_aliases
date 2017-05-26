@@ -67,51 +67,52 @@ sdif () {
 }
 
 todo () {
-    if [ ! -f ~/TODO.list ]; then
-        touch ~/TODO.list
-    fi
-    TODOLIST="$(cat ~/TODO.list)"
-    if [ ! -z "$TODOLIST" ]; then
-        echo
-        echo "TODO.list:"
-        cat ~/TODO.list
-        echo
-    else
-        echo "No items in TODO.list; yay!"
-    fi
-}
-
-todo-a () {
-    TODOADD="$(echo "$@" | tr -d ':')"
-    echo "$TODOADD" >> ~/TODO.list
-    echo
-    echo "TODO.list:"
-    cat ~/TODO.list
-    echo
-}
-
-todo-r () {
-    TODOITEM="$(grep -a "$@" ~/TODO.list)"
-    DELNUM="$(echo "$TODOITEM" | wc -l)"
-    if ! grep -q "$@" ~/TODO.list; then
-        echo "$@ not found in TODO list!"
-        exit 1
-    fi
-    if [[ "$DELNUM" != "1" ]]; then
-        echo "$DELNUM results found; refine your input."
-        exit 1
-    fi
-    sed -i s:"$TODOITEM"::g ~/TODO.list
-    sed -i '/^$/d' ~/TODO.list
-    TODOLIST="$(cat ~/TODO.list)"
-    if [ ! -z "$TODOLIST" ]; then
-        echo
-        echo "TODO.list:"
-        cat ~/TODO.list
-        echo
-    else
-        echo "No items in TODO.list; yay!"
-    fi
+    case $1 in
+        -a*)
+            TODOADD="$(echo "$@" | tr -d ':')"
+            echo "${TODOADD:3}" >> ~/TODO.list
+            echo
+            echo "TODO.list:"
+            cat ~/TODO.list
+            echo
+            ;;
+        -r*)
+            TODOITEM="$(grep -a "$2" ~/TODO.list)"
+            DELNUM="$(echo "$TODOITEM" | wc -l)"
+            if ! grep -q "$2" ~/TODO.list; then
+                echo "$2 not found in TODO list!"
+                exit 1
+            fi
+            if [[ "$DELNUM" != "1" ]]; then
+                echo "$DELNUM results found; refine your input."
+                exit 1
+            fi
+            sed -i s:"$TODOITEM"::g ~/TODO.list
+            sed -i '/^$/d' ~/TODO.list
+            TODOLIST="$(cat ~/TODO.list)"
+            if [ ! -z "$TODOLIST" ]; then
+                echo
+                echo "TODO.list:"
+                cat ~/TODO.list
+                echo
+            else
+                echo "No items in TODO.list; yay!"
+            fi
+            ;;
+        *)
+            if [ ! -f ~/TODO.list ]; then
+                touch ~/TODO.list
+            fi
+            TODOLIST="$(cat ~/TODO.list)"
+            if [ ! -z "$TODOLIST" ]; then
+                echo
+                echo "TODO.list:"
+                cat ~/TODO.list
+                echo
+            else
+                echo "No items in TODO.list; yay!"
+            fi
+    esac
 }
 
 wttr (){
