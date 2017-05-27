@@ -4,9 +4,9 @@ alias chx='chmod +x'
 alias clear='tput reset'
 alias clr='tput reset'
 alias cpdots='cp ~/.zshrc ~/github/dotfiles/.zshrc && cp ~/.zsh_aliases ~/github/dotfiles/.zsh_aliases && cp ~/packagelist.txt ~/github/dotfiles/packagelist.txt && echo "dotfiles copied to gihub dir!"'
-alias csi='clr; neofetch -L; inxi -I -S; echo'
-alias csic='clr; neofetch -L; inxi -I -S; colorinvaders'
-alias csif='clr; neofetch -L; inxi -F -v 4; echo'
+alias csi='tput reset; neofetch -L; inxi -I -S; echo'
+alias csic='tput reset; neofetch -L; inxi -I -v 1; colorinvaders'
+alias csif='tput reset; neofetch -L; inxi -F -v 4; echo'
 alias cursorhide="printf '\e[?25l'"
 alias cursorshow="printf '\e[?25h'"
 alias drivespeed='hdparam -Tt'
@@ -70,7 +70,7 @@ todo () {
     case $1 in
         -a*|--a*)
             TODOADD="$(echo "$@" | tr -d ':')"
-            echo "${TODOADD:3}" >> ~/TODO.list
+            echo "% ${TODOADD:3}" >> ~/TODO.list
             echo
             echo "TODO.list:"
             cat ~/TODO.list
