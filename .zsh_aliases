@@ -70,7 +70,15 @@ todo () {
     case $1 in
         -a*|--a*)
             TODOADD="$(echo "$@" | tr -d ':')"
-            echo "% ${TODOADD:3}" >> ~/TODO.list
+            echo "-- ${TODOADD:3}" >> ~/TODO.list
+            echo
+            echo "TODO.list:"
+            cat ~/TODO.list
+            echo
+            ;;
+        -i*|--i*)
+            TODOADD="$(echo "$@" | tr -d ':')"
+            echo "!! ${TODOADD:3}" >> ~/TODO.list
             echo
             echo "TODO.list:"
             cat ~/TODO.list
@@ -103,7 +111,8 @@ todo () {
             echo
             echo "TODO.list usage:"
             echo "todo    : Lists items in TODO.list"
-            echo "todo -a : Adds items to TODO.list"
+            echo "todo -a : Adds item to TODO.list"
+            echo "todo -i : Adds item to TODO.list with important status"
             echo "todo -r : Removes items from TODO.list"
             echo
             ;;
