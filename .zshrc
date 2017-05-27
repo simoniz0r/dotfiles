@@ -43,13 +43,13 @@ FCLR () {
     echo "{blue}"
     ;;
   (/home/$USER/Downloads*)
-    echo "{green}"
+    echo "{white}"
     ;;
   (/home/$USER/Pictures*)
     echo "{magenta}"
     ;;
   (/home/$USER*)
-    echo "{white}"
+    echo "{green}"
     ;;
   (*)
     echo "{red}"
@@ -74,7 +74,7 @@ EXSTATUS () {
     esac
 }
 
-PS1='%K{black}%F$(FCLR)%B%n@%m %S$(print_dir)%s%k%f '
+PS1='%K{black}%F$(FCLR)%B%n@%m %S$(print_dir)%s%k%f%b '
 # Without username and host: PS1='%F$(FCLR)%K{black}%S$(print_dir)%s%k%f '
 RPS1='$(EXSTATUS)'
 
@@ -117,7 +117,7 @@ if [ -f ~/.zsh_aliases ]; then
 fi
 
 # Set zsh as SHELL
-export SHELL=/bin/zsh
+# export SHELL=/bin/zsh
 
 # Change/remove these to match your settings
 export TERM=xterm-256color
