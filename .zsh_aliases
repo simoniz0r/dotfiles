@@ -81,7 +81,7 @@ todo () {
             DELNUM="$(echo "$TODOITEM" | wc -l)"
             if ! grep -q "$2" ~/TODO.list; then
                 echo "$2 not found in TODO list!"
-                exit 1
+                exit 0
             fi
             if [[ "$DELNUM" != "1" ]]; then
                 echo "$DELNUM results found; refine your input."
