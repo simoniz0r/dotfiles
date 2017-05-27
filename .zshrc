@@ -60,16 +60,34 @@ FCLR () {
 EXSTATUS () {
     case $? in
         1)
-            echo "%F$(FCLR)%S%K{black} Exit 1 %k%s"
+            echo "%B%F$(FCLR)%S%K{black} Exit 1 %k%s%b"
             ;;
         2)
-            echo "%F$(FCLR)%S%K{black} Exit 2 %k%s" 
+            echo "%B%F$(FCLR)%S%K{black} Exit 2 %k%s%b"
+            ;;
+        126)
+            echo "%B%F$(FCLR)%S%K{black} Exit 126 %k%s%b"
             ;;
         127)
-            echo "%F$(FCLR)%S%K{black} Exit 127 %k%s" 
+            echo "%B%F$(FCLR)%S%K{black} Exit 127 %k%s%b"
+            ;;
+        128*)
+            echo "%B%F$(FCLR)%S%K{black} Exit 128 %k%s%b"
+            ;;
+        130)
+            echo "%B%F$(FCLR)%S%K{black} Exit 130 %k%s%b"
+            ;;
+        165)
+            echo "%B%F$(FCLR)%S%K{black} Exit 165 %k%s%b"
+            ;;
+        255)
+            echo "%B%F$(FCLR)%S%K{black} Exit 255 %k%s%b"
             ;;
         0)
             echo ""
+            ;;
+        *)
+            echo "%B%F$(FCLR)%S%K{black} Exit Unknown %k%s%b"
             ;;
     esac
 }
