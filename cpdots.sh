@@ -28,7 +28,7 @@ cpdotsmain () {
                 echo "$DELNUM results found; refine your input."
                 exit 1
             fi
-            read -p "Delete repo $DELFILE? Y/N" -n 1 -r
+            read -p "Delete repo $DELFILE? Y/N " -n 1 -r
             echo
             if [[ $REPLY =~ ^[Yy]$ ]]; then
                 sed -i s#"$DELFILE"##g $DIR/dotrepos.conf
@@ -109,7 +109,7 @@ cpdotsmain () {
                 echo "$RESTNUM results found; refine your input."
                 exit 1
             fi
-            read -p "Restore $2 to $RESTORE? Y/N" -n 1 -r
+            read -p "Restore $2 to $RESTORE? Y/N " -n 1 -r
             echo
             if [[ $REPLY =~ ^[Yy]$ ]]; then
                 cp $DIR/"$2"* $RESTORE
@@ -134,7 +134,7 @@ cpdotsmain () {
                 echo "$DELNUM results found; refine your input."
                 exit 1
             fi
-            read -p "Perminantly delete $2 (original location $DELFILE)? Y/N" -n 1 -r
+            read -p "Perminantly delete $2 (original location $DELFILE)? Y/N " -n 1 -r
             echo
             if [[ $REPLY =~ ^[Yy]$ ]]; then
                 rm -r ~/test/"$2"* || { echo "$2 not found in '$DIR'!" ; exit 1 ; }
