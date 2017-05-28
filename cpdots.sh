@@ -109,14 +109,11 @@ cpdotsmain () {
                 echo "$RESTNUM results found; refine your input."
                 exit 1
             fi
-            if [ -f "$RESTORE" ]; then
-                echo "$RESTORE already exists; remove this file before attempting to restore from $DIR"
-                exit 1
-            fi
             read -p "Restore $2 to $RESTORE? Y/N" -n 1 -r
             echo
             if [[ $REPLY =~ ^[Yy]$ ]]; then
                 cp $DIR/"$2"* $RESTORE
+                echo "$RESTORE was restored!"
             else
                 echo "$2 was not restored!"
                 exit 0
