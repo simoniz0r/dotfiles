@@ -1,3 +1,4 @@
+anydesk
 apg
 audacious
 audacity
