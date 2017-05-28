@@ -162,4 +162,14 @@ cpdotsmain () {
     esac
 }
 
+if [ ! -f "$DIR/dotfiles.conf" ]; then
+    touch $DIR/dotfiles.conf
+fi
+if [ ! -f "$DIR/dotrepos.conf" ]; then
+    touch $DIR/dotrepos.conf
+fi
+if [ ! -d "$DIR" ]; then
+    echo "$DIR does not exist; adjust the DIR= line in this script to match your needs."
+    exit 1
+fi
 cpdotsmain "$@"
