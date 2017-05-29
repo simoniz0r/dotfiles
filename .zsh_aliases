@@ -36,7 +36,7 @@ alias xdgfetch='/home/$USER/github/UsefulScripts/xdgfetch/xdgfetch -c 2'
 alias urltotmp='/home/$USER/Scripts/urltotmp.sh'
 alias wttrref='clr; /home/$USER/github/UsefulScripts/misc/wttrrefresh.sh'
 alias colortest='bash -c "$(wget --quiet https://gist.githubusercontent.com/wagnermoschini/8893311/raw/9de710eea1a86fb955fb221e847d722e9bc3b024/colortest.sh -O -)"'
-alias colorinvaders='bash -c "$(wget --quiet https://github.com/chrisduerr/dotfiles/raw/master/cache/home/undeadleech/Scripts/test_colors0 -O -)"'
+alias colorinvaders='bash -c "$(wget --quiet https://github.com/chrisduerr/dotfiles/raw/master/files/Scripts/test_colors0 -O -)"'
 
 conf="/home/$USER/.config"
 docs="/home/$USER/Documents"
@@ -45,19 +45,19 @@ pics="/home/$USER/Pictures"
 github="/home/$USER/github"
 
 dirsize () {
-    du -H --max-depth=1 "$@" | sort -n -r
+    du -h --max-depth=1 "$@" | sort -h -r
 }
 
 dirsize-a () {
-    du -H "$@" | sort -n -r
+    du -h "$@" | sort -h -r
 }
 
 filesize () {
-    du -a --max-depth=1 "$@" | sort -n -r
+    du -h -a --max-depth=1 "$@" | sort -h -r
 }
 
 filesize-a () {
-    du -a "$@" | sort -n -r
+    du -h -a "$@" | sort -h -r
 }
 
 remote-exec () {
