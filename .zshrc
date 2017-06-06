@@ -92,7 +92,7 @@ EXSTATUS () {
     esac
 }
 
-PS1='%K{black}%F$(FCLR)%B%n@%m %S$(print_dir)%s%k%f%b '
+PS1='%K{black}%F$(FCLR)%B %n@%m %S$(print_dir)%s%k%f%b '
 # Without username and host: PS1='%F$(FCLR)%K{black}%S$(print_dir)%s%k%f '
 RPS1='$(EXSTATUS)'
 
@@ -144,4 +144,8 @@ export EDITOR=/usr/bin/code
 
 if [ -f ~/.smapt_aliases ]; then
     . ~/.smapt_aliases
+fi
+
+if [ -f ~/.discord-install_alias ]; then
+    . ~/.discord-install_alias
 fi
