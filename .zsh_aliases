@@ -3,24 +3,26 @@ alias cfe='tput reset; neofetch'
 alias chx='chmod +x'
 alias clear='tput reset'
 alias clr='tput reset'
-alias csi='tput reset; neofetch -L; inxi -I -S; echo'
-alias csix='tput reset; neofetch -L; inxi -I -v 1;echo;  xdgfetch'
-alias csif='tput reset; echo; inxi -F -v 4; echo; xdgfetch'
+alias csi='tput reset; neofetch -L; inxi -I -S; echo; weather; echo'
+alias csix='tput reset; neofetch -L; inxi -I -v 1;echo; xdgfetch; weather; echo'
+alias csif='tput reset; echo; inxi -F -v 4; echo; xdgfetch; weather; echo'
 alias cursorhide="printf '\e[?25l'"
 alias cursorshow="printf '\e[?25h'"
 alias drivespeed='hdparam -Tt'
+alias git-sign='git-sign-func'
 alias inxi='inxi -c 10'
 alias mce='mcedit'
 alias nohup='nohup '
 alias reset='tput reset'
 alias rex='remote-exec'
 alias S='sudo '
-alias sdi='sudo dpkg -i'
 alias speedo='speedometer -s -r ens33 -c -s -t ens33'
 alias strapg='apg -a 1 -m 30 -n 4'
 alias sudo='sudo '
-alias timewatch="printf '\e[?25l'; watch -tn 1 date +%D%t%I:%M:%S"
+alias timewatch='cursorhide; /home/simonizor/Scripts/timewatch.sh'
 alias vta='vtop --theme acid'
+alias weather='echo "$(tput setaf 2) $(tput bold) $(ansiweather -l Dubuque -u imperial -s true -a false)"'
+alias weatherwatch='clr; cursorhide; /home/simonizor/Scripts/ansiwatch.sh'
 alias zmce='mcedit ~/.zshrc; zsh'
 alias aptm='/home/$USER/github/UsefulScripts/aptmarklist/aptmarklist.sh'
 alias aptt='/home/$USER/github/UsefulScripts/apttool/apttool.sh'
@@ -31,7 +33,7 @@ alias lyrics='/home/$USER/github/UsefulScripts/misc/lyrics.sh'
 alias passman='/home/$USER/github/gpgpassman/gpgpassman.sh'
 alias speedtest='/home/$USER/github/UsefulScripts/speedtest/speedtest.sh'
 alias sudoBot='cursorhide; /home/$USER/sudoBot/sudostart.sh'
-alias xdgfetch='/home/$USER/github/UsefulScripts/xdgfetch/xdgfetch -c 2'
+alias xdgfetch='/home/$USER/github/xdgfetch/xdgfetch -c 2'
 alias urltotmp='/home/$USER/Scripts/urltotmp.sh'
 alias wttrref='clr; /home/$USER/github/UsefulScripts/misc/wttrrefresh.sh'
 alias colortest='bash -c "$(wget --quiet https://gist.githubusercontent.com/wagnermoschini/8893311/raw/9de710eea1a86fb955fb221e847d722e9bc3b024/colortest.sh -O -)"'
@@ -60,12 +62,12 @@ filesize-a () {
     du -h -a "$@" | sort -h -r
 }
 
-remote-exec () {
-    bash -c "$(wget --quiet $@ -O -)"
+git-sign-func () {
+    git commit --gpg-sign=1E9F0EC70D8DDD28 -m '$@'
 }
 
-sdif () {
-    sudo  dpkg -i $2 || sudo apt install -f
+remote-exec () {
+    bash -c "$(wget --quiet $@ -O -)"
 }
 
 todo () {

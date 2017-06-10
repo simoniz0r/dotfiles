@@ -1,3 +1,4 @@
+ansiweather
 anydesk
 apg
 audacious
@@ -6,6 +7,8 @@ chromium-browser
 code
 curl
 dialog
+fonts-font-awesome
+fonts-powerline
 fonts-wqy-microhei
 fonts-wqy-zenhei
 gcolor2
@@ -17,11 +20,13 @@ gpick
 grub-customizer
 htop
 i-nex
+intel-microcode
 inxi
 irssi
 kdenlive
 kgpg
 libc++1
+libgl1-mesa-dri:i386
 linux-generic
 linux-generic-hwe-16.04-edge
 mc
@@ -29,8 +34,8 @@ mpv
 nodejs-dev
 npm
 numlockx
+openjdk-8-jdk
 peek
-playonlinux
 ppa-purge
 python3-pip
 python-pip
