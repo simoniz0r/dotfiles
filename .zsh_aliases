@@ -3,8 +3,8 @@ alias cfe='tput reset; neofetch'
 alias chx='chmod +x'
 alias clear='tput reset'
 alias clr='tput reset'
-alias csi='tput reset; neofetch -L; inxi -I -S; echo; weather; echo'
-alias csix='tput reset; neofetch -L; inxi -I -v 1;echo; xdgfetch; weather; echo'
+alias csi='tput reset; neofetch -L; inxi -I -S; echo'
+alias csix='tput reset; neofetch -L; inxi -I -v 1;echo; xdgfetch'
 alias csif='tput reset; echo; inxi -F -v 4; echo; xdgfetch; weather; echo'
 alias cursorhide="printf '\e[?25l'"
 alias cursorshow="printf '\e[?25h'"
@@ -19,10 +19,8 @@ alias S='sudo '
 alias speedo='speedometer -s -r ens33 -c -s -t ens33'
 alias strapg='apg -a 1 -m 30 -n 4'
 alias sudo='sudo '
-alias timewatch='cursorhide; /home/simonizor/Scripts/timewatch.sh'
 alias vta='vtop --theme acid'
-alias weather='echo "$(tput setaf 2) $(tput bold) $(ansiweather -l Dubuque -u imperial -s true -a false)"'
-alias weatherwatch='clr; cursorhide; /home/simonizor/Scripts/ansiwatch.sh'
+alias weather='echo "$(tput setaf 2) $(tput bold) $(ansiweather -l Dubuque -u imperial -f 5 -s true -a false)"'
 alias zmce='mcedit ~/.zshrc; zsh'
 alias aptm='/home/$USER/github/UsefulScripts/aptmarklist/aptmarklist.sh'
 alias aptt='/home/$USER/github/UsefulScripts/apttool/apttool.sh'
@@ -46,6 +44,16 @@ down="/home/$USER/Downloads"
 pics="/home/$USER/Pictures"
 github="/home/$USER/github"
 
+ansiweatherrefresh () {
+    while true; do
+        weather="$(ansiweather -l dubuque -u imperial -s true -a false)"
+        tput reset
+        printf '\e[?25l'
+        echo "$(tput setaf 2)$(tput bold)${weather:0:-67}"
+        sleep 300
+    done
+}
+
 dirsize () {
     du -h --max-depth=1 "$@" | sort -h -r
 }
@@ -68,6 +76,11 @@ git-sign-func () {
 
 remote-exec () {
     bash -c "$(wget --quiet $@ -O -)"
+}
+
+timewatch () {
+    printf '\e[?25l'
+    watch -tcn 1 'echo "$(tput setaf 2)$(tput bold)          $(date "+%D     %I:%M:%S")"'
 }
 
 todo () {
