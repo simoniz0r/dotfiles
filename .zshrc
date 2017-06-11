@@ -4,20 +4,8 @@ setopt PROMPT_SUBST
 
 print_dir () {
   case $PWD in
-  (/home/$USER/github*)
-    echo " ${PWD:22}" # 22 = length of /home/$USER/github; adjust to your needs
-    ;;
-  (/home/$USER/.config*)
-    echo "⚒ ${PWD:23}" # 23 = length of /home/$USER/.config; adjust to your needs
-    ;;
-  (/home/$USER/Documents*)
-    echo "䷁ ${PWD:25}" # 25 = length of /home/$USER/Documents; adjust to your needs
-    ;;
-  (/home/$USER/Downloads*)
-    echo "⛛ ${PWD:25}" # 25 = length of /home/$USER/Downloads; adjust to your needs
-    ;;
-  (/home/$USER/Pictures*)
-    echo "💟 ${PWD:24}" # 24 = length of /home/$USER/Pictures; adjust to your needs
+  (/home/$USER/*)
+    echo "⾕${PWD:15} " # 15 = length of /home/$USER; adjust to your needs
     ;;
   (/home/$USER*)
     echo "⾕${PWD:15}" # 15 = length of /home/$USER; adjust to your needs
@@ -26,7 +14,7 @@ print_dir () {
     echo "💻 ${PWD:1}"
     ;;
   (*)
-    echo "💻 $PWD"
+    echo "💻 $PWD "
     ;;
   esac
 }
@@ -89,7 +77,12 @@ EXSTATUS () {
             echo "$(tput bold)$(FCLR)%S%K{black} Exit 255 %s%k"
             ;;
         0)
-            echo ""
+            GITSTATUS="$(git status >/dev/null 2>&1 | grep 'On branch' | sed -e 's/On branch//g' || echo)"
+            if [ ! -z "$GITSTATUS" ]; then
+                echo "$(tput bold)$(FCLR)%S%K{black}$GITSTATUS%s%k"
+            else
+                echo ""
+            fi
             ;;
         *)
             echo "$(tput bold)$(FCLR)%S%K{black} Exit Unknown %s%k"
@@ -97,8 +90,7 @@ EXSTATUS () {
     esac
 }
 
-PS1='$(EXSTATUS)
-%K{black}$(FCLR)$(tput bold) %n@%m %S$(print_dir)%s%k$(tput sgr0) '
+PS1='$(EXSTATUS)%K{black}$(FCLR)$(tput bold) %n@%m %S$(print_dir)%s%k$(tput sgr0) '
 # Without username and host: PS1='$(FCLR)%K{black}%S$(print_dir)%s%k$(tput sgr0) '
 RPS1=''
 
