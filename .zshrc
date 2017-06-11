@@ -34,25 +34,30 @@ print_dir () {
 FCLR () {
   case $PWD in
   (/home/$USER/github*)
-    echo "{cyan}"
+    echo "$(tput setaf 45)"
     ;;
   (/home/$USER/.config*)
-    echo "{yellow}"
+    echo "$(tput setaf 11)"
     ;;
   (/home/$USER/Documents*)
-    echo "{blue}"
+    echo "$(tput setaf 24)"
     ;;
   (/home/$USER/Downloads*)
-    echo "{white}"
+    echo "$(tput setaf 29)"
     ;;
   (/home/$USER/Pictures*)
-    echo "{magenta}"
+    echo "$(tput setaf 71)"
     ;;
   (/home/$USER*)
-    echo "{green}"
+    echo "$(tput setaf 10)"
     ;;
   (*)
-    echo "{red}"
+    echo "$(tput setaf 1)"
+    ;;
+  esac
+  case $HOST in
+  (toolbuntu)
+    echo "$(tput setaf 100)"
     ;;
   esac
 }
@@ -60,41 +65,41 @@ FCLR () {
 EXSTATUS () {
     case $? in
         1)
-            echo "%B%F$(FCLR)%S%K{black} Exit 1 %k%s%b"
+            echo "$(tput bold)$(FCLR)%S%K{black} Exit 1 %s%k"
             ;;
         2)
-            echo "%B%F$(FCLR)%S%K{black} Exit 2 %k%s%b"
+            echo "$(tput bold)$(FCLR)%S%K{black} Exit 2 %s%k"
             ;;
         126)
-            echo "%B%F$(FCLR)%S%K{black} Exit 126 %k%s%b"
+            echo "$(tput bold)$(FCLR)%S%K{black} Exit 126 %s%k"
             ;;
         127)
-            echo "%B%F$(FCLR)%S%K{black} Exit 127 %k%s%b"
+            echo "$(tput bold)$(FCLR)%S%K{black} Exit 127 %s%k"
             ;;
         128*)
-            echo "%B%F$(FCLR)%S%K{black} Exit 128 %k%s%b"
+            echo "$(tput bold)$(FCLR)%S%K{black} Exit 128 %s%k"
             ;;
         130)
-            echo "%B%F$(FCLR)%S%K{black} Exit 130 %k%s%b"
+            echo "$(tput bold)$(FCLR)%S%K{black} Exit 130 %s%k"
             ;;
         165)
-            echo "%B%F$(FCLR)%S%K{black} Exit 165 %k%s%b"
+            echo "$(tput bold)$(FCLR)%S%K{black} Exit 165 %s%k"
             ;;
         255)
-            echo "%B%F$(FCLR)%S%K{black} Exit 255 %k%s%b"
+            echo "$(tput bold)$(FCLR)%S%K{black} Exit 255 %s%k"
             ;;
         0)
             echo ""
             ;;
         *)
-            echo "%B%F$(FCLR)%S%K{black} Exit Unknown %k%s%b"
+            echo "$(tput bold)$(FCLR)%S%K{black} Exit Unknown %s%k"
             ;;
     esac
 }
 
-PS1='%K{black}%F$(FCLR)%B %n@%m %S$(print_dir)%s%k%b%f '
-# Without username and host: PS1='%F$(FCLR)%K{black}%S$(print_dir)%s%k%f '
-RPS1='$(EXSTATUS)'
+PS1='$(EXSTATUS)%K{black}$(FCLR)$(tput bold) %n@%m %S$(print_dir)%s%k$(tput sgr0) '
+# Without username and host: PS1='$(FCLR)%K{black}%S$(print_dir)%s%k$(tput sgr0) '
+RPS1=''
 
 
 setopt histignorealldups sharehistory
