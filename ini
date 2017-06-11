@@ -52,7 +52,7 @@ editor_word_wrap_line_length=72
 editor_fill_tabs_with_spaces=1
 editor_return_does_auto_indent=1
 editor_backspace_through_tabs=0
-editor_fake_half_tabs=1
+editor_fake_half_tabs=0
 editor_option_save_mode=0
 editor_option_save_position=1
 editor_option_auto_para_formatting=0
@@ -107,8 +107,8 @@ display_codepage=UTF-8
 source_codepage=Other_8_bit
 autodetect_codeset=
 spell_language=en
-clipboard_store=
-clipboard_paste=
+clipboard_store=xclip -selection c -i
+clipboard_paste=xclip -selection c -o
 
 [Colors]
 base_color=blue:normal=blue,darkgray:marked=blue,darkgray:input=blue,darkgray:menu=darkgray,blue:menusel=darkgray,blue:menuhot=darkgray,blue:menuhotsel=darkgray,blue:dfocus=blue,darkgray:dhotnormal=blue,darkgray:dhotfocus=blue,darkgray:executable=blue,darkgray:directory=blue,darkgray:link=blue,darkgray:device=blue,darkgray:special=blue,darkgray:core=blue,darkgray:stalelink=lightblue,darkgray:editnormal=default,default 
