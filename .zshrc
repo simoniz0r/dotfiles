@@ -53,28 +53,28 @@ FCLR () {
 EXSTATUS () {
     case $? in
         1)
-            echo "$(tput bold)$(FCLR)%S%K{black} ✘ 1 %s%k"
+            echo "$(tput bold)$(FCLR)%S%K{black}✘ 1 %s%k"
             ;;
         2)
-            echo "$(tput bold)$(FCLR)%S%K{black} ✘ 2 %s%k"
+            echo "$(tput bold)$(FCLR)%S%K{black}✘ 2 %s%k"
             ;;
         126)
-            echo "$(tput bold)$(FCLR)%S%K{black} ✘ 126 %s%k"
+            echo "$(tput bold)$(FCLR)%S%K{black}✘ 126 %s%k"
             ;;
         127)
-            echo "$(tput bold)$(FCLR)%S%K{black} ✘ 127 %s%k"
+            echo "$(tput bold)$(FCLR)%S%K{black}✘ 127 %s%k"
             ;;
         128*)
-            echo "$(tput bold)$(FCLR)%S%K{black} ✘ 128 %s%k"
+            echo "$(tput bold)$(FCLR)%S%K{black}✘ 128 %s%k"
             ;;
         130)
-            echo "$(tput bold)$(FCLR)%S%K{black} ✘ 130 %s%k"
+            echo "$(tput bold)$(FCLR)%S%K{black}✘ 130 %s%k"
             ;;
         165)
-            echo "$(tput bold)$(FCLR)%S%K{black} ✘ 165 %s%k"
+            echo "$(tput bold)$(FCLR)%S%K{black}✘ 165 %s%k"
             ;;
         255)
-            echo "$(tput bold)$(FCLR)%S%K{black} ✘ 255 %s%k"
+            echo "$(tput bold)$(FCLR)%S%K{black}✘ 255 %s%k"
             ;;
         0)
             GITSTATUS="$(git status >/dev/null 2>&1 | grep 'On branch' | sed -e 's/On branch//g' || echo)"
@@ -85,7 +85,7 @@ EXSTATUS () {
             fi
             ;;
         *)
-            echo "$(tput bold)$(FCLR)%S%K{black} ✘ Unknown %s%k"
+            echo "$(tput bold)$(FCLR)%S%K{black}✘ Unknown %s%k"
             ;;
     esac
 }
