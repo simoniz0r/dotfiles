@@ -46,7 +46,7 @@ FCLR () {
     echo "$(tput setaf 29)"
     ;;
   (/home/$USER/Pictures*)
-    echo "$(tput setaf 71)"
+    echo "$(tput setaf 110)"
     ;;
   (/home/$USER*)
     echo "$(tput setaf 10)"
@@ -97,7 +97,8 @@ EXSTATUS () {
     esac
 }
 
-PS1='$(EXSTATUS)%K{black}$(FCLR)$(tput bold) %n@%m %S$(print_dir)%s%k$(tput sgr0) '
+PS1='$(EXSTATUS)
+%K{black}$(FCLR)$(tput bold) %n@%m %S$(print_dir)%s%k$(tput sgr0) '
 # Without username and host: PS1='$(FCLR)%K{black}%S$(print_dir)%s%k$(tput sgr0) '
 RPS1=''
 
