@@ -3,51 +3,50 @@
 setopt PROMPT_SUBST
 
 print_dir () {
-  case $PWD in
-  (/home/$USER/*)
-    echo "⾕${PWD:15} " # 15 = length of /home/$USER; adjust to your needs
-    ;;
-  (/home/$USER*)
-    echo "⾕${PWD:15}" # 15 = length of /home/$USER; adjust to your needs
-    ;;
-  (/)
-    echo "💻 ${PWD:1}"
-    ;;
-  (*)
-    echo "💻 $PWD "
-    ;;
-  esac
+    case $PWD in
+        (/home/$USER/*)
+            echo "⾕${PWD:15} " # 15 = length of /home/$USER; adjust to your needs
+            ;;
+        (/home/$USER*)
+            echo "⾕${PWD:15}" # 15 = length of /home/$USER; adjust to your needs
+            ;;
+        (/)
+            echo "💻 ${PWD:1}"
+            ;;
+        (*)
+            echo "💻 $PWD "
+            ;;
+    esac
 }
 
 FCLR () {
-  case $PWD in
-  (/home/$USER/github*)
-    echo "{cyan}"
-    ;;
-  (/home/$USER/.config*)
-    echo "{yellow}"
-    ;;
-  (/home/$USER/Documents*)
-    echo "{blue}"
-    ;;
-  (/home/$USER/Downloads*)
-    echo "{white}"
-    ;;
-  (/home/$USER/Pictures*)
-    echo "{magenta}"
-    ;;
-  (/home/$USER*)
-    echo "{green}"
-    ;;
-  (*)
-    echo "{red}"
-    ;;
-  esac
-  case $HOST in
-  (toolbuntu)
-    echo "{red}"
-    ;;
-  esac
+    if [ "$HOST" = "toolbuntu" ]; then
+        echo "{red}"
+    else
+        case $PWD in
+            (/home/$USER/github*)
+                echo "{cyan}"
+                ;;
+            (/home/$USER/.config*)
+                echo "{yellow}"
+                ;;
+            (/home/$USER/Documents*)
+                echo "{blue}"
+                ;;
+            (/home/$USER/Downloads*)
+                echo "{white}"
+                ;;
+            (/home/$USER/Pictures*)
+                echo "{magenta}"
+                ;;
+            (/home/$USER*)
+                echo "{green}"
+                ;;
+            (*)
+                echo "{red}"
+                ;;
+        esac
+    fi
 }
 
 EXSTATUS () {
