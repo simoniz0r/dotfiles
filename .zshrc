@@ -4,7 +4,7 @@ setopt PROMPT_SUBST
 
 print_dir () {
     if [ "$HOST" = "toolbuntu" ]; then
-        echo "ssh %~"
+        echo "ssh %~ "
     else
         case $PWD in
             (/home/$USER/*)
