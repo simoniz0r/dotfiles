@@ -22,30 +22,30 @@ print_dir () {
 FCLR () {
   case $PWD in
   (/home/$USER/github*)
-    echo "$(tput setaf 45)"
+    echo "{cyan}"
     ;;
   (/home/$USER/.config*)
-    echo "$(tput setaf 11)"
+    echo "{yellow}"
     ;;
   (/home/$USER/Documents*)
-    echo "$(tput setaf 24)"
+    echo "{blue}"
     ;;
   (/home/$USER/Downloads*)
-    echo "$(tput setaf 29)"
+    echo "{white}"
     ;;
   (/home/$USER/Pictures*)
-    echo "$(tput setaf 110)"
+    echo "{magenta}"
     ;;
   (/home/$USER*)
-    echo "$(tput setaf 10)"
+    echo "{green}"
     ;;
   (*)
-    echo "$(tput setaf 1)"
+    echo "{red}"
     ;;
   esac
   case $HOST in
   (toolbuntu)
-    echo "$(tput setaf 100)"
+    echo "{red}"
     ;;
   esac
 }
@@ -53,45 +53,45 @@ FCLR () {
 EXSTATUS () {
     case $? in
         1)
-            echo "$(tput bold)$(FCLR)%S%K{black}✘ 1 %s%k"
+            echo "%B%F$(FCLR)%S%K{black}✘ 1 %s%k%b%f"
             ;;
         2)
-            echo "$(tput bold)$(FCLR)%S%K{black}✘ 2 %s%k"
+            echo "%B%F$(FCLR)%S%K{black}✘ 2 %s%k%b%f"
             ;;
         126)
-            echo "$(tput bold)$(FCLR)%S%K{black}✘ 126 %s%k"
+            echo "%B%F$(FCLR)%S%K{black}✘ 126 %s%k%b%f"
             ;;
         127)
-            echo "$(tput bold)$(FCLR)%S%K{black}✘ 127 %s%k"
+            echo "%B%F$(FCLR)%S%K{black}✘ 127 %s%k%b%f"
             ;;
         128*)
-            echo "$(tput bold)$(FCLR)%S%K{black}✘ 128 %s%k"
+            echo "%B%F$(FCLR)%S%K{black}✘ 128 %s%k%b%f"
             ;;
         130)
-            echo "$(tput bold)$(FCLR)%S%K{black}✘ 130 %s%k"
+            echo "%B%F$(FCLR)%S%K{black}✘ 130 %s%k%b%f"
             ;;
         165)
-            echo "$(tput bold)$(FCLR)%S%K{black}✘ 165 %s%k"
+            echo "%B%F$(FCLR)%S%K{black}✘ 165 %s%k%b%f"
             ;;
         255)
-            echo "$(tput bold)$(FCLR)%S%K{black}✘ 255 %s%k"
+            echo "%B%F$(FCLR)%S%K{black}✘ 255 %s%k%b%f"
             ;;
         0)
             GITSTATUS="$(git status >/dev/null 2>&1 | grep 'On branch' | sed -e 's/On branch//g' || echo)"
             if [ ! -z "$GITSTATUS" ]; then
-                echo "$(tput bold)$(FCLR)%S%K{black}$GITSTATUS%s%k"
+                echo "%B%F$(FCLR)%S%K{black}$GITSTATUS%s%k%b%f"
             else
                 echo ""
             fi
             ;;
         *)
-            echo "$(tput bold)$(FCLR)%S%K{black}✘ Unknown %s%k"
+            echo "%B%F$(FCLR)%S%K{black}✘ Unknown %s%k%b%f"
             ;;
     esac
 }
 
-PS1='$(EXSTATUS)%K{black}$(FCLR)$(tput bold) %n@%m %S$(print_dir)%s%k$(tput sgr0) '
-# Without username and host: PS1='$(FCLR)%K{black}%S$(print_dir)%s%k$(tput sgr0) '
+PS1='$(EXSTATUS)%K{black}%F$(FCLR)%B %n@%m %S$(print_dir)%s%k%b%f '
+# Without username and host: PS1='%F$(FCLR)%K{black}%S$(print_dir)%s%k%b%f '
 RPS1=''
 
 
@@ -137,7 +137,7 @@ fi
 
 # Change/remove these to match your settings
 export TERM=xterm-256color
-export EDITOR=/usr/bin/code
+export EDITOR=/usr/bin/mcedit
 /usr/bin/numlockx on
 
 if [ -f ~/.smapt_aliases ]; then
