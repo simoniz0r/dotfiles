@@ -31,6 +31,7 @@ alias lyrics='/home/$USER/github/UsefulScripts/misc/lyrics.sh'
 alias passman='/home/$USER/github/gpgpassman/gpgpassman.sh'
 alias speedtest='/home/$USER/github/UsefulScripts/speedtest/speedtest.sh'
 alias sudoBot='cursorhide; /home/$USER/sudoBot/sudostart.sh'
+alias todo='/home/$USER/github/UsefulScripts/misc/todo.sh'
 alias xdgfetch='/home/$USER/github/xdgfetch/xdgfetch -c 10'
 alias urltotmp='/home/$USER/Scripts/urltotmp.sh'
 alias wttrref='clr; /home/$USER/github/UsefulScripts/misc/wttrrefresh.sh'
@@ -81,72 +82,6 @@ remote-exec () {
 timewatch () {
     printf '\e[?25l'
     watch -tcn 1 'echo "$(tput setaf 2)$(tput bold)          $(date "+%D     %I:%M:%S")"'
-}
-
-todo () {
-    case $1 in
-        -a*|--a*)
-            TODOADD="$(echo "$@" | tr -d ':')"
-            echo "-- ${TODOADD:3}" >> ~/TODO.list
-            echo
-            echo "TODO.list:"
-            cat ~/TODO.list
-            echo
-            ;;
-        -i*|--i*)
-            TODOADD="$(echo "$@" | tr -d ':')"
-            echo "!! ${TODOADD:3}" >> ~/TODO.list
-            echo
-            echo "TODO.list:"
-            cat ~/TODO.list
-            echo
-            ;;
-        -r*|--r*)
-            TODOITEM="$(grep -a "$2" ~/TODO.list)"
-            DELNUM="$(echo "$TODOITEM" | wc -l)"
-            if ! grep -q "$2" ~/TODO.list; then
-                echo "$2 not found in TODO list!"
-                exit 0
-            fi
-            if [[ "$DELNUM" != "1" ]]; then
-                echo "$DELNUM results found; refine your input."
-                exit 1
-            fi
-            sed -i s:"$TODOITEM"::g ~/TODO.list
-            sed -i '/^$/d' ~/TODO.list
-            TODOLIST="$(cat ~/TODO.list)"
-            if [ ! -z "$TODOLIST" ]; then
-                echo
-                echo "TODO.list:"
-                cat ~/TODO.list
-                echo
-            else
-                echo "No items in TODO.list; yay!"
-            fi
-            ;;
-        -h*|--h*)
-            echo
-            echo "TODO.list usage:"
-            echo "todo    : Lists items in TODO.list"
-            echo "todo -a : Adds item to TODO.list"
-            echo "todo -i : Adds item to TODO.list with important status"
-            echo "todo -r : Removes items from TODO.list"
-            echo
-            ;;
-        *)
-            if [ ! -f ~/TODO.list ]; then
-                touch ~/TODO.list
-            fi
-            TODOLIST="$(cat ~/TODO.list)"
-            if [ ! -z "$TODOLIST" ]; then
-                echo
-                echo "TODO.list:"
-                cat ~/TODO.list
-                echo
-            else
-                echo "No items in TODO.list; yay!"
-            fi
-    esac
 }
 
 wttr (){

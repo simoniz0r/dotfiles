@@ -7,8 +7,6 @@ chromium-browser
 code
 curl
 dialog
-fonts-font-awesome
-fonts-powerline
 fonts-wqy-microhei
 fonts-wqy-zenhei
 gcolor2
@@ -23,10 +21,12 @@ i-nex
 intel-microcode
 inxi
 irssi
+kde-config-cron
 kdenlive
 kgpg
 libc++1
 libgl1-mesa-dri:i386
+libreoffice
 linux-generic
 linux-generic-hwe-16.04-edge
 mc
