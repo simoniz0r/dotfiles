@@ -1,15 +1,13 @@
 alias amce='mcedit ~/.zsh_aliases; zsh'
-alias cfe='tput reset; neofetch'
 alias chx='chmod +x'
 alias clear='tput reset'
 alias clr='tput reset'
-alias csi='tput reset; neofetch -L; inxi -I -S; echo'
-alias csix='tput reset; neofetch -L; inxi -I -v 1;echo; xdgfetch'
-alias csif='tput reset; echo; inxi -F -v 4; echo; xdgfetch; weather; echo'
+alias clr-fetch='tput reset; neofetch -L; inxi -I -S; echo; xdgfetch -x'
+alias clr-info='tput reset; echo; inxi -F -v 4; echo; xdgfetch -x; weather; echo'
+alias clr-todo='tput reset; inxi -I -S; echo; xdgfetch -x; todo all'
 alias cursorhide="printf '\e[?25l'"
 alias cursorshow="printf '\e[?25h'"
 alias drivespeed='hdparam -Tt'
-alias git-sign='git-sign-func'
 alias inxi='inxi -c 10'
 alias lappy='tput reset; ssh simonizor@10.42.0.1'
 alias mce='mcedit'
@@ -69,10 +67,6 @@ filesize () {
 
 filesize-a () {
     du -h -a "$@" | sort -h -r
-}
-
-git-sign-func () {
-    git commit --gpg-sign=1E9F0EC70D8DDD28 -m '$@'
 }
 
 remote-exec () {

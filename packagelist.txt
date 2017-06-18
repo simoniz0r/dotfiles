@@ -1,9 +1,6 @@
 ansiweather
-anydesk
 apg
 audacious
-audacity
-chromium-browser
 code
 curl
 dialog
@@ -33,7 +30,6 @@ mc
 mpv
 nodejs-dev
 npm
-numlockx
 openjdk-8-jdk
 peek
 ppa-purge

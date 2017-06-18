@@ -78,7 +78,7 @@ EXSTATUS () {
         0)
             GITSTATUS="$(git status >/dev/null 2>&1 | grep 'On branch' | sed -e 's/On branch//g' || echo)"
             if [ ! -z "$GITSTATUS" ]; then
-                echo "%B%F$(FCLR)%S%K{black}$GITSTATUS%s%k%b%f"
+                echo "%B%F$(FCLR)%S%K{black}$GITSTATUS %s%k%b%f"
             else
                 echo ""
             fi
@@ -137,7 +137,6 @@ fi
 # Change/remove these to match your settings
 export TERM=xterm-256color
 export EDITOR=/usr/bin/mcedit
-/usr/bin/numlockx on
 
 if [ -f ~/.smapt_aliases ]; then
     . ~/.smapt_aliases
