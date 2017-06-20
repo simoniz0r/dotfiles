@@ -221,13 +221,13 @@ NodePrev = p
 [editor]
 Store = ctrl-c
 Paste = ctrl-v
-Cut = shift-delete
+Cut = ctrl-x
 Up = up
 Down = down
 Left = left
 Right = right
 WordLeft = ctrl-left
-WordRight = ctrl-right; ctrl-x
+WordRight = ctrl-right
 Enter = enter
 Return = shift-enter; ctrl-enter; ctrl-shift-enter
 BackSpace = backspace; ctrl-h
