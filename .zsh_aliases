@@ -1,17 +1,21 @@
 alias chx='chmod +x'
 alias clear='tput reset'
 alias clr='tput reset'
-alias clr-fetch='tput reset; neofetch -L; inxi -I -S; echo; xdgfetch -x'
-alias clr-info='tput reset; echo; inxi -F -v 4; echo; xdgfetch -x; weather; echo'
-alias clr-todo='tput reset; inxi -I -S; echo; xdgfetch -x; todo all'
-alias cursorhide="printf '\e[?25l'"
-alias cursorshow="printf '\e[?25h'"
-alias drivespeed='hdparam -Tt'
+alias clr-fetch='tput reset; xdgfetch; echo'
+alias clr-info='tput reset; echo; inxi -F -v 4; echo'
+alias clr-todo='tput reset; todo all'
+alias cursor-hide="printf '\e[?25l'"
+alias cursor-show="printf '\e[?25h'"
+alias drive-speed='hdparam -Tt'
 alias inxi='inxi -c 10'
 alias lappy='tput reset; ssh simonizor@10.42.0.1'
+alias load-aliases='. ~/.zsh_aliases'
 alias mce='mcedit'
-alias mce-aliases='mcedit ~/.zsh_aliases; zsh'
+alias mce-aliases='mcedit ~/.zsh_aliases; . ~/.zsh_aliases'
 alias mce-zshrc='mcedit ~/.zshrc; zsh'
+alias mpc-start='mpc ls | mpc add && mpc random on && mpc repeat on'
+alias mpc-stop='mpc clear && pkill mopidy'
+alias mpc-watch='cursor-hide && watch -tn 1 "mpc status | head -n 2" && cursor-show'
 alias nohup='nohup '
 alias reset='tput reset'
 alias rex='remote-exec'
@@ -19,22 +23,26 @@ alias speedo='speedometer -s -r ens33 -c -s -t ens33'
 alias strapg='apg -a 1 -m 30 -n 4'
 alias sudo='sudo '
 alias vtop='vtop --theme acid'
-alias weather='echo "$(tput setaf 2) $(tput bold) $(ansiweather -l Dubuque -u imperial -f 5 -s true -a false)"'
+alias weather='weather --no-cache-data'
+alias weather-mp='echo "$(tput setaf 10)$(tput bold)$(weather --imperial -q -a --no-cache kmrj)"'
+alias weather-forcast='tput reset; echo "$(tput setaf 10)$(tput bold)$(weather -n -q -f --no-cache kmrj)"; weather-radar'
+alias weather-watch='cursor-hide; watch -tcxn 300 weather --imperial -q -a --no-cache kmrj && cursor-show'
 alias aptm='/home/$USER/github/UsefulScripts/aptmarklist/aptmarklist.sh'
 alias aptt='/home/$USER/github/UsefulScripts/apttool/apttool.sh'
 alias cpdots='/home/$USER/github/UsefulScripts/misc/cpdots.sh'
 alias erm='/home/$USER/github/UsefulScripts/easyrm/easyrm.sh'
 alias fakegame='/home/$USER/Scripts/discordfakegame.sh'
-alias lyrics='/home/$USER/github/UsefulScripts/misc/lyrics.sh'
+alias lyrics='tput reset; /home/$USER/github/UsefulScripts/misc/lyrics.sh'
+alias lyrics-playing='tput reset; /home/$USER/github/UsefulScripts/misc/lyrics.sh "$(mpc -f %artist% | head -n 1)" "$(mpc -f %title% | head -n 1)"'
 alias passman='/home/$USER/github/gpgpassman/gpgpassman.sh'
 alias speedtest='/home/$USER/github/UsefulScripts/speedtest/speedtest.sh'
 alias sudoBot='cursorhide; /home/$USER/sudoBot/sudostart.sh'
 alias todo='/home/$USER/github/UsefulScripts/misc/todo.sh'
 alias xdgfetch='/home/$USER/github/xdgfetch/xdgfetch -c 10'
 alias urltotmp='/home/$USER/Scripts/urltotmp.sh'
-alias wttrref='clr; /home/$USER/github/UsefulScripts/misc/wttrrefresh.sh'
-alias colortest='bash -c "$(wget --quiet https://gist.githubusercontent.com/wagnermoschini/8893311/raw/9de710eea1a86fb955fb221e847d722e9bc3b024/colortest.sh -O -)"'
-alias colorinvaders='bash -c "$(wget --quiet https://github.com/chrisduerr/dotfiles/raw/master/files/Scripts/test_colors0 -O -)"'
+alias wttr-refresh='clr; /home/$USER/github/UsefulScripts/misc/wttrrefresh.sh'
+alias color-test='tput reset; inxi -I -S; echo; bash -c "$(wget --quiet https://gist.githubusercontent.com/wagnermoschini/8893311/raw/9de710eea1a86fb955fb221e847d722e9bc3b024/colortest.sh -O -)"'
+alias color-invaders='tput reset; inxi -I -S; echo; bash -c "$(wget --quiet https://github.com/chrisduerr/dotfiles/raw/master/files/Scripts/test_colors0 -O -)"'
 alias discorddownloader-remote='bash -c "$(wget --quiet https://github.com/simoniz0r/discorddownloader/raw/master/discorddownloader.sh -O -)"'
 
 conf="/home/$USER/.config"
@@ -42,16 +50,6 @@ docs="/home/$USER/Documents"
 down="/home/$USER/Downloads"
 pics="/home/$USER/Pictures"
 github="/home/$USER/github"
-
-ansiweatherrefresh () {
-    while true; do
-        weather="$(ansiweather -l dubuque -u imperial -s true -a false)"
-        tput reset
-        printf '\e[?25l'
-        echo "$(tput setaf 2)$(tput bold)${weather:0:-67}"
-        sleep 300
-    done
-}
 
 dirsize () {
     du -h --max-depth=1 "$@" | sort -h -r
@@ -69,13 +67,21 @@ filesize-a () {
     du -h -a "$@" | sort -h -r
 }
 
+mopidy-recache () {
+    curl -d '{"jsonrpc": "2.0", "id": 1, "method": "core.library.refresh"}' http://localhost:6680/mopidy/rpc
+}
+
 remote-exec () {
     bash -c "$(wget --quiet $@ -O -)"
 }
 
-timewatch () {
+time-watch () {
     printf '\e[?25l'
     watch -tcn 1 'echo "$(tput setaf 2)$(tput bold)          $(date "+%D     %I:%M:%S")"'
+}
+
+pstop () {
+    printf '\e[?25l' && /home/$USER/github/UsefulScripts/misc/pstop.sh $@ && printf '\e[?25h'
 }
 
 wttr (){

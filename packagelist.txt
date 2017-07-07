@@ -1,6 +1,6 @@
-ansiweather
 apg
 audacious
+cantata
 code
 curl
 dialog
@@ -10,6 +10,7 @@ gcolor2
 gimp
 git
 google-chrome-stable
+google-musicmanager-beta
 google-play-music-desktop-player
 gpick
 grub-customizer
@@ -17,8 +18,6 @@ htop
 i-nex
 intel-microcode
 inxi
-irssi
-kde-config-cron
 kdenlive
 kgpg
 libc++1
@@ -26,7 +25,11 @@ libgl1-mesa-dri:i386
 libreoffice
 linux-generic
 linux-generic-hwe-16.04-edge
+lmms
 mc
+mopidy
+mopidy-mpris
+mpc
 mpv
 nodejs-dev
 npm
@@ -37,10 +40,14 @@ python3-pip
 python-pip
 rocketchat-desktop
 speedometer
+sxiv
 synergy
 tilix
 ttf-ancient-fonts
 virtualbox
+weather-util
+weather-util-data
 xclip
+yad
 zenity
 zsh

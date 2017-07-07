@@ -93,7 +93,6 @@ PS1='$(EXSTATUS)%K{black}%F$(FCLR)%B %n@%m %S$(print_dir)%s%k%b%f '
 # Without username and host: PS1='%F$(FCLR)%K{black}%S$(print_dir)%s%k%b%f '
 RPS1=''
 
-
 setopt histignorealldups sharehistory
 
 # Use emacs keybindings even if our EDITOR is set to vi
@@ -137,6 +136,7 @@ fi
 # Change/remove these to match your settings
 export TERM=xterm-256color
 export EDITOR=/usr/bin/mcedit
+export MPD_HOST=10.42.0.4
 
 if [ -f ~/.smapt_aliases ]; then
     . ~/.smapt_aliases
