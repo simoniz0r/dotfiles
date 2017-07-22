@@ -1,7 +1,7 @@
 alias chx='chmod +x'
 alias clear='tput reset'
 alias clr='tput reset'
-alias clr-fetch='tput reset; xdgfetch; echo'
+alias clr-fetch='tput reset; xdgfetch'
 alias clr-info='tput reset; echo; inxi -F -v 4; echo'
 alias clr-todo='tput reset; todo all'
 alias cursor-hide="printf '\e[?25l'"
@@ -25,7 +25,7 @@ alias sudo='sudo '
 alias vtop='vtop --theme acid'
 alias weather='weather --no-cache-data'
 alias weather-mp='echo "$(tput setaf 10)$(tput bold)$(weather --imperial -q -a --no-cache kmrj)"'
-alias weather-forcast='tput reset; echo "$(tput setaf 10)$(tput bold)$(weather -n -q -f --no-cache kmrj)"; weather-radar'
+alias weather-forcast='tput reset; echo "$(tput setaf 4)$(tput bold)$(weather -n -q -f --no-cache kmrj)"; weather-radar'
 alias weather-watch='cursor-hide; watch -tcxn 300 weather --imperial -q -a --no-cache kmrj && cursor-show'
 alias aptm='/home/$USER/github/UsefulScripts/aptmarklist/aptmarklist.sh'
 alias aptt='/home/$USER/github/UsefulScripts/apttool/apttool.sh'
@@ -38,11 +38,11 @@ alias passman='/home/$USER/github/gpgpassman/gpgpassman.sh'
 alias speedtest='/home/$USER/github/UsefulScripts/speedtest/speedtest.sh'
 alias sudoBot='cursorhide; /home/$USER/sudoBot/sudostart.sh'
 alias todo='/home/$USER/github/UsefulScripts/misc/todo.sh'
-alias xdgfetch='/home/$USER/github/xdgfetch/xdgfetch -c 10'
+alias xdgfetch='/home/$USER/github/xdgfetch/xdgfetch -c 4'
 alias urltotmp='/home/$USER/Scripts/urltotmp.sh'
 alias wttr-refresh='clr; /home/$USER/github/UsefulScripts/misc/wttrrefresh.sh'
-alias color-test='tput reset; inxi -I -S; echo; bash -c "$(wget --quiet https://gist.githubusercontent.com/wagnermoschini/8893311/raw/9de710eea1a86fb955fb221e847d722e9bc3b024/colortest.sh -O -)"'
-alias color-invaders='tput reset; inxi -I -S; echo; bash -c "$(wget --quiet https://github.com/chrisduerr/dotfiles/raw/master/files/Scripts/test_colors0 -O -)"'
+alias color-test='tput reset; echo; bash -c "$(wget --quiet https://gist.githubusercontent.com/wagnermoschini/8893311/raw/9de710eea1a86fb955fb221e847d722e9bc3b024/colortest.sh -O -)"'
+alias color-invaders='tput reset; echo; bash -c "$(wget --quiet https://github.com/chrisduerr/dotfiles/raw/master/files/Scripts/test_colors0 -O -)"'
 alias discorddownloader-remote='bash -c "$(wget --quiet https://github.com/simoniz0r/discorddownloader/raw/master/discorddownloader.sh -O -)"'
 
 conf="/home/$USER/.config"
@@ -77,12 +77,18 @@ remote-exec () {
 
 time-watch () {
     printf '\e[?25l'
-    watch -tcn 1 'echo "$(tput setaf 2)$(tput bold)          $(date "+%D     %I:%M:%S")"'
+    watch -tcn 1 'echo "$(tput setaf 4)$(tput bold)          $(date "+%D     %I:%M:%S")"'
 }
 
 pstop () {
-    printf '\e[?25l' && /home/$USER/github/UsefulScripts/misc/pstop.sh $@ && printf '\e[?25h'
+    printf '\e[?25l' && /home/$USER/github/UsefulScripts/misc/pstop.sh $@; printf '\e[?25h'
 }
+
+pstop-watch () {
+    printf '\e[?25l' && watch -tn 1 /home/$USER/github/UsefulScripts/misc/pstop.sh $@; printf '\e[?25h'
+}
+
+mpvyt () { mpv ytdl://ytsearch10:"$*" }
 
 wttr (){
     LOCATION="$1"

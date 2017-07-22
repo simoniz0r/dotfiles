@@ -3,7 +3,7 @@
 setopt PROMPT_SUBST
 
 print_dir () {
-    if [ "$HOST" = "toolbuntu" ]; then
+    if [[ "$HOST" != "OptiPlex" ]]; then
         echo "ssh %~ "
     else
         case $PWD in
@@ -32,7 +32,7 @@ FCLR () {
             echo "{yellow}"
             ;;
         (/home/$USER/Documents*)
-            echo "{blue}"
+            echo "{green}"
             ;;
         (/home/$USER/Downloads*)
             echo "{white}"
@@ -41,7 +41,7 @@ FCLR () {
             echo "{magenta}"
             ;;
         (/home/$USER*)
-            echo "{green}"
+            echo "{blue}"
             ;;
         (*)
             echo "{red}"
@@ -145,3 +145,5 @@ fi
 if [ -f ~/.discord-install_alias ]; then
     . ~/.discord-install_alias
 fi
+
+cursor-hide
