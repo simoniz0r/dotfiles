@@ -6,7 +6,6 @@ curl
 dialog
 fonts-wqy-microhei
 fonts-wqy-zenhei
-gcolor2
 gimp
 git
 google-chrome-stable
@@ -25,7 +24,6 @@ libgl1-mesa-dri:i386
 libreoffice
 linux-generic
 linux-generic-hwe-16.04-edge
-lmms
 mc
 mopidy
 mopidy-mpris

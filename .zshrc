@@ -50,31 +50,8 @@ FCLR () {
 }
 
 EXSTATUS () {
-    case $? in
-        1)
-            echo "%B%F$(FCLR)%S%K{black}✘ 1 %s%k%b%f"
-            ;;
-        2)
-            echo "%B%F$(FCLR)%S%K{black}✘ 2 %s%k%b%f"
-            ;;
-        126)
-            echo "%B%F$(FCLR)%S%K{black}✘ 126 %s%k%b%f"
-            ;;
-        127)
-            echo "%B%F$(FCLR)%S%K{black}✘ 127 %s%k%b%f"
-            ;;
-        128*)
-            echo "%B%F$(FCLR)%S%K{black}✘ 128 %s%k%b%f"
-            ;;
-        130)
-            echo "%B%F$(FCLR)%S%K{black}✘ 130 %s%k%b%f"
-            ;;
-        165)
-            echo "%B%F$(FCLR)%S%K{black}✘ 165 %s%k%b%f"
-            ;;
-        255)
-            echo "%B%F$(FCLR)%S%K{black}✘ 255 %s%k%b%f"
-            ;;
+    EXIT="$?"
+    case $EXIT in
         0)
             GITSTATUS="$(git status >/dev/null 2>&1 | grep 'On branch' | sed -e 's/On branch//g' || echo)"
             if [ ! -z "$GITSTATUS" ]; then
@@ -84,7 +61,7 @@ EXSTATUS () {
             fi
             ;;
         *)
-            echo "%B%F$(FCLR)%S%K{black}✘ Unknown %s%k%b%f"
+            echo "%B%F$(FCLR)%S%K{black}✘ "$EXIT" %s%k%b%f"
             ;;
     esac
 }

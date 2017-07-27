@@ -13,6 +13,7 @@ alias load-aliases='. ~/.zsh_aliases'
 alias mce='mcedit'
 alias mce-aliases='mcedit ~/.zsh_aliases; . ~/.zsh_aliases'
 alias mce-zshrc='mcedit ~/.zshrc; zsh'
+alias mpc-notify='/home/$USER/Scripts/mpc-notify.sh'
 alias mpc-start='mpc ls | mpc add && mpc random on && mpc repeat on'
 alias mpc-stop='mpc clear && pkill mopidy'
 alias mpc-watch='cursor-hide && watch -tn 1 "mpc status | head -n 2" && cursor-show'
@@ -69,6 +70,12 @@ filesize-a () {
 
 mopidy-recache () {
     curl -d '{"jsonrpc": "2.0", "id": 1, "method": "core.library.refresh"}' http://localhost:6680/mopidy/rpc
+}
+
+mpc-current () {
+    while true; do
+        mpc current --wait
+    done
 }
 
 remote-exec () {
