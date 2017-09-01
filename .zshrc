@@ -55,13 +55,13 @@ EXSTATUS () {
     GITCOMMIT="$(git status >/dev/null 2>&1 | head -n 3 | grep 'commit')"
     case $GITCOMMIT in
         Changes*)
-            GITCHANGES="$(git status >/dev/null 2>&1 | grep '	' | wc -l) "
+            GITCHANGES=" $(git status >/dev/null 2>&1 | grep '	' | wc -l)"
             ;;
         *ahead*)
             GITCHANGES="$(git status >/dev/null 2>&1 | grep 'Your branch is ahead' | tr -d '[:alpha:]' | tr -d "'.[:space:]" | tr '/' '+' )"
             ;;
         *behind*)
-            GITCHANGES="$(git status >/dev/null 2>&1 | grep 'Your branch is behind' | tr -d '[:alpha:]' | tr -d "'.[:space:]" | tr '/' '+' )"
+            GITCHANGES="$(git status >/dev/null 2>&1 | grep 'Your branch is behind' | tr -d '[:alpha:]' | tr -d "'.[:space:]" | tr '/' '-' )"
             ;;
         nothing*)
             GITCHANGES="$(echo "✔ ")"
