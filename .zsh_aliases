@@ -27,27 +27,26 @@ alias weather='weather --no-cache-data'
 alias weather-mp='echo "$(tput setaf 10)$(tput bold)$(weather --imperial -q -a --no-cache kmrj)"'
 alias weather-forcast='tput reset; echo "$(tput setaf 4)$(tput bold)$(weather -n -q -f --no-cache kmrj)"; weather-radar'
 alias weather-watch='cursor-hide; watch -tcxn 300 weather --imperial -q -a --no-cache kmrj && cursor-show'
-alias aptm='/home/$USER/github/UsefulScripts/aptmarklist/aptmarklist.sh'
-alias aptt='/home/$USER/github/UsefulScripts/apttool/apttool.sh'
-alias cpdots='/home/$USER/github/UsefulScripts/misc/cpdots.sh'
-alias erm='/home/$USER/github/UsefulScripts/easyrm/easyrm.sh'
+alias aptt='/home/$USER/github/scripts/apttool/apttool.sh'
+alias cpdots='/home/$USER/github/scripts/misc/cpdots.sh'
+alias erm='/home/$USER/github/scripts/easyrm/easyrm.sh'
 alias fakegame='/home/$USER/Scripts/discordfakegame.sh'
-alias lyrics='tput reset; /home/$USER/github/UsefulScripts/misc/lyrics.sh'
-alias lyrics-playing='tput reset; /home/$USER/github/UsefulScripts/misc/lyrics.sh "$(mpc -f %artist% | head -n 1)" "$(mpc -f %title% | head -n 1)"'
+alias lyrics='tput reset; /home/$USER/github/scripts/misc/lyrics.sh'
+alias lyrics-playing='tput reset; /home/$USER/github/scripts/misc/lyrics.sh "$(mpc -f %artist% | head -n 1)" "$(mpc -f %title% | head -n 1)"'
 alias mydiscord-load='mydiscord --css /home/simonizor/Documents/Text/discord-custom.css --js /home/simonizor/Documents/Text/discord-custom.js'
 alias imgman='/home/$USER/github/appimgman/appimgman'
 alias addgitimg='/home/$USER/Scripts/appimg-github.sh'
 alias binary-convert='/home/$USER/Scripts/binary-convert.sh'
 alias passman='/home/$USER/github/gpgpassman/gpgpassman.sh'
-alias speedtest='/home/$USER/github/UsefulScripts/speedtest/speedtest.sh'
+alias speedtest='/home/$USER/github/scripts/speedtest/speedtest.sh'
 alias gspm='/home/$USER/github/spm/spm'
 alias sudoBot='cursorhide; /home/$USER/sudoBot/sudostart.sh'
 alias tarpkg='/home/$USER/github/tar-pkg/tar-pkg'
-alias todo='/home/$USER/github/UsefulScripts/misc/todo.sh'
+alias todo='/home/$USER/github/scripts/misc/todo.sh'
 alias xdgfetch='xdgfetch -c 4'
 alias xdgfetch-git='/home/$USER/github/xdgfetch/xdgfetch -c 4'
 alias urltotmp='/home/$USER/Scripts/urltotmp.sh'
-alias wttr-refresh='clr; /home/$USER/github/UsefulScripts/misc/wttrrefresh.sh'
+alias wttr-refresh='clr; /home/$USER/github/scripts/misc/wttrrefresh.sh'
 alias color-test='tput reset; echo; bash -c "$(wget --quiet https://gist.githubusercontent.com/wagnermoschini/8893311/raw/9de710eea1a86fb955fb221e847d722e9bc3b024/colortest.sh -O -)"'
 alias color-invaders='tput reset; echo; bash -c "$(wget --quiet https://github.com/chrisduerr/dotfiles/raw/master/files/Scripts/test_colors0 -O -)"'
 
@@ -99,11 +98,11 @@ time-watch () {
 }
 
 pstop () {
-    printf '\e[?25l' && /home/$USER/github/UsefulScripts/misc/pstop.sh $@; printf '\e[?25h'
+    printf '\e[?25l' && /home/$USER/github/scripts/misc/pstop.sh $@; printf '\e[?25h'
 }
 
 pstop-watch () {
-    printf '\e[?25l' && watch -tn 1 /home/$USER/github/UsefulScripts/misc/pstop.sh $@; printf '\e[?25h'
+    printf '\e[?25l' && watch -tn 1 /home/$USER/github/scripts/misc/pstop.sh $@; printf '\e[?25h'
 }
 
 mpvyt () { mpv ytdl://ytsearch10:"$*" }
