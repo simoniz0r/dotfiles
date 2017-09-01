@@ -8,10 +8,10 @@ print_dir () {
     else
         case $PWD in
             (/home/$USER/*)
-                echo "⾕${PWD:15} " # 15 = length of /home/$USER; adjust to your needs
+                echo "⾕${PWD:${#HOME}} "
                 ;;
             (/home/$USER*)
-                echo  "⾕${PWD:15}" # 15 = length of /home/$USER; adjust to your needs
+                echo  "⾕${PWD:${#HOME}}"
                 ;;
             (/)
                 echo " ${PWD:1}"
