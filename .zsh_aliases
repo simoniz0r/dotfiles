@@ -14,7 +14,7 @@ alias load-aliases='. ~/.zsh_aliases'
 alias mce='mcedit'
 alias mce-aliases='mcedit ~/.zsh_aliases; . ~/.zsh_aliases'
 alias mce-zshrc='mcedit ~/.zshrc; zsh'
-alias mopidy-start='/home/$USER/Scripts/mopidy-start.sh'
+alias mopidy-start='$HOME/Scripts/mopidy-start.sh'
 alias mpc-watch='cursor-hide && watch -tn 1 "mpc status | head -n 2" && cursor-show'
 alias nohup='nohup '
 alias reset='tput reset'
@@ -27,34 +27,34 @@ alias weather='weather --no-cache-data'
 alias weather-mp='echo "$(tput setaf 10)$(tput bold)$(weather --imperial -q -a --no-cache kmrj)"'
 alias weather-forcast='tput reset; echo "$(tput setaf 4)$(tput bold)$(weather -n -q -f --no-cache kmrj)"; weather-radar'
 alias weather-watch='cursor-hide; watch -tcxn 300 weather --imperial -q -a --no-cache kmrj && cursor-show'
-alias aptt='/home/$USER/github/scripts/apttool/apttool.sh'
-alias cpdots='/home/$USER/github/scripts/misc/cpdots.sh'
-alias erm='/home/$USER/github/scripts/easyrm/easyrm.sh'
-alias fakegame='/home/$USER/Scripts/discordfakegame.sh'
-alias lyrics='tput reset; /home/$USER/github/scripts/misc/lyrics.sh'
-alias lyrics-playing='tput reset; /home/$USER/github/scripts/misc/lyrics.sh "$(mpc -f %artist% | head -n 1)" "$(mpc -f %title% | head -n 1)"'
+alias aptt='$HOME/github/scripts/apttool/apttool.sh'
+alias cpdots='$HOME/github/scripts/misc/cpdots.sh'
+alias erm='$HOME/github/scripts/easyrm/easyrm.sh'
+alias fakegame='$HOME/Scripts/discordfakegame.sh'
+alias lyrics='tput reset; $HOME/github/scripts/misc/lyrics.sh'
+alias lyrics-playing='tput reset; $HOME/github/scripts/misc/lyrics.sh "$(mpc -f %artist% | head -n 1)" "$(mpc -f %title% | head -n 1)"'
 alias mydiscord-load='mydiscord --css /home/simonizor/Documents/Text/discord-custom.css --js /home/simonizor/Documents/Text/discord-custom.js'
-alias imgman='/home/$USER/github/appimgman/appimgman'
-alias addgitimg='/home/$USER/Scripts/appimg-github.sh'
-alias binary-convert='/home/$USER/Scripts/binary-convert.sh'
-alias passman='/home/$USER/github/gpgpassman/gpgpassman.sh'
-alias speedtest='/home/$USER/github/scripts/speedtest/speedtest.sh'
-alias gspm='/home/$USER/github/spm/spm'
-alias sudoBot='cursorhide; /home/$USER/sudoBot/sudostart.sh'
-alias tarpkg='/home/$USER/github/tar-pkg/tar-pkg'
-alias todo='/home/$USER/github/scripts/misc/todo.sh'
+alias imgman='$HOME/github/appimgman/appimgman'
+alias addgitimg='$HOME/Scripts/appimg-github.sh'
+alias binary-convert='$HOME/Scripts/binary-convert.sh'
+alias passman='$HOME/github/gpgpassman/gpgpassman.sh'
+alias speedtest='$HOME/github/scripts/speedtest/speedtest.sh'
+alias gspm='$HOME/github/spm/spm'
+alias sudoBot='cursorhide; $HOME/sudoBot/sudostart.sh'
+alias tarpkg='$HOME/github/tar-pkg/tar-pkg'
+alias todo='$HOME/github/scripts/misc/todo.sh'
 alias xdgfetch='xdgfetch -c 4'
-alias xdgfetch-git='/home/$USER/github/xdgfetch/xdgfetch -c 4'
-alias urltotmp='/home/$USER/Scripts/urltotmp.sh'
-alias wttr-refresh='clr; /home/$USER/github/scripts/misc/wttrrefresh.sh'
+alias xdgfetch-git='$HOME/github/xdgfetch/xdgfetch -c 4'
+alias urltotmp='$HOME/Scripts/urltotmp.sh'
+alias wttr-refresh='clr; $HOME/github/scripts/misc/wttrrefresh.sh'
 alias color-test='tput reset; echo; bash -c "$(wget --quiet https://gist.githubusercontent.com/wagnermoschini/8893311/raw/9de710eea1a86fb955fb221e847d722e9bc3b024/colortest.sh -O -)"'
 alias color-invaders='tput reset; echo; bash -c "$(wget --quiet https://github.com/chrisduerr/dotfiles/raw/master/files/Scripts/test_colors0 -O -)"'
 
-conf="/home/$USER/.config"
-docs="/home/$USER/Documents"
-down="/home/$USER/Downloads"
-pics="/home/$USER/Pictures"
-github="/home/$USER/github"
+conf="$HOME/.config"
+docs="$HOME/Documents"
+down="$HOME/Downloads"
+pics="$HOME/Pictures"
+github="$HOME/github"
 
 time="$(date +'%l:%M:%S %p')"
 
@@ -98,11 +98,11 @@ time-watch () {
 }
 
 pstop () {
-    printf '\e[?25l' && /home/$USER/github/scripts/misc/pstop.sh $@; printf '\e[?25h'
+    printf '\e[?25l' && $HOME/github/scripts/misc/pstop.sh $@; printf '\e[?25h'
 }
 
 pstop-watch () {
-    printf '\e[?25l' && watch -tn 1 /home/$USER/github/scripts/misc/pstop.sh $@; printf '\e[?25h'
+    printf '\e[?25l' && watch -tn 1 $HOME/github/scripts/misc/pstop.sh $@; printf '\e[?25h'
 }
 
 mpvyt () { mpv ytdl://ytsearch10:"$*" }

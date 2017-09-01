@@ -7,16 +7,16 @@ print_dir () {
         echo "ssh %~ "
     else
         case $PWD in
-            (/home/$USER/*)
+            $HOME/*)
                 echo "⾕${PWD:${#HOME}} "
                 ;;
-            (/home/$USER*)
+            $HOME*)
                 echo  "⾕${PWD:${#HOME}}"
                 ;;
-            (/)
+            /)
                 echo " ${PWD:1}"
                 ;;
-            (*)
+            *)
                 echo " $PWD "
                 ;;
         esac
@@ -25,25 +25,25 @@ print_dir () {
 
 FCLR () {
     case $PWD in
-        (/home/$USER/github*)
+        $HOME/github*)
             echo "{cyan}"
             ;;
-        (/home/$USER/.config*)
+        $HOME/.config*)
             echo "{yellow}"
             ;;
-        (/home/$USER/Documents*)
+        $HOME/Documents*)
             echo "{green}"
             ;;
-        (/home/$USER/Downloads*)
+        $HOME/Downloads*)
             echo "{white}"
             ;;
-        (/home/$USER/Pictures*)
+        $HOME/Pictures*)
             echo "{magenta}"
             ;;
-        (/home/$USER*)
+        $HOME*)
             echo "{blue}"
             ;;
-        (*)
+        *)
             echo "{red}"
             ;;
     esac
