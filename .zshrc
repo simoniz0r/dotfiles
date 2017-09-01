@@ -11,13 +11,13 @@ print_dir () {
                 echo "⾕${PWD:15} " # 15 = length of /home/$USER; adjust to your needs
                 ;;
             (/home/$USER*)
-                echo "⾕${PWD:15}" # 15 = length of /home/$USER; adjust to your needs
+                echo  "⾕${PWD:15}" # 15 = length of /home/$USER; adjust to your needs
                 ;;
             (/)
-                echo "💻 ${PWD:1}"
+                echo " ${PWD:1}"
                 ;;
             (*)
-                echo "💻 $PWD "
+                echo " $PWD "
                 ;;
         esac
     fi
@@ -53,7 +53,7 @@ EXSTATUS () {
     EXIT="$?"
     case $EXIT in
         0)
-            GITSTATUS="$(git status >/dev/null 2>&1 | grep 'On branch' | sed -e 's/On branch//g' || echo)"
+            GITSTATUS="$(git status >/dev/null 2>&1 | grep 'On branch' | sed -e 's/On branch/ /g' || echo)"
             if [ ! -z "$GITSTATUS" ]; then
                 echo "%B%F$(FCLR)%S%K{black}$GITSTATUS %s%k%b%f"
             else
@@ -83,6 +83,10 @@ HISTFILE=~/.zsh_history
 # Use modern completion system
 autoload -Uz compinit
 compinit
+
+setopt auto_menu
+setopt complete_in_word
+setopt always_to_end
 
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
@@ -123,4 +127,16 @@ if [ -f ~/.discord-install_alias ]; then
     . ~/.discord-install_alias
 fi
 
-cursor-hide
+if [ "$(pidof zsh | wc -w)" -lt "8" ]; then
+    cursor-hide
+else
+    tput reset
+   # echo "$(pidof zsh | wc -w) zsh instances running"
+fi
+
+
+if [ -f ~/.config/spm/spm.comp ]; then
+    source ~/.config/spm/spm.comp
+    compdef _spm spm
+fi
+
