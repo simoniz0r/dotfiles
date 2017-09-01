@@ -55,7 +55,7 @@ EXSTATUS () {
     GITCOMMIT="$(git status >/dev/null 2>&1 | head -n 3 | grep 'commit')"
     case $GITCOMMIT in
         Changes*)
-            GITCHANGES="$(git status >/dev/null 2>&1 | grep 'modified:' | wc -l) "
+            GITCHANGES="$(git status >/dev/null 2>&1 | grep '	' | wc -l) "
             ;;
         nothing*)
             GITCHANGES="$(echo "✔ ")"
