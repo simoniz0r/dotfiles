@@ -53,17 +53,35 @@ EXSTATUS () {
     EXIT="$?"
     case $EXIT in
         0)
-            GITSTATUS="$(git status >/dev/null 2>&1 | grep 'On branch' | sed -e 's/On branch/ /g' || echo)"
-            if [ ! -z "$GITSTATUS" ]; then
-                echo "%B%F$(FCLR)%S%K{black}$GITSTATUS %s%k%b%f"
+            GITBRANCH="$(git status >/dev/null 2>&1 | grep 'On branch' | sed -e 's/On branch/ /g' || echo)"
+            GITCOMMIT="$(git status >/dev/null 2>&1 | head -n 3 | grep 'commit')"
+            case $GITCOMMIT in
+                Changes*)
+                    GITCHANGES="$(git status >/dev/null 2>&1 | grep 'modified:' | wc -l)"
+                    ;;
+                nothing*)
+                    GITCHANGES="$(echo ✔)"
+                    ;;
+            esac
+            if [ ! -z "$GITBRANCH" ]; then
+                echo "%B%F$(FCLR)%S%K{black}$GITBRANCH $GITCHANGES %s%k%b%f"
             else
                 echo ""
             fi
             ;;
         *)
-            GITSTATUS="$(git status >/dev/null 2>&1 | grep 'On branch' | sed -e 's/On branch/ /g' || echo)"
-            if [ ! -z "$GITSTATUS" ]; then
-                echo "%B%F$(FCLR)%S%K{black}✘ "$EXIT" $GITSTATUS %s%k%b%f"
+            GITBRANCH="$(git status >/dev/null 2>&1 | grep 'On branch' | sed -e 's/On branch/ /g' || echo)"
+            GITCOMMIT="$(git status >/dev/null 2>&1 | head -n 3 | grep 'commit')"
+            case $GITCOMMIT in
+                Changes*)
+                    GITCHANGES="$(git status >/dev/null 2>&1 | grep 'modified:' | wc -l)"
+                    ;;
+                nothing*)
+                    GITCHANGES="$(echo ✔)"
+                    ;;
+            esac
+            if [ ! -z "$GITBRANCH" ]; then
+                echo "%B%F$(FCLR)%S%K{black}✘ "$EXIT" $GITBRANCH $GITCHANGES %s%k%b%f"
             else
                 echo "%B%F$(FCLR)%S%K{black}✘ "$EXIT" %s%k%b%f"
             fi
