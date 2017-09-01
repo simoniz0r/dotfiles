@@ -61,7 +61,12 @@ EXSTATUS () {
             fi
             ;;
         *)
-            echo "%B%F$(FCLR)%S%K{black}✘ "$EXIT" %s%k%b%f"
+            GITSTATUS="$(git status >/dev/null 2>&1 | grep 'On branch' | sed -e 's/On branch/ /g' || echo)"
+            if [ ! -z "$GITSTATUS" ]; then
+                echo "%B%F$(FCLR)%S%K{black}✘ "$EXIT" $GITSTATUS %s%k%b%f"
+            else
+                echo "%B%F$(FCLR)%S%K{black}✘ "$EXIT" %s%k%b%f"
+            fi
             ;;
     esac
 }
