@@ -71,7 +71,7 @@ EXSTATUS () {
             ;;
         *)
             if [ ! -z "$GITBRANCH" ]; then
-                echo "%B%F$(FCLR)%S%K{black}✘ "$EXIT" $GITBRANCH $GITCHANGES %s%k%b%f"
+                echo "%B%F$(FCLR)%S%K{black}%s✘ "$EXIT" %S$GITBRANCH $GITCHANGES %s%k%b%f"
             else
                 echo "%B%F$(FCLR)%S%K{black}✘ "$EXIT" %s%k%b%f"
             fi
