@@ -57,6 +57,12 @@ EXSTATUS () {
         Changes*)
             GITCHANGES="$(git status >/dev/null 2>&1 | grep '	' | wc -l) "
             ;;
+        *ahead*)
+            GITCHANGES="$(git status >/dev/null 2>&1 | grep 'Your branch is ahead' | tr -d '[:alpha:]' | tr -d "'.[:space:]" | tr '/' '+' )"
+            ;;
+        *behind*)
+            GITCHANGES="$(git status >/dev/null 2>&1 | grep 'Your branch is behind' | tr -d '[:alpha:]' | tr -d "'.[:space:]" | tr '/' '+' )"
+            ;;
         nothing*)
             GITCHANGES="$(echo "✔ ")"
             ;;
