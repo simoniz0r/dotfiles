@@ -53,14 +53,14 @@ EXSTATUS () {
     EXIT="$?"
     case $EXIT in
         0)
-            GITBRANCH="$(git status >/dev/null 2>&1 | grep 'On branch' | sed -e 's/On branch/ /g' || echo)"
+            GITBRANCH="$(git status >/dev/null 2>&1 | grep 'On branch' | sed -e 's/On branch/  /g' || echo)"
             GITCOMMIT="$(git status >/dev/null 2>&1 | head -n 3 | grep 'commit')"
             case $GITCOMMIT in
                 Changes*)
                     GITCHANGES="$(git status >/dev/null 2>&1 | grep 'modified:' | wc -l)"
                     ;;
                 nothing*)
-                    GITCHANGES="$(echo ✔)"
+                    GITCHANGES="$(echo "✔ ")"
                     ;;
             esac
             if [ ! -z "$GITBRANCH" ]; then
@@ -70,7 +70,7 @@ EXSTATUS () {
             fi
             ;;
         *)
-            GITBRANCH="$(git status >/dev/null 2>&1 | grep 'On branch' | sed -e 's/On branch/ /g' || echo)"
+            GITBRANCH="$(git status >/dev/null 2>&1 | grep 'On branch' | sed -e 's/On branch/  /g' || echo)"
             GITCOMMIT="$(git status >/dev/null 2>&1 | head -n 3 | grep 'commit')"
             case $GITCOMMIT in
                 Changes*)
