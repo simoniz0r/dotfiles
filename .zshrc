@@ -77,7 +77,7 @@ EXSTATUS () {
                     GITCHANGES="$(git status >/dev/null 2>&1 | grep 'modified:' | wc -l)"
                     ;;
                 nothing*)
-                    GITCHANGES="$(echo ✔)"
+                    GITCHANGES="$(echo "✔ ")"
                     ;;
             esac
             if [ ! -z "$GITBRANCH" ]; then
