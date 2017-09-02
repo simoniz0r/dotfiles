@@ -7,17 +7,20 @@ print_dir () {
         echo "ssh %~ "
     else
         case $PWD in
-            $HOME/*)
-                echo "⾕${PWD:${#HOME}} "
-                ;;
+            # $HOME/*)
+                # echo "⾕${PWD:${#HOME}} "
+            #     echo "⛺${PWD:${#HOME}} "
+            #     ;;
             $HOME*)
-                echo  "⾕${PWD:${#HOME}}"
+                # echo  "⾕${PWD:${#HOME}}"
+                # echo  "⛺${PWD:${#HOME}}"
+                echo " %~ "
                 ;;
             /)
-                echo " ${PWD:1}"
+                echo " ⚠${PWD:1} "
                 ;;
             *)
-                echo " $PWD "
+                echo " ⚠ $PWD "
                 ;;
         esac
     fi
@@ -102,10 +105,6 @@ HISTFILE=~/.zsh_history
 # Use modern completion system
 autoload -Uz compinit
 compinit
-
-setopt auto_menu
-setopt complete_in_word
-setopt always_to_end
 
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
