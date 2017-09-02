@@ -88,8 +88,8 @@ GITSTATUS () {
     fi
 }
 
-PS1='$(EXSTATUS)%K{black}%F$(FCLR) %n@%m %S$(print_dir)%s%k%f '
-RPS1='$(GITSTATUS)'
+PS1='%K{black}%F$(FCLR) %n@%m %S$(print_dir)%s%k%f '
+RPS1='$(EXSTATUS)$(GITSTATUS)'
 
 setopt histignorealldups sharehistory
 
