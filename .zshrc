@@ -54,14 +54,25 @@ FCLR () {
 
 EXSTATUS () {
     EXIT="$?"
-    GITBRANCH="$(git status >/dev/null 2>&1 | grep 'On branch' | sed -e 's/On branch/  /g' || echo)"
-    GITCOMMIT="$(git status >/dev/null 2>&1 | head -n 3 | grep 'commit')"
+    case $EXIT in
+        0)
+            echo ""
+            ;;
+        *)
+            echo "%F$(FCLR)%S%K{black}✘ "$EXIT "%s%k%f"
+            ;;
+    esac
+}
+
+GITSTATUS () {
+    GITBRANCH="$(git status >/dev/null 2>&1 | grep 'On branch' | sed -e 's/On branch/ /g' || echo)"
+    GITCOMMIT="$(git status >/dev/null 2>&1 | head -n 3 | grep 'commit:\|commit,\|commit.' || echo)"
     case $GITCOMMIT in
         Changes*)
             GITCHANGES=" $(git status >/dev/null 2>&1 | grep '	' | wc -l)"
             ;;
         *ahead*)
-            GITCHANGES="$(git status >/dev/null 2>&1 | grep 'Your branch is ahead' | tr -d '[:alpha:]' | tr -d "'.[:space:]" | tr '/' '+' )"
+            GITCHANGES="$(git status >/dev/null 2>&1 | grep 'Your branch is ahead' | tr -d "'[:alpha:].[:space:]" | tr '/' '+')"
             ;;
         *behind*)
             GITCHANGES="$(git status >/dev/null 2>&1 | grep 'Your branch is behind' | tr -d '[:alpha:]' | tr -d "'.[:space:]" | tr '/' '-' )"
@@ -70,27 +81,15 @@ EXSTATUS () {
             GITCHANGES="$(echo "✔ ")"
             ;;
     esac
-    case $EXIT in
-        0)
-            if [ ! -z "$GITBRANCH" ]; then
-                echo "%B%F$(FCLR)%S%K{black}$GITBRANCH $GITCHANGES %s%k%b%f"
-            else
-                echo ""
-            fi
-            ;;
-        *)
-            if [ ! -z "$GITBRANCH" ]; then
-                echo "%B%F$(FCLR)%S%K{black}%s✘ "$EXIT" %S$GITBRANCH $GITCHANGES %s%k%b%f"
-            else
-                echo "%B%F$(FCLR)%S%K{black}✘ "$EXIT" %s%k%b%f"
-            fi
-            ;;
-    esac
+    if [ ! -z "$GITBRANCH" ]; then
+        echo "%F$(FCLR)%S%K{black} $GITBRANCH $GITCHANGES %s%k%f"
+    else
+        echo ""
+    fi
 }
 
-PS1='$(EXSTATUS)%K{black}%F$(FCLR)%B %n@%m %S$(print_dir)%s%k%b%f '
-# Without username and host: PS1='%F$(FCLR)%K{black}%S$(print_dir)%s%k%b%f '
-RPS1=''
+PS1='$(EXSTATUS)%K{black}%F$(FCLR) %n@%m %S$(print_dir)%s%k%f '
+RPS1='$(GITSTATUS)'
 
 setopt histignorealldups sharehistory
 
@@ -144,11 +143,6 @@ fi
 if [ -f ~/.discord-install_alias ]; then
     . ~/.discord-install_alias
 fi
-
-if [ "$(pidof zsh | wc -w)" -lt "8" ]; then
-    cursor-hide
-fi
-
 
 if [ -f ~/.config/spm/spm.comp ]; then
     source ~/.config/spm/spm.comp
