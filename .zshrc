@@ -147,9 +147,6 @@ fi
 
 if [ "$(pidof zsh | wc -w)" -lt "8" ]; then
     cursor-hide
-else
-    tput reset
-   # echo "$(pidof zsh | wc -w) zsh instances running"
 fi
 
 
