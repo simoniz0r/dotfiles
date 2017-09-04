@@ -1,9 +1,9 @@
 apg
-audacious
+asciinema
 cantata
-code
 curl
 dialog
+fonts-font-awesome
 fonts-wqy-microhei
 fonts-wqy-zenhei
 gimp
@@ -13,10 +13,10 @@ google-musicmanager-beta
 google-play-music-desktop-player
 gpick
 grub-customizer
+hddtemp
 htop
-i-nex
 intel-microcode
-inxi
+jq
 kdenlive
 kgpg
 libc++1
@@ -24,6 +24,7 @@ libgl1-mesa-dri:i386
 libreoffice
 linux-generic
 linux-generic-hwe-16.04-edge
+maim
 mc
 mopidy
 mopidy-mpris
@@ -36,6 +37,7 @@ peek
 ppa-purge
 python3-pip
 python-pip
+qalc
 rocketchat-desktop
 speedometer
 streamlink
@@ -47,6 +49,7 @@ virtualbox
 weather-util
 weather-util-data
 xclip
+xdotool
 yad
 zenity
 zsh

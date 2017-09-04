@@ -2,31 +2,7 @@
 
 setopt PROMPT_SUBST
 
-print_dir () {
-    if [[ "$HOST" != "OptiPlex" ]]; then
-        echo "ssh %~ "
-    else
-        case $PWD in
-            # $HOME/*)
-                # echo "⾕${PWD:${#HOME}} "
-            #     echo "⛺${PWD:${#HOME}} "
-            #     ;;
-            $HOME*)
-                # echo  "⾕${PWD:${#HOME}}"
-                # echo  "⛺${PWD:${#HOME}}"
-                echo " %~ "
-                ;;
-            /)
-                echo " ⚠${PWD:1} "
-                ;;
-            *)
-                echo " ⚠ $PWD "
-                ;;
-        esac
-    fi
-}
-
-FCLR () {
+MAIN_COLOR () {
     case $PWD in
         $HOME/github*)
             echo "{cyan}"
@@ -52,19 +28,31 @@ FCLR () {
     esac
 }
 
-EXSTATUS () {
-    EXIT="$?"
-    case $EXIT in
-        0)
-            echo ""
-            ;;
-        *)
-            echo "%F$(FCLR)%S%K{black}✘ "$EXIT "%s%k%f"
-            ;;
-    esac
+DIR_SYMBOLS () {
+    if [[ "$HOST" != "OptiPlex" ]]; then
+        echo "ssh %~ "
+    else
+        case $PWD in
+            # $HOME/*)
+                # echo "⾕${PWD:${#HOME}} "
+            #     echo "⛺${PWD:${#HOME}} "
+            #     ;;
+            $HOME*)
+                # echo  "⾕${PWD:${#HOME}}"
+                # echo  "⛺${PWD:${#HOME}}"
+                echo " %~ "
+                ;;
+            /)
+                echo " ⚠${PWD:1} "
+                ;;
+            *)
+                echo " ⚠ $PWD "
+                ;;
+        esac
+    fi
 }
 
-GITSTATUS () {
+GIT_STATUS () {
     GITBRANCH="$(git status >/dev/null 2>&1 | grep 'On branch' | sed -e 's/On branch/ /g' || echo)"
     GITCOMMIT="$(git status >/dev/null 2>&1 | head -n 3 | grep 'commit:\|commit,\|commit.' || echo)"
     case $GITCOMMIT in
@@ -82,14 +70,26 @@ GITSTATUS () {
             ;;
     esac
     if [ ! -z "$GITBRANCH" ]; then
-        echo "%F$(FCLR)%S%K{black} $GITBRANCH $GITCHANGES %s%k%f"
+        echo "%F$(MAIN_COLOR)%S%K{black} $GITBRANCH $GITCHANGES %s%k%f"
     else
         echo ""
     fi
 }
 
-PS1='%K{black}%F$(FCLR) %n@%m %S$(print_dir)%s%k%f '
-RPS1='$(EXSTATUS)$(GITSTATUS)'
+EXIT_STATUS () {
+    EXIT="$?"
+    case $EXIT in
+        0)
+            echo ""
+            ;;
+        *)
+            echo "%F$(MAIN_COLOR)%S%K{black}✘ "$EXIT "%s%k%f"
+            ;;
+    esac
+}
+
+PS1='%K{black}%F$(MAIN_COLOR) %n@%m %S$(DIR_SYMBOLS)%s%k%f '
+RPS1='$(EXIT_STATUS)$(GIT_STATUS)'
 
 setopt histignorealldups sharehistory
 
