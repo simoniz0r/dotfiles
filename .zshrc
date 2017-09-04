@@ -66,7 +66,7 @@ GIT_STATUS () {
             GITCHANGES="$(git status >/dev/null 2>&1 | grep 'Your branch is behind' | tr -d "'[:alpha:].[:space:]" | tr '/' '-' )"
             ;;
         nothing*)
-            GITCHANGES="$(echo "✔ ")"
+            GITCHANGES="$(echo " ✔")"
             ;;
     esac
     if [ ! -z "$GITBRANCH" ]; then
