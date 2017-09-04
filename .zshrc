@@ -63,7 +63,7 @@ GIT_STATUS () {
             GITCHANGES="$(git status >/dev/null 2>&1 | grep 'Your branch is ahead' | tr -d "'[:alpha:].[:space:]" | tr '/' '+')"
             ;;
         *behind*)
-            GITCHANGES="$(git status >/dev/null 2>&1 | grep 'Your branch is behind' | tr -d '[:alpha:]' | tr -d "'.[:space:]" | tr '/' '-' )"
+            GITCHANGES="$(git status >/dev/null 2>&1 | grep 'Your branch is behind' | tr -d "'[:alpha:].[:space:]" | tr '/' '-' )"
             ;;
         nothing*)
             GITCHANGES="$(echo "✔ ")"
