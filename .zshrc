@@ -5,7 +5,7 @@ setopt PROMPT_SUBST
 MAIN_COLOR () {
     case $PWD in
         $HOME/github*)
-            echo "{cyan}"
+            echo "{blue}"
             ;;
         $HOME/.config*)
             echo "{yellow}"
@@ -20,7 +20,7 @@ MAIN_COLOR () {
             echo "{magenta}"
             ;;
         $HOME*)
-            echo "{blue}"
+            echo "{cyan}"
             ;;
         *)
             echo "{red}"
