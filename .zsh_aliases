@@ -18,7 +18,6 @@ alias sudo='sudo '
 alias weather='weather --no-cache-data'
 alias weather-mp='echo "$(tput setaf 10)$(tput bold)$(weather --imperial -q -a --no-cache kmrj)"'
 alias weather-forcast='tput reset; echo "$(tput setaf 4)$(tput bold)$(weather -n -q -f --no-cache kmrj)"; weather-radar'
-alias weather-watch='cursor-hide; watch -tcxn 300 weather --imperial -q -a --no-cache kmrj && cursor-show'
 alias cpdots='$HOME/github/scripts/misc/cpdots.sh'
 alias erm='$HOME/github/scripts/easyrm/easyrm.sh'
 alias fakegame='$HOME/Scripts/discordfakegame.sh'
@@ -30,14 +29,15 @@ alias mydiscord-load='mydiscord --css /home/simonizor/Documents/Text/discord-cus
 alias binary-convert='$HOME/Scripts/binary-convert.sh'
 alias passman='$HOME/github/gpgpassman/gpgpassman.sh'
 alias speedtest='$HOME/github/scripts/speedtest/speedtest.sh'
-alias xdgfetch='xdgfetch -c=14'
+alias xdgfetch='tput reset; xdgfetch -c=14'
 alias xdgfetch-git='$HOME/github/xdgfetch/xdgfetch'
 alias wttr-refresh='clr; $HOME/github/scripts/misc/wttrrefresh.sh'
 alias color-test='tput reset; echo; bash -c "$(wget --quiet https://gist.githubusercontent.com/wagnermoschini/8893311/raw/9de710eea1a86fb955fb221e847d722e9bc3b024/colortest.sh -O -)"'
 alias color-invaders='tput reset; echo; bash -c "$(wget --quiet https://github.com/chrisduerr/dotfiles/raw/master/files/Scripts/test_colors0 -O -)"'
 
-appimages="$HOME/github/all-appimages"
-appbuilds="$HOME/github/all-appimages/builds"
+appimages="/media/simonizor/0d208b29-3b29-4ffc-99be-1043b9f3c258/appimages/"
+appbuilds="/media/simonizor/0d208b29-3b29-4ffc-99be-1043b9f3c258/appimages/builds"
+appgit="/media/simonizor/0d208b29-3b29-4ffc-99be-1043b9f3c258/appimages/AppImages"
 conf="$HOME/.config"
 docs="$HOME/Documents"
 down="$HOME/Downloads"
@@ -83,7 +83,8 @@ remote-exec () {
 
 time-watch () {
     printf '\e[?25l'
-    watch -tcn 1 'echo "$(tput setaf 4)$(tput bold)          $(date "+%D     %I:%M:%S")"'
+    watch -tcn 1 'echo "$(tput setaf 4)$(tput bold)$(date "+%t%t%D%t%I:%M:%S")"'
+    printf '\e[?25h'
 }
 
 pstop () {
@@ -91,10 +92,18 @@ pstop () {
 }
 
 pstop-watch () {
-    printf '\e[?25l' && watch -tn 1 $HOME/github/scripts/misc/pstop.sh $@; printf '\e[?25h'
+    printf '\e[?25l'
+    watch -tcn 1 'echo "$(tput setaf 4)$(/home/simonizor/github/scripts/misc/pstop.sh -r=20 -s=mem -p=8)"'
+    printf '\e[?25h'
 }
 
 mpvyt () { mpv ytdl://ytsearch10:"$*" }
+
+weather-watch () {
+    printf '\e[?25l'
+    watch -tcn 300 'echo "$(tput setaf 4)$(weather --imperial -q -a --no-cache kmrj)"'
+    printf '\e[?25h'
+}
 
 wttr (){
     LOCATION="$1"
