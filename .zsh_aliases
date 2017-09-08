@@ -1,10 +1,11 @@
+alias alarm='$HOME/github/alarm-sh/alarm.sh'
 alias chx='chmod +x'
 alias clear="clear; printf '\e[?25h'"
 alias clr='tput reset'
 alias cursor-hide="printf '\e[?25l'"
 alias cursor-show="printf '\e[?25h'"
 alias drive-speed='hdparam -Tt'
-alias edit-aliases='mcedit ~/.zsh_aliases; . ~/.zsh_aliases'
+alias edit-aliases='mcedit ~/.zsh_aliases'
 alias edit-zshrc='mcedit ~/.zshrc; zsh'
 alias git-sign='git commit -a -S -m'
 alias lappy='tput reset; ssh simonizor@10.42.0.1'
@@ -93,7 +94,7 @@ pstop () {
 
 pstop-watch () {
     printf '\e[?25l'
-    watch -tcn 1 'echo "$(tput setaf 4)$(/home/simonizor/github/scripts/misc/pstop.sh -r=20 -s=mem -p=8)"'
+    watch -tc "/home/simonizor/github/scripts/misc/pstop.sh -r=20 -p=2 -s=$@"
     printf '\e[?25h'
 }
 

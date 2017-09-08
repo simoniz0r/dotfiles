@@ -149,3 +149,7 @@ if [ -f ~/.config/spm/spm.comp ]; then
     compdef _spm spm
 fi
 
+if [ -f ~/.todo/.todo.comp ]; then
+    source ~/.todo/.todo.comp
+    compdef _todo todo
+fi
