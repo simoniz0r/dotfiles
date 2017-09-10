@@ -5,7 +5,7 @@ setopt PROMPT_SUBST
 MAIN_COLOR () {
     case $PWD in
         $HOME/github*)
-            echo "{blue}"
+            echo "{cyan}"
             ;;
         $HOME/.config*)
             echo "{yellow}"
@@ -20,7 +20,7 @@ MAIN_COLOR () {
             echo "{magenta}"
             ;;
         $HOME*)
-            echo "{cyan}"
+            echo "{blue}"
             ;;
         *)
             echo "{red}"
@@ -54,9 +54,12 @@ DIR_SYMBOLS () {
 
 GIT_STATUS () {
     GITBRANCH="$(git status >/dev/null 2>&1 | grep 'On branch' | sed -e 's/On branch/ /g' || echo)"
-    GITCOMMIT="$(git status >/dev/null 2>&1 | head -n 3 | grep 'commit:\|commit,\|commit.' || echo)"
+    GITCOMMIT="$(git status >/dev/null 2>&1 | head -n 3 | grep 'Your branch is' || echo)"
     case $GITCOMMIT in
         Changes*)
+            GITCHANGES=" $(git status >/dev/null 2>&1 | grep '	' | wc -l)"
+            ;;
+        *up-to-date*)
             GITCHANGES=" $(git status >/dev/null 2>&1 | grep '	' | wc -l)"
             ;;
         *ahead*)

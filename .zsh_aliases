@@ -27,14 +27,15 @@ alias gtodo='$HOME/github/todo/todo.sh'
 alias lyrics='tput reset; $HOME/github/scripts/misc/lyrics.sh'
 alias lyrics-playing='tput reset; $HOME/github/scripts/misc/lyrics.sh "$(mpc -f %artist% | head -n 1)" "$(mpc -f %title% | head -n 1)"'
 alias mydiscord-load='mydiscord --css /home/simonizor/Documents/Text/discord-custom.css --js /home/simonizor/Documents/Text/discord-custom.js'
+alias pstop='$HOME/github/scripts/misc/pstop.sh -r=40 -s=mem'
 alias binary-convert='$HOME/Scripts/binary-convert.sh'
 alias passman='$HOME/github/gpgpassman/gpgpassman.sh'
 alias speedtest='$HOME/github/scripts/speedtest/speedtest.sh'
-alias xdgfetch='tput reset; xdgfetch -c=14'
+alias xdgfetch='tput reset; xdgfetch -c=4'
 alias xdgfetch-git='$HOME/github/xdgfetch/xdgfetch'
 alias wttr-refresh='clr; $HOME/github/scripts/misc/wttrrefresh.sh'
-alias color-test='tput reset; echo; bash -c "$(wget --quiet https://gist.githubusercontent.com/wagnermoschini/8893311/raw/9de710eea1a86fb955fb221e847d722e9bc3b024/colortest.sh -O -)"'
-alias color-invaders='tput reset; echo; bash -c "$(wget --quiet https://github.com/chrisduerr/dotfiles/raw/master/files/Scripts/test_colors0 -O -)"'
+alias color-test='echo; bash -c "$(wget --quiet https://gist.githubusercontent.com/wagnermoschini/8893311/raw/9de710eea1a86fb955fb221e847d722e9bc3b024/colortest.sh -O -)"'
+alias color-invaders='bash -c "$(wget --quiet https://github.com/chrisduerr/dotfiles/raw/master/files/Scripts/test_colors0 -O -)"'
 
 appimages="/media/simonizor/0d208b29-3b29-4ffc-99be-1043b9f3c258/appimages/"
 appbuilds="/media/simonizor/0d208b29-3b29-4ffc-99be-1043b9f3c258/appimages/builds"
@@ -84,17 +85,13 @@ remote-exec () {
 
 time-watch () {
     printf '\e[?25l'
-    watch -tcn 1 'echo "$(tput setaf 4)$(tput bold)$(date "+%t%t%D%t%I:%M:%S")"'
+    watch -tcn 1 'echo "$(tput setaf 4)$(date "+%t%D%t%I:%M:%S")"'
     printf '\e[?25h'
-}
-
-pstop () {
-    printf '\e[?25l' && $HOME/github/scripts/misc/pstop.sh $@; printf '\e[?25h'
 }
 
 pstop-watch () {
     printf '\e[?25l'
-    watch -tc "/home/simonizor/github/scripts/misc/pstop.sh -r=20 -p=2 -s=$@"
+    watch -tcn 3 "/home/simonizor/github/scripts/misc/pstop.sh -r=10 -p=2 -s=mem"
     printf '\e[?25h'
 }
 
