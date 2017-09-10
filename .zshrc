@@ -61,6 +61,11 @@ GIT_STATUS () {
             ;;
         *up-to-date*)
             GITCHANGES=" $(git status >/dev/null 2>&1 | grep '	' | wc -l)"
+            case $GITCHANGES in
+                (* 0)
+                    GITCHANGES="$(echo " ✔")"
+                    ;;
+            esac
             ;;
         *ahead*)
             GITCHANGES="$(git status >/dev/null 2>&1 | grep 'Your branch is ahead' | tr -d "'[:alpha:].[:space:]" | tr '/' '+')"
