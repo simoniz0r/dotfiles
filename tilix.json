@@ -1,0 +1,78 @@
+{
+    "child": {
+        "child1": {
+            "child1": {
+                "child1": {
+                    "directory": "",
+                    "height": 18,
+                    "profile": "2b7c4080-0ddd-46c5-8f23-563fd3ba789d",
+                    "readOnly": false,
+                    "synchronizedInput": true,
+                    "type": "Terminal",
+                    "width": 378
+                },
+                "child2": {
+                    "child1": {
+                        "directory": "",
+                        "height": 140,
+                        "profile": "2b7c4080-0ddd-46c5-8f23-563fd3ba789d",
+                        "readOnly": false,
+                        "synchronizedInput": true,
+                        "type": "Terminal",
+                        "width": 378
+                    },
+                    "child2": {
+                        "directory": "",
+                        "height": 68,
+                        "profile": "2b7c4080-0ddd-46c5-8f23-563fd3ba789d",
+                        "readOnly": false,
+                        "synchronizedInput": true,
+                        "type": "Terminal",
+                        "width": 378
+                    },
+                    "orientation": 1,
+                    "position": 13,
+                    "ratio": 0.669856,
+                    "type": "Paned"
+                },
+                "orientation": 1,
+                "position": 1,
+                "ratio": 0.0789474,
+                "type": "Paned"
+            },
+            "child2": {
+                "directory": "",
+                "height": 228,
+                "profile": "2b7c4080-0ddd-46c5-8f23-563fd3ba789d",
+                "readOnly": false,
+                "synchronizedInput": true,
+                "type": "Terminal",
+                "width": 571
+            },
+            "orientation": 0,
+            "position": 39,
+            "ratio": 0.397895,
+            "type": "Paned"
+        },
+        "child2": {
+            "directory": "",
+            "height": 830,
+            "profile": "2b7c4080-0ddd-46c5-8f23-563fd3ba789d",
+            "readOnly": false,
+            "synchronizedInput": true,
+            "title": "${id}: ${title}",
+            "type": "Terminal",
+            "width": 950
+        },
+        "orientation": 1,
+        "position": 21,
+        "ratio": 0.215297,
+        "type": "Paned"
+    },
+    "height": 1059,
+    "name": "${username}@${hostname}",
+    "synchronizedInput": false,
+    "type": "Session",
+    "version": "1.0",
+    "width": 950
+}
