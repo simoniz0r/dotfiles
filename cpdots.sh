@@ -9,8 +9,7 @@ dotfiles="
 /home/simonizor/.zshrc
 /home/simonizor/.config/mc/ini
 /home/simonizor/.config/mc/mc.keymap
-/home/simonizor/tilix.json
-/home/simonizor/.config/tilix/simple_dark.json
+/home/simonizor/.tmux.conf.local
 /home/simonizor/packagelist.txt
 "
 
@@ -60,8 +59,7 @@ cpdotsmain () {
             symlink "$DIR/.zshrc" "$HOME/.zshrc"
             symlink "$DIR/ini" "$HOME/.config/mc/ini"
             symlink "$DIR/mc.keymap" "$HOME/.config/mc/mc.keymap"
-            symlink "$DIR/tilix.json" "$HOME/tilix.json"
-            symlink "$DIR/simple_dark.json" "$HOME/.config/tilix/simple_dark.json"
+            symlink "$DIR/.tmux.conf.local" "$HOME/.tmux.conf.local"
             symlink "$DIR/packagelist.txt" "$HOME/packagelist.txt"
             ;;
         *)
