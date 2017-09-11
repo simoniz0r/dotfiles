@@ -96,7 +96,7 @@ EXIT_STATUS () {
     esac
 }
 
-PS1='%K{black}%F$(MAIN_COLOR) %n@%m %S$(DIR_SYMBOLS)%s%k%f '
+PS1='%K{black}%F$(MAIN_COLOR) %n %S$(DIR_SYMBOLS)%s%k%f '
 RPS1='$(EXIT_STATUS)$(GIT_STATUS)'
 
 setopt histignorealldups sharehistory
