@@ -1,4 +1,5 @@
 # https://github.com/gpakosz/.tmux
+# https://github.com/gpakosz/.tmux.git
 # (‑●‑●)> dual licensed under the WTFPL v2 license and the MIT license,
 #         without any warranty.
 #         Copyright 2012— Gregory Pakosz (@gpakosz).
@@ -157,7 +158,7 @@ tmux_conf_theme_right_separator_sub='|'
 #     - #{username}
 #     - #{username_ssh}
 tmux_conf_theme_status_left=' %I:%M:%S | %d %b '
-tmux_conf_theme_status_right='#{prefix} | #{loadavg} | ↑#{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,} '
+tmux_conf_theme_status_right='#{prefix} | #{hostname} | ↑#{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,} '
 
 # status left style
 tmux_conf_theme_status_left_fg='blue,black,blue'  # dark gray, white , white
@@ -273,10 +274,12 @@ set -g status-keys emacs
 
 # --- load plugins ---
 # -- tmux resurrect - restore session --
+# https://github.com/tmux-plugins/tmux-resurrect.git
 run-shell ~/.tmux/plugins/tmux-resurrect/resurrect.tmux
 # - tmux-resurrect options -
 set -g @resurrect-processes 'false'
 # -- tmux-better-mouse-mode - faster scrolling, better mouse behavior --
+# https://github.com/NHDaly/tmux-better-mouse-mode.git
 run-shell ~/.tmux/plugins/tmux-better-mouse-mode/scroll_copy_mode.tmux
 # - tmux-better-mouse-mode options -
 set -g @scroll-without-changing-pane "on"
