@@ -1,7 +1,7 @@
 alias alarm='$HOME/github/alarm-sh/alarm.sh'
 alias chx='chmod +x'
-alias clear="clear; printf '\e[?25h'"
-alias clr='tput reset'
+alias clear="clear"
+alias clr='clear'
 alias cursor-hide="printf '\e[?25l'"
 alias cursor-show="printf '\e[?25h'"
 alias drive-speed='hdparam -Tt'
@@ -36,6 +36,7 @@ alias xdgfetch-git='$HOME/github/xdgfetch/xdgfetch'
 alias wttr-refresh='clr; $HOME/github/scripts/misc/wttrrefresh.sh'
 alias color-test='echo; bash -c "$(wget --quiet https://gist.githubusercontent.com/wagnermoschini/8893311/raw/9de710eea1a86fb955fb221e847d722e9bc3b024/colortest.sh -O -)"'
 alias color-invaders='bash -c "$(wget --quiet https://github.com/chrisduerr/dotfiles/raw/master/files/Scripts/test_colors0 -O -)"'
+alias pipes='bash -c "$(wget --quiet https://raw.githubusercontent.com/pipeseroni/pipes.sh/master/pipes.sh -O -)"'
 
 appimages="/media/simonizor/0d208b29-3b29-4ffc-99be-1043b9f3c258/appimages/"
 appbuilds="/media/simonizor/0d208b29-3b29-4ffc-99be-1043b9f3c258/appimages/builds"
@@ -68,6 +69,7 @@ filesize () {
 filesize-a () {
     du -h -a "$@" | sort -h -r
 }
+
 
 mopidy-recache () {
     curl -d '{"jsonrpc": "2.0", "id": 1, "method": "core.library.refresh"}' http://localhost:6680/mopidy/rpc
