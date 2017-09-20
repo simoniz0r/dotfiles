@@ -54,27 +54,13 @@ DIR_SYMBOLS () {
 
 GIT_STATUS () {
     GITBRANCH="$(git status >/dev/null 2>&1 | grep 'On branch' | sed -e 's/On branch/ /g' || echo)"
-    GITCOMMIT="$(git status >/dev/null 2>&1 | head -n 3 | grep 'Your branch is' || echo)"
+    GITCOMMIT="$(git status -s -u >/dev/null 2>&1 | wc -l || echo)"
     case $GITCOMMIT in
-        Changes*)
-            GITCHANGES=" $(git status >/dev/null 2>&1 | grep '	' | wc -l)"
-            ;;
-        *up-to-date*)
-            GITCHANGES=" $(git status >/dev/null 2>&1 | grep '	' | wc -l)"
-            case $GITCHANGES in
-                (* 0)
-                    GITCHANGES="$(echo " ✔")"
-                    ;;
-            esac
-            ;;
-        *ahead*)
-            GITCHANGES="$(git status >/dev/null 2>&1 | grep 'Your branch is ahead' | tr -d "'[:alpha:].[:space:]" | tr '/' '+')"
-            ;;
-        *behind*)
-            GITCHANGES="$(git status >/dev/null 2>&1 | grep 'Your branch is behind' | tr -d "'[:alpha:].[:space:]" | tr '/' '-' )"
-            ;;
-        nothing*)
+        0)
             GITCHANGES="$(echo " ✔")"
+            ;;
+        *)
+            GITCHANGES=" $(git status -s -u >/dev/null 2>&1 | wc -l)"
             ;;
     esac
     if [ ! -z "$GITBRANCH" ]; then
