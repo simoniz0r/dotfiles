@@ -4,20 +4,20 @@ setopt PROMPT_SUBST
 
 MAIN_COLOR () {
     case $PWD in
-        $HOME/github*)
-            echo "{cyan}"
-            ;;
-        $HOME/.config*)
-            echo "{yellow}"
-            ;;
-        $HOME/Documents*)
+        $HOME/Documents*|/media/simonizor/0d208b29-3b29-4ffc-99be-1043b9f3c258*|$HOME/Downloads*|$HOME/Pictures*|$HOME/github*)
             echo "{green}"
             ;;
-        $HOME/Downloads*)
+        $HOME/.config*)
+            echo "{magenta}"
+            ;;
+        /opt*)
             echo "{white}"
             ;;
-        $HOME/Pictures*)
-            echo "{magenta}"
+        /usr/local*)
+            echo "{cyan}"
+            ;;
+        /usr*)
+            echo "{yellow}"
             ;;
         $HOME*)
             echo "{blue}"
@@ -41,6 +41,9 @@ DIR_SYMBOLS () {
                 # echo  "⾕${PWD:${#HOME}}"
                 # echo  "⛺${PWD:${#HOME}}"
                 echo " %~ "
+                ;;
+            /media/simonizor/0d208b29-3b29-4ffc-99be-1043b9f3c258*)
+                echo " USB_HDD${PWD:53} "
                 ;;
             /)
                 echo " ⚠${PWD:1} "

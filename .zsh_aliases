@@ -24,6 +24,7 @@ alias weather-forcast='tput reset; echo "$(tput setaf 4)$(tput bold)$(weather -n
 alias cpdots='$HOME/github/scripts/misc/cpdots.sh'
 alias erm='$HOME/github/scripts/easyrm/easyrm.sh'
 alias fakegame='$HOME/Scripts/discordfakegame.sh'
+alias feeds='$HOME/github/scripts/misc/rss-feed-reader.sh'
 alias gspm='$HOME/github/spm/spm'
 alias gtodo='$HOME/github/todo/todo.sh'
 alias lyrics='tput reset; $HOME/github/scripts/misc/lyrics.sh'
@@ -41,15 +42,15 @@ alias color-test='echo; bash -c "$(wget --quiet https://gist.githubusercontent.c
 alias color-invaders='bash -c "$(wget --quiet https://github.com/chrisduerr/dotfiles/raw/master/files/Scripts/test_colors0 -O -)"'
 alias pipes='bash -c "$(wget --quiet https://raw.githubusercontent.com/pipeseroni/pipes.sh/master/pipes.sh -O -)"'
 
-appimages="/media/simonizor/0d208b29-3b29-4ffc-99be-1043b9f3c258/appimages/"
+appimages="/media/simonizor/0d208b29-3b29-4ffc-99be-1043b9f3c258/appimages"
 appbuilds="/media/simonizor/0d208b29-3b29-4ffc-99be-1043b9f3c258/appimages/builds"
-appgit="/media/simonizor/0d208b29-3b29-4ffc-99be-1043b9f3c258/appimages/AppImages"
 conf="$HOME/.config"
 docs="$HOME/Documents"
 down="$HOME/Downloads"
-github="$HOME/github"
+github="/media/simonizor/0d208b29-3b29-4ffc-99be-1043b9f3c258/github"
 pics="$HOME/Pictures"
-releases="$HOME/github/all-releases"
+releases="/media/simonizor/0d208b29-3b29-4ffc-99be-1043b9f3c258/github/all-releases"
+USB_HDD="/media/simonizor/0d208b29-3b29-4ffc-99be-1043b9f3c258"
 
 time="$(date +'%l:%M:%S %p')"
 
