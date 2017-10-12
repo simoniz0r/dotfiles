@@ -131,7 +131,7 @@ fi
 # Change/remove these to match your settings
 export TERM=xterm-256color
 export EDITOR=/usr/bin/mcedit
-export MPD_HOST=10.42.0.4
+export MPD_HOST=127.0.0.1
 
 if [ -f ~/.smapt_aliases ]; then
     . ~/.smapt_aliases
