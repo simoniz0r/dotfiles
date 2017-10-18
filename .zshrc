@@ -150,3 +150,7 @@ if [ -f ~/.todo/.todo.comp ]; then
     source ~/.todo/.todo.comp
     compdef _todo todo
 fi
+
+if [ -f ~/nohup.out ]; then
+    rm ~/nohup.out
+fi
