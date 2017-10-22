@@ -1,43 +1,36 @@
+#######################################
+####    Frequently used aliases    ####
+#######################################
+
 alias alarm='$HOME/github/alarm-sh/alarm.sh'
 alias ansiweather='ansiweather -l Platteville,WI -u imperial'
-alias aria='aria2 --allow-overwrite -d "/home/simonizor/Downloads/" --check-certificate=false'
-alias chx='chmod +x'
-alias clear="clear"
+alias chx='chmod a+x'
 alias clr='clear'
 alias cursor-hide="printf '\e[?25l'"
 alias cursor-show="printf '\e[?25h'"
 alias drive-speed='hdparam -Tt'
 alias edit-aliases='mcedit ~/.zsh_aliases'
-alias edit-zshrc='mcedit ~/.zshrc; zsh'
+alias edit-zshrc='mcedit ~/.zshrc'
 alias fd='fd -c never'
 alias find='fd'
-alias git-sign='git commit -a -S -m'
-alias lappy='tput reset; ssh simonizor@10.42.0.1'
 alias load-aliases='. ~/.zsh_aliases'
 alias mce='mcedit'
-alias mpd-start='cursor-hide; $HOME/Scripts/mpd-start.sh'
-alias mpc-watch='cursor-hide && watch -tn 1 "mpc status | head -n 2" && cursor-show'
 alias rex='remote-exec'
-alias server-vm='ssh 10.42.0.2'
-alias speedtest='speedtest-cli'
+alias rg='rg --color never'
+alias ssh-lappy='tput reset; ssh simonizor@10.42.0.1'
+alias ssh-vm='ssh 10.42.0.2'
 alias sudo='sudo '
 alias tmux-a='tmux attach-session -t simonizor'
 alias tmux-n='tmux new -s simonizor'
-alias weather='weather --no-cache-data'
-alias weather-mp='echo "$(tput setaf 10)$(tput bold)$(weather --imperial -q -a --no-cache kmrj)"'
-alias weather-forcast='tput reset; echo "$(tput setaf 4)$(tput bold)$(weather -n -q -f --no-cache kmrj)"; weather-radar'
 alias dl='wget --show-progress -qO'
 alias cpdots='$HOME/github/scripts/misc/cpdots.sh'
 alias erm='$HOME/github/scripts/easyrm/easyrm.sh'
 alias fakegame='$HOME/Scripts/discordfakegame.sh'
-alias feeds='$HOME/github/scripts/misc/rss-feed-reader.sh'
 alias gspm='$HOME/github/spm/spm'
 alias gtodo='$HOME/github/todo/todo.sh'
 alias lyrics='tput reset; $HOME/github/scripts/misc/lyrics.sh'
 alias lyrics-playing='tput reset; $HOME/github/scripts/misc/lyrics.sh "$(mpc -f %artist% | head -n 1)" "$(mpc -f %title% | head -n 1)"'
 alias mydiscord-load='mydiscord --css /home/simonizor/Documents/Text/discord-custom.css --js /home/simonizor/Documents/Text/discord-custom.js'
-alias pstop='$HOME/github/scripts/misc/pstop.sh -r=40 -s=mem'
-alias binary-convert='$HOME/Scripts/binary-convert.sh'
 alias passman='$HOME/github/gpgpassman/gpgpassman.sh'
 alias wgetspeed='$HOME/github/scripts/speedtest/speedtest.sh'
 alias xdgfetch='tput reset; xdgfetch -c=4'
@@ -46,6 +39,10 @@ alias wttr-refresh='clr; $HOME/github/scripts/misc/wttrrefresh.sh'
 alias color-test='echo; bash -c "$(wget --quiet https://gist.githubusercontent.com/wagnermoschini/8893311/raw/9de710eea1a86fb955fb221e847d722e9bc3b024/colortest.sh -O -)"'
 alias color-invaders='bash -c "$(wget --quiet https://github.com/chrisduerr/dotfiles/raw/master/files/Scripts/test_colors0 -O -)"'
 alias pipes='bash -c "$(wget --quiet https://raw.githubusercontent.com/pipeseroni/pipes.sh/master/pipes.sh -O -)"'
+
+########################################
+####    Variables for long paths    ####
+########################################
 
 appimages="/media/simonizor/0d208b29-3b29-4ffc-99be-1043b9f3c258/appimages"
 appbuilds="/media/simonizor/0d208b29-3b29-4ffc-99be-1043b9f3c258/appimages/builds"
@@ -59,52 +56,91 @@ USB_HDD="/media/simonizor/0d208b29-3b29-4ffc-99be-1043b9f3c258"
 
 time="$(date +'%l:%M:%S %p')"
 
-dirsize () {
-    du -h --max-depth=1 "$@" | sort -h -r
+################################
+####    Simple functions    ####
+################################
+
+binary-convert () {
+    case $1 in
+        -b|b)
+            echo "$2" | perl -lpe '$_=join " ", unpack"(B8)*"'
+            ;;
+        -a|a)
+            echo "$2" | perl -lape '$_=pack"(B8)*",@F'
+            ;;
+        0*|1*)
+            echo "$1" | perl -lape '$_=pack"(B8)*",@F'
+            ;;
+        *)
+            echo "$1" | perl -lpe '$_=join " ", unpack"(B8)*"'
+            ;;
+    esac
 }
 
-dirsize-a () {
-    du -h "$@" | sort -h -r
+decomp () {
+    if [ -f "$1" ] ; then
+        case "$1" in
+            *.tar.*|*.tar)
+                tar -xf "$1"
+                ;;
+            *.bz2)
+                bunzip2 "$1"
+                ;;
+            *.rar)
+                unrar x "$1"
+                ;;
+            *.gz)
+                gunzip "$1"
+                ;;
+            *.jar|*.zip)
+                unzip "$1"
+                ;;
+            *.Z)
+                uncompress "$1"
+                ;;
+            *)
+                echo "'$1' cannot be extracted"
+                ;;
+        esac
+    else
+        echo "'$1' is not a file"
+    fi
 }
 
-echo-wget () {
-    echo "$(wget --quiet "$@" -O -)" | grep -v '#'
+dirsize () { du -h --max-depth=1 "$@" | sort -h -r }
+
+dirsize-a () { du -h "$@" | sort -h -r }
+
+downforme () {
+    RED='\e[1;31m'
+    GREEN='\e[1;32m'
+    YELLOW='\e[1;33m'
+    NC='\e[0m'
+    if [ $# = 0 ]
+    then
+        echo -e "${YELLOW}usage:${NC} downforme website_url"
+    else
+        JUSTYOUARRAY=($(wget -qO - "http://downforeveryoneorjustme.com/$1" | grep -o "It's just you"))
+        if [ ${#JUSTYOUARRAY} != 0 ]
+        then
+            echo -e "${RED}It's just you. \n${NC}$1 is up."
+        else
+            echo -e "${GREEN}It's not just you! \n${NC}$1 looks down from here."
+        fi
+    fi
 }
 
-filesize () {
-    du -h -a --max-depth=1 "$@" | sort -h -r
-}
+filesize () { du -h -a --max-depth=1 "$@" | sort -h -r }
 
-filesize-a () {
-    du -h -a "$@" | sort -h -r
-}
-
-
-mopidy-recache () {
-    curl -d '{"jsonrpc": "2.0", "id": 1, "method": "core.library.refresh"}' http://localhost:6680/mopidy/rpc
-}
+filesize-a () { du -h -a "$@" | sort -h -r }
 
 mpc-current () {
     while true; do
-        mpc current --wait
+        echo "$(tput setaf 4)$(mpc current --wait -f "\n\nArtist: %artist%\nSong: %title%")"
     done
 }
 
-remote-exec () {
-    bash -c "$(wget --quiet $@ -O -)"
-}
-
-time-watch () {
-    printf '\e[?25l'
-    watch -tcn 1 'echo "$(tput setaf 4)$(date "+%t%D%t%I:%M:%S")"'
-    printf '\e[?25h'
-}
-
-pstop-watch () {
-    printf '\e[?25l'
-    watch -tcn 3 "/home/simonizor/github/scripts/misc/pstop.sh -r=10 -p=2 -s=mem"
-    printf '\e[?25h'
-}
+remote-exec () { bash -c "$(wget --quiet $@ -O -)" }
 
 mpvyt () { mpv ytdl://ytsearch10:"$*" }
 

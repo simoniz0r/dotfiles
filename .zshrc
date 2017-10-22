@@ -55,22 +55,22 @@ DIR_SYMBOLS () {
     fi
 }
 
-GIT_STATUS () {
-    GITBRANCH="$(git status >/dev/null 2>&1 | grep 'On branch' | sed -e 's/On branch/ /g' || echo)"
-    GITCOMMIT="$(git status -s -u >/dev/null 2>&1 | wc -l || echo)"
-    case $GITCOMMIT in
-        0)
-            GITCHANGES="$(echo " ✔")"
-            ;;
-        *)
-            GITCHANGES=" $(git status -s -u >/dev/null 2>&1 | wc -l)"
-            ;;
-    esac
-    if [ ! -z "$GITBRANCH" ]; then
-        echo "%F$(MAIN_COLOR)%S%K{black} $GITBRANCH $GITCHANGES %s%k%f"
+parse_git_branch () {
+    (git symbolic-ref -q HEAD || git name-rev --name-only --no-undefined --always HEAD) 2> /dev/null
+}
+parse_git_state () {
+    if [ -z "$(git status --porcelain)" ]; then
+        GIT_STATE=""
     else
-        echo ""
+        GIT_STATE="$(git status --porcelain | wc -l) "
     fi
+    if [ ! -z "$GIT_STATE" ]; then
+        echo "$GIT_STATE"
+    fi
+}
+GIT_STATUS () {
+    local git_where="$(parse_git_branch)"
+    [ -n "$git_where" ] && echo "%F$(MAIN_COLOR)%S%K{black}  ${git_where#(refs/heads/|tags/)} $(parse_git_state)%s%k%f"
 }
 
 EXIT_STATUS () {
