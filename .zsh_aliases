@@ -135,6 +135,7 @@ filesize () { du -h -a --max-depth=1 "$@" | sort -h -r }
 filesize-a () { du -h -a "$@" | sort -h -r }
 
 mpc-current () {
+    printf '\e[?25l'
     while true; do
         echo "$(tput setaf 4)$(mpc current --wait -f "\n\nArtist: %artist%\nSong: %title%")"
     done
