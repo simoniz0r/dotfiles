@@ -69,10 +69,10 @@ binary-convert () {
             echo "$2" | perl -lape '$_=pack"(B8)*",@F'
             ;;
         0*|1*)
-            echo "$1" | perl -lape '$_=pack"(B8)*",@F'
+            echo "$@" | perl -lape '$_=pack"(B8)*",@F'
             ;;
         *)
-            echo "$1" | perl -lpe '$_=join " ", unpack"(B8)*"'
+            echo "$@" | perl -lpe '$_=join " ", unpack"(B8)*"'
             ;;
     esac
 }
