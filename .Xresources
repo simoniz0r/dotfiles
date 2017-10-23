@@ -1,6 +1,26 @@
+! Set name
+Xterm*termName: OptiPlex
+
+! URxvt settings
+URxvt*termName: OptiPlex
+URxvt.depth: 32
+URxvt.geometry: 90x30
+URxvt.loginShell: true
+URxvt.internalBorder: 3
+URxvt.lineSpace: 0
+URxvt.letterSpace: 0
+URxvt*font: xft:Noto Mono:size=10:hinting=true:antialias=true,xft:FontAwesome:size=10
+URxvt*boldFont: xft:Noto Mono:size=10:bold:hinting=true:antialias=true,xft:FontAwesome:size=10
+
 ! Set font name and size
-xterm*faceName: Noto Mono
-xterm*faceSize: 10
+xterm*faceName: xft:DejaVu Sans Mono:size=10:hinting=true:antialias=true,xft:FontAwesome:size=10
+
+! Random xterm settings
+xterm*letterSpace: 0
+xterm*internalBorder: 5
+xterm*cursorBlink: true
+xterm*pointerColor: #2e8ac3
+xterm*cursorColor: #BABDB6
 
 ! Set xterm as login shell
 xterm*loginShell: true
@@ -32,6 +52,8 @@ xterm*ScrollBar: false
 ! Set background and foreground color
 xterm*foreground: #BABDB6
 xterm*background: #232629
+URxvt*foreground: #BABDB6
+URxvt*background: #232629
 
 ! Set colorscheme
 ! Black
