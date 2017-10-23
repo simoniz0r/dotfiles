@@ -1,0 +1,70 @@
+! Set font name and size
+xterm*faceName: Noto Mono
+xterm*faceSize: 10
+
+! Set xterm as login shell
+xterm*loginShell: true
+
+! Set font rendering
+Xft.dpi: 96
+Xft.antialias: true
+Xft.hinting: true
+Xft.rgba: rgb
+Xft.autohint: false
+Xft.hintstyle: hintslight
+Xft.lcdfilter: lcddefault 
+
+! Set copy and pasting
+xterm*vt100.translations: #override\n\
+Shift Ctrl <KeyPress> v: insert-selection(CLIPBOARD)\n\
+Shift Ctrl <KeyPress> c: copy-selection(CLIPBOARD)\n
+
+! Set TERM variable
+xterm*termName:  xterm-256color
+
+! Scrollback
+xterm*saveLines: 4096
+
+! Right hand side scrollbar...
+xterm*rightScrollBar: false
+xterm*ScrollBar: false
+
+! Set background and foreground color
+xterm*foreground: #BABDB6
+xterm*background: #232629
+
+! Set colorscheme
+! Black
+*color0: #252525
+*color8: #263238
+
+!Red
+*color1: #a54b4b
+*color9: #d76f68
+
+!Green
+*color2: #59934f
+*color10: #849900
+
+!Yellow
+*color3: #83653a
+*color11: #b48800
+
+!Blue
+*color4: #2e8ac3
+*color12: #3cb9fc
+
+!Magenta
+*color5: #5c3466
+*color13: #ad7fa8
+
+!Cyan
+*color6: #109c9c
+*color14: #4ed6d6
+
+!White
+*color7: #727272
+*color15: #cce0ea
+
+! stop output to terminal from jumping down to bottom of scroll again
+xterm*scrollTtyOutput: false
