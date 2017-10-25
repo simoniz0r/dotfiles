@@ -7,7 +7,7 @@ URxvt.depth: 32
 URxvt.geometry: 90x30
 URxvt.loginShell: true
 URxvt.internalBorder: 3
-URxvt.lineSpace: 0
+URxvt.lineSpace: 1
 URxvt.letterSpace: 0
 URxvt*font: xft:Noto Mono:size=10:hinting=true:antialias=true,xft:FontAwesome:size=10
 URxvt*boldFont: xft:Noto Mono:size=10:bold:hinting=true:antialias=true,xft:FontAwesome:size=10
@@ -16,6 +16,7 @@ URxvt*boldFont: xft:Noto Mono:size=10:bold:hinting=true:antialias=true,xft:FontA
 xterm*faceName: xft:DejaVu Sans Mono:size=10:hinting=true:antialias=true,xft:FontAwesome:size=10
 
 ! Random xterm settings
+xterm*lineSpace: 1
 xterm*letterSpace: 0
 xterm*internalBorder: 5
 xterm*cursorBlink: true
