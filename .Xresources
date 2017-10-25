@@ -1,30 +1,30 @@
 ! Set name
-Xterm*termName: OptiPlex
-
-! URxvt settings
-URxvt*termName: OptiPlex
-URxvt.depth: 32
-URxvt.geometry: 90x30
-URxvt.loginShell: true
-URxvt.internalBorder: 3
-URxvt.lineSpace: 1
-URxvt.letterSpace: 0
-URxvt*font: xft:Noto Mono:size=10:hinting=true:antialias=true,xft:FontAwesome:size=10
-URxvt*boldFont: xft:Noto Mono:size=10:bold:hinting=true:antialias=true,xft:FontAwesome:size=10
-
-! Set font name and size
-xterm*faceName: xft:DejaVu Sans Mono:size=10:hinting=true:antialias=true,xft:FontAwesome:size=10
-
-! Random xterm settings
-xterm*lineSpace: 1
-xterm*letterSpace: 0
-xterm*internalBorder: 5
-xterm*cursorBlink: true
-xterm*pointerColor: #2e8ac3
-xterm*cursorColor: #BABDB6
+*VT100*title: xterm
 
 ! Set xterm as login shell
-xterm*loginShell: true
+*VT100*loginShell: true
+
+! Set TERM variable
+*VT100*termName:  xterm-256color
+
+! Select URLs when double clicking
+*charClass: 33:48,35:48,37-38:48,43-47:48,58:48,61:48,63-64:48,95:48,126:48
+
+! Set copy and pasting
+! *VT100*vt100.translations: #override\n\
+Shift Ctrl <KeyPress> v: insert-selection(CLIPBOARD)\n\
+Shift Ctrl <KeyPress> c: copy-selection(CLIPBOARD)\n
+
+! Scrolling
+*VT100*saveLines: 4096
+*VT100*scrollKey: true
+*VT100*rightScrollBar: false
+*VT100*ScrollBar: false
+*VT100*scrollTtyOutput: false
+
+! Set font name and size
+*VT100*faceName: xft:DejaVu Sans Mono:size=10:hinting=true:antialias=true
+*VT100*renderFont: true
 
 ! Set font rendering
 Xft.dpi: 96
@@ -35,59 +35,62 @@ Xft.autohint: false
 Xft.hintstyle: hintslight
 Xft.lcdfilter: lcddefault 
 
-! Set copy and pasting
-xterm*vt100.translations: #override\n\
-Shift Ctrl <KeyPress> v: insert-selection(CLIPBOARD)\n\
-Shift Ctrl <KeyPress> c: copy-selection(CLIPBOARD)\n
+! Spacing
+*VT100*lineSpace: 1
+*VT100*letterSpace: 0
+*VT100*internalBorder: 5
 
-! Set TERM variable
-xterm*termName:  xterm-256color
-
-! Scrollback
-xterm*saveLines: 4096
-
-! Right hand side scrollbar...
-xterm*rightScrollBar: false
-xterm*ScrollBar: false
+! Cursor and pointer
+*VT100*cursorBlink: true
+*VT100*pointerColor: #2e8ac3
+*VT100*cursorColor: #BABDB6
 
 ! Set background and foreground color
-xterm*foreground: #BABDB6
-xterm*background: #232629
+*VT100*foreground: #BABDB6
+*VT100*background: #232629
 URxvt*foreground: #BABDB6
 URxvt*background: #232629
 
 ! Set colorscheme
 ! Black
-*color0: #252525
-*color8: #263238
+*VT100*color0: #252525
+*VT100*color8: #263238
 
 !Red
-*color1: #a54b4b
-*color9: #d76f68
+*VT100*color1: #a54b4b
+*VT100*color9: #d76f68
 
 !Green
-*color2: #59934f
-*color10: #849900
+*VT100*color2: #59934f
+*VT100*color10: #849900
 
 !Yellow
-*color3: #83653a
-*color11: #b48800
+*VT100*color3: #83653a
+*VT100*color11: #b48800
 
 !Blue
-*color4: #2e8ac3
-*color12: #3cb9fc
+*VT100*color4: #2e8ac3
+*VT100*color12: #3cb9fc
 
 !Magenta
-*color5: #5c3466
-*color13: #ad7fa8
+*VT100*color5: #5c3466
+*VT100*color13: #ad7fa8
 
 !Cyan
-*color6: #109c9c
-*color14: #4ed6d6
+*VT100*color6: #109c9c
+*VT100*color14: #4ed6d6
 
 !White
-*color7: #727272
-*color15: #cce0ea
+*VT100*color7: #727272
+*VT100*color15: #cce0ea
 
-! stop output to terminal from jumping down to bottom of scroll again
-xterm*scrollTtyOutput: false
+! URxvt settings
+URxvt*title: OptiPlex
+URxvt.depth: 32
+URxvt.geometry: 90x30
+URxvt.loginShell: true
+URxvt.internalBorder: 3
+URxvt.lineSpace: 1
+URxvt.letterSpace: 0
+URxvt*font: xft:Noto Mono:size=10:hinting=true:antialias=true,xft:FontAwesome:size=10
+URxvt*boldFont: xft:Noto Mono:size=10:bold:hinting=true:antialias=true,xft:FontAwesome:size=10

@@ -130,6 +130,7 @@ fi
 
 # Change/remove these to match your settings
 export TERM=xterm-256color
+export XENVIRONMENT="$HOME/.Xresources"
 export EDITOR=/usr/bin/mcedit
 export MPD_HOST=127.0.0.1
 
