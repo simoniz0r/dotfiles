@@ -70,7 +70,7 @@ parse_git_state () {
 }
 GIT_STATUS () {
     local git_where="$(parse_git_branch)"
-    [ -n "$git_where" ] && echo "%F$(MAIN_COLOR)%S%K{black}  ${git_where#(refs/heads/|tags/)} $(parse_git_state)%s%k%f"
+    [ -n "$git_where" ] && echo "%F$(MAIN_COLOR)%S%K{black} ʮ ${git_where#(refs/heads/|tags/)} $(parse_git_state)%s%k%f"
 }
 
 EXIT_STATUS () {
