@@ -91,40 +91,6 @@ calc () {
     echo "scale=$SCALE; $INPUT" | bc
 }
 
-# Decompress any archive type
-x () {
-    if [ -f "$1" ] ; then
-        case "$1" in
-            *.tar.*|*.tar)
-                tar -xf "$1"
-                ;;
-            *.bz2)
-                bunzip2 "$1"
-                ;;
-            *.rar)
-                unrar x "$1"
-                ;;
-            *.gz)
-                gunzip "$1"
-                ;;
-            *.jar|*.zip)
-                unzip "$1"
-                ;;
-            *.Z)
-                uncompress "$1"
-                ;;
-            *.deb)
-                ar x "$1"
-                ;;
-            *)
-                echo "'$1' cannot be extracted"
-                ;;
-        esac
-    else
-        echo "'$1' is not a file"
-    fi
-}
-
 # List size of directories
 dirsize () { du -h --max-depth=1 "$@" | sort -h -r }
 dirsize-a () { du -h "$@" | sort -h -r }
@@ -199,4 +165,38 @@ wttr (){
             curl "wttr.in/$LOCATION"
             LOCATION=""
     esac
+}
+
+# Decompress any archive type
+x () {
+    if [ -f "$1" ] ; then
+        case "$1" in
+            *.tar.*|*.tar)
+                tar -xf "$1"
+                ;;
+            *.bz2)
+                bunzip2 "$1"
+                ;;
+            *.rar)
+                unrar x "$1"
+                ;;
+            *.gz)
+                gunzip "$1"
+                ;;
+            *.jar|*.zip)
+                unzip "$1"
+                ;;
+            *.Z)
+                uncompress "$1"
+                ;;
+            *.deb)
+                ar x "$1"
+                ;;
+            *)
+                echo "'$1' cannot be extracted"
+                ;;
+        esac
+    else
+        echo "'$1' is not a file"
+    fi
 }
