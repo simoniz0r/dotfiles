@@ -78,6 +78,17 @@ binary-convert () {
     esac
 }
 
+calc () {
+    if echo "$1" | grep -q '-s'; then
+        SCALE="$(echo $1 | cut -f2 -d'=')"
+        INPUT="$(echo $* | cut -f2- -d' ')"
+    else
+        SCALE="0"
+        INPUT="$*"
+    fi
+    echo "scale=$SCALE; $INPUT" | bc
+}
+
 decomp () {
     if [ -f "$1" ] ; then
         case "$1" in

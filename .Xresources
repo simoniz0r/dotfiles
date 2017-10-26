@@ -11,7 +11,7 @@
 *charClass: 33:48,35:48,37-38:48,43-47:48,58:48,61:48,63-64:48,95:48,126:48
 
 ! Set copy and pasting
-! *VT100*vt100.translations: #override\n\
+xterm*vt100.translations: #override\n\
 Shift Ctrl <KeyPress> v: insert-selection(CLIPBOARD)\n\
 Shift Ctrl <KeyPress> c: copy-selection(CLIPBOARD)\n
 
