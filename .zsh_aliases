@@ -81,7 +81,7 @@ binary-convert () {
 
 # Make bc more intuitive to use
 calc () {
-    if echo "$1" | grep -q '-s'; then
+    if [[ "$1" =~ -s ]]; then
         SCALE="$(echo $1 | cut -f2 -d'=')"
         INPUT="$(echo $* | cut -f2- -d' ')"
     else
