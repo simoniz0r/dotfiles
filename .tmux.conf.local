@@ -240,7 +240,6 @@ tmux_conf_theme_clock_style='24'
 # on macOS, this requires installing reattach-to-user-namespace, see README.md
 # on Linux, this requires xsel or xclip
 tmux_conf_copy_to_os_clipboard=true
-set -g clipboard on
 
 # -- user customizations -------------------------------------------------------
 # this is the place to override or undo settings
@@ -256,11 +255,14 @@ set -g mouse on
 
 # force Vi mode
 #   really you should export VISUAL or EDITOR environment variable, see manual
-#set -g status-keys vi
-#set -g mode-keys vi
+set -g status-keys vi
+set -g mode-keys vi
+unbind C-c
+run -b 'tmux bind -t vi-copy C-c copy-selection 2> /dev/null || true'
+run -b 'tmux bind -T copy-mode-vi C-c send -X copy-selection-and-cancel 2> /dev/null || true'
 
 # force emacs mode
-set -g status-keys emacs
+#set -g status-keys emacs
 
 # replace C-b by C-a instead of using both prefixes
 set -gu prefix2
