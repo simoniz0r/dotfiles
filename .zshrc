@@ -134,10 +134,6 @@ export XENVIRONMENT="$HOME/.Xresources"
 export EDITOR=/usr/bin/mcedit
 export MPD_HOST=127.0.0.1
 
-if [ -f ~/.smapt_aliases ]; then
-    . ~/.smapt_aliases
-fi
-
 if [ -f ~/.discord-install_alias ]; then
     . ~/.discord-install_alias
 fi
@@ -154,4 +150,9 @@ fi
 
 if [ -f ~/nohup.out ]; then
     rm ~/nohup.out
+fi
+
+if [ -f ~/.config/spm/spm.comp ]; then
+    source ~/github/wrapt/wrapt.comp
+    compdef _wrapt wrapt
 fi
