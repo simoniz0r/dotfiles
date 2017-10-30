@@ -33,13 +33,7 @@ DIR_SYMBOLS () {
         echo "ssh %~ "
     else
         case $PWD in
-            # $HOME/*)
-                # echo "⾕${PWD:${#HOME}} "
-            #     echo "⛺${PWD:${#HOME}} "
-            #     ;;
             $HOME*)
-                # echo  "⾕${PWD:${#HOME}}"
-                # echo  "⛺${PWD:${#HOME}}"
                 echo " %~ "
                 ;;
             /media/simonizor/0d208b29-3b29-4ffc-99be-1043b9f3c258*)

@@ -5,6 +5,8 @@
 alias alarm='$HOME/github/alarm-sh/alarm.sh'
 alias ansiweather='ansiweather -l Platteville,WI -u imperial'
 alias chx='chmod a+x'
+alias clip-i='xclip -selection clipboard -i'
+alias clip-o='xclip -selection clipboard -o'
 alias clr='clear'
 alias cursor-hide="printf '\e[?25l'"
 alias cursor-show="printf '\e[?25h'"
