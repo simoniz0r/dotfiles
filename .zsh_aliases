@@ -47,8 +47,6 @@ alias pipes='bash -c "$(wget --quiet https://raw.githubusercontent.com/pipeseron
 ####    Variables for long paths    ####
 ########################################
 
-appimages="/media/simonizor/0d208b29-3b29-4ffc-99be-1043b9f3c258/appimages"
-appbuilds="/media/simonizor/0d208b29-3b29-4ffc-99be-1043b9f3c258/appimages/builds"
 conf="$HOME/.config"
 docs="$HOME/Documents"
 down="$HOME/Downloads"
