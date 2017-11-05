@@ -260,6 +260,7 @@ set -g mode-keys vi
 unbind C-c
 run -b 'tmux bind -t vi-copy C-c copy-selection 2> /dev/null || true'
 run -b 'tmux bind -T copy-mode-vi C-c send -X copy-selection-and-cancel 2> /dev/null || true'
+bind o run "xdg-open $(xclip -selection clipboard -o)"
 
 # force emacs mode
 #set -g status-keys emacs
