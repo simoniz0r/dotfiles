@@ -125,13 +125,9 @@ fi
 
 # Change/remove these to match your settings
 export TERM=xterm-256color
-export XENVIRONMENT="$HOME/.Xresources"
 export EDITOR=/usr/bin/mcedit
 export MPD_HOST=127.0.0.1
-
-if [ -f ~/.discord-install_alias ]; then
-    . ~/.discord-install_alias
-fi
+xrdb -merge ~/.Xresources
 
 if [ -f ~/.config/spm/spm.comp ]; then
     source ~/.config/spm/spm.comp
@@ -147,7 +143,7 @@ if [ -f ~/nohup.out ]; then
     rm ~/nohup.out
 fi
 
-if [ -f ~/.config/spm/spm.comp ]; then
-    source ~/github/wrapt/wrapt.comp
+if [ -f ~/.wrapt.comp ]; then
+    source ~/.wrapt.comp
     compdef _wrapt wrapt
 fi
