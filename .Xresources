@@ -38,7 +38,7 @@ Xft.lcdfilter: lcddefault
 ! Spacing
 *VT100*lineSpace: 1
 *VT100*letterSpace: 0
-*VT100*internalBorder: 5
+*VT100*internalBorder: 2
 
 ! Cursor and pointer
 *VT100*cursorBlink: true

@@ -9,8 +9,9 @@ alias clr='clear'
 alias cursor-hide="printf '\e[?25l'"
 alias cursor-show="printf '\e[?25h'"
 alias drive-speed='hdparam -Tt'
-alias edit-aliases='mcedit ~/.zsh_aliases'
-alias edit-zshrc='mcedit ~/.zshrc'
+alias echo='/bin/echo'
+alias edit-aliases='tpad ~/.zsh_aliases'
+alias edit-zshrc='tpad ~/.zshrc'
 alias fd='fd -c never'
 alias find='fd'
 alias lappy='ssh 10.42.0.1'
@@ -35,6 +36,7 @@ alias gtodo='$HOME/github/todo/todo.sh'
 alias lyrics='tput reset; $HOME/github/scripts/misc/lyrics.sh'
 alias lyrics-playing='tput reset; $HOME/github/scripts/misc/lyrics.sh "$(mpc -f %artist% | head -n 1)" "$(mpc -f %title% | head -n 1)"'
 alias mydiscord-load='mydiscord --css /home/simonizor/Documents/Text/discord-custom.css --js /home/simonizor/Documents/Text/discord-custom.js'
+alias rem='rem -g'
 alias passman='$HOME/github/gpgpassman/gpgpassman.sh'
 alias wgetspeed='$HOME/github/scripts/speedtest/speedtest.sh'
 alias xdgfetch='tput reset; xdgfetch -c=4'
@@ -95,6 +97,8 @@ calc () {
 # List size of directories
 dirsize () { du -h --max-depth=1 "$@" | sort -h -r }
 dirsize-a () { du -h "$@" | sort -h -r }
+
+discord-status () { curl -s "https://status.discordapp.com/" | grep 'class="name"\|class="component-status"' -A 1 | grep -v '<\|\-' | sed '1~2s%      %%g;0~2s%      %-%g' }
 
 #Check to see if site is down for you or everyone
 downforme () {
