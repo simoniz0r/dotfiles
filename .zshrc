@@ -93,9 +93,6 @@ SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
 # Use modern completion system
-autoload bashcompinit
-bashcompinit
-# source /usr/share/bash-completion/completions/snap
 autoload -Uz compinit
 compinit
 
@@ -128,7 +125,7 @@ fi
 
 # Change/remove these to match your settings
 export TERM=xterm-256color
-export EDITOR=$(which mcedit)
+export EDITOR=/usr/bin/mcedit
 export MPD_HOST=127.0.0.1
 
 if [ -f ~/.config/spm/spm.comp ]; then
@@ -155,3 +152,6 @@ if [ -f ~/.snap.zsh ]; then
     compdef _snap snap
 fi
 
+if [ -f ~/.Xresources ]; then
+    xrdb -merge ~/.Xresources
+fi
