@@ -34,7 +34,16 @@ DIR_SYMBOLS () {
     else
         case $PWD in
             $HOME*)
-                echo " %~ "
+                if [ $(echo "$PWD" | tr -cd '/' | wc -c) -lt 5 ]; then
+                    echo " %~ "
+                else
+                    if [ $(echo "$PWD" | cut -f6- -d'/' | wc -c) -gt 15 ]; then
+                        DIR_ENDING="$(echo "$PWD" | rev | cut -f1-2 -d'/' | rev)"
+                        echo " ~/.../$DIR_ENDING "
+                    else
+                        echo " %~ "
+                    fi
+                fi
                 ;;
             /media/simonizor/0d208b29-3b29-4ffc-99be-1043b9f3c258*)
                 echo " USB_HDD${PWD:53} "
@@ -43,7 +52,16 @@ DIR_SYMBOLS () {
                 echo " ⚠${PWD:1} "
                 ;;
             *)
-                echo " ⚠ $PWD "
+                if [ $(echo "$PWD" | tr -cd '/' | wc -c) -lt 3 ]; then
+                    echo " ⚠ $PWD "
+                else
+                    if [ $(echo "$PWD" | cut -f4- -d'/' | wc -c) -gt 15 ]; then
+                        DIR_ENDING="$(echo "$PWD" | rev | cut -f1-2 -d'/' | rev)"
+                        echo " ⚠ /.../$DIR_ENDING "
+                    else
+                        echo " ⚠ $PWD "
+                    fi
+                fi
                 ;;
         esac
     fi
