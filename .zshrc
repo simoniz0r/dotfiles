@@ -4,7 +4,7 @@ setopt PROMPT_SUBST
 
 MAIN_COLOR () {
     case $PWD in
-        $HOME/Documents*|/media/simonizor/0d208b29-3b29-4ffc-99be-1043b9f3c258*|$HOME/Downloads*|$HOME/Pictures*|$HOME/github*)
+        /media/simonizor/0d208b29-3b29-4ffc-99be-1043b9f3c258*|$HOME/github*)
             echo "{green}"
             ;;
         $HOME/.config*)
