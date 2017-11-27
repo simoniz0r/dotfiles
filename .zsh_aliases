@@ -19,7 +19,6 @@ alias load-aliases='. ~/.zsh_aliases'
 alias mce='mcedit'
 alias rex='remote-exec'
 alias rg='rg --color never'
-alias ssh-lappy='tput reset; ssh simonizor@10.42.0.1'
 alias ssh-vm='ssh 10.42.0.2'
 alias sudo='sudo '
 alias tmux='tmux attach-session -t simonizor || tmux new -s simonizor'
@@ -27,35 +26,21 @@ alias dl='wget --show-progress -qO'
 alias weather-mp='echo "$(tput setaf 4)$(tput bold)$(weather --imperial -qaf --no-cache kmrj)"'
 alias xclip-i='xclip -selection primary -i'
 alias xclip-o='xclip -selection primary -o'
-alias cpdots='$HOME/github/scripts/misc/cpdots.sh'
-alias erm='$HOME/github/scripts/easyrm/easyrm.sh'
-alias fakegame='$HOME/Scripts/discordfakegame.sh'
 alias gspm='$HOME/github/spm/spm'
-alias gtodo='$HOME/github/todo/todo.sh'
 alias lyrics='tput reset; $HOME/github/scripts/misc/lyrics.sh'
 alias lyrics-playing='tput reset; $HOME/github/scripts/misc/lyrics.sh "$(mpc -f %artist% | head -n 1)" "$(mpc -f %title% | head -n 1)"'
-alias mydiscord-load='mydiscord --css /home/simonizor/github/DiscordThemes/compact-discord/compact-discord.css --js /home/simonizor/Documents/Text/discord-custom.js'
-alias rem='rem -g'
+alias beautiful-load='beautifuldiscord --css /home/simonizor/github/DiscordThemes/compact-discord/compact-discord.css'
 alias passman='$HOME/github/gpgpassman/gpgpassman.sh'
 alias wgetspeed='$HOME/github/scripts/speedtest/speedtest.sh'
-alias xdgfetch='tput reset; xdgfetch -c=4'
-alias xdgfetch-git='$HOME/github/xdgfetch/xdgfetch'
 alias wttr-refresh='clr; $HOME/github/scripts/misc/wttrrefresh.sh'
-alias color-test='echo; bash -c "$(wget --quiet https://gist.githubusercontent.com/wagnermoschini/8893311/raw/9de710eea1a86fb955fb221e847d722e9bc3b024/colortest.sh -O -)"'
-alias color-invaders='bash -c "$(wget --quiet https://github.com/chrisduerr/dotfiles/raw/master/files/Scripts/test_colors0 -O -)"'
-alias pipes='bash -c "$(wget --quiet https://raw.githubusercontent.com/pipeseroni/pipes.sh/master/pipes.sh -O -)"'
+alias dir='dir'
+unalias dir
 
 ########################################
 ####    Variables for long paths    ####
 ########################################
 
-conf="$HOME/.config"
-docs="$HOME/Documents"
-down="$HOME/Downloads"
-github="/media/simonizor/0d208b29-3b29-4ffc-99be-1043b9f3c258/github"
-pics="$HOME/Pictures"
-releases="/media/simonizor/0d208b29-3b29-4ffc-99be-1043b9f3c258/github/all-releases"
-USB_HDD="/media/simonizor/0d208b29-3b29-4ffc-99be-1043b9f3c258"
+USB_HDD="/run/media/simonizor/0d208b29-3b29-4ffc-99be-1043b9f3c258"
 
 time="$(date +'%l:%M:%S %p')"
 

@@ -4,7 +4,7 @@ setopt PROMPT_SUBST
 
 MAIN_COLOR () {
     case $PWD in
-        /media/simonizor/0d208b29-3b29-4ffc-99be-1043b9f3c258*|$HOME/github*)
+        /run/media/simonizor/0d208b29-3b29-4ffc-99be-1043b9f3c258*|$HOME/github*)
             echo "{green}"
             ;;
         $HOME/.config*)
@@ -29,7 +29,7 @@ MAIN_COLOR () {
 }
 
 DIR_SYMBOLS () {
-    if [[ "$HOST" != "OptiPlex" ]]; then
+    if [[ "$HOST" != "localhost" ]]; then
         echo "ssh %~ "
     else
         case $PWD in
@@ -45,7 +45,7 @@ DIR_SYMBOLS () {
                     fi
                 fi
                 ;;
-            /media/simonizor/0d208b29-3b29-4ffc-99be-1043b9f3c258*)
+            /run/media/simonizor/0d208b29-3b29-4ffc-99be-1043b9f3c258*)
                 echo " USB_HDD${PWD:53} "
                 ;;
             /)
@@ -146,30 +146,16 @@ export TERM=xterm-256color
 export EDITOR=/usr/bin/mcedit
 export MPD_HOST=127.0.0.1
 
-if [ -f ~/.config/spm/spm.comp ]; then
-    source ~/.config/spm/spm.comp
-    compdef _spm spm
-fi
-
-if [ -f ~/.todo/.todo.comp ]; then
-    source ~/.todo/.todo.comp
-    compdef _todo todo
-fi
-
 if [ -f ~/nohup.out ]; then
     rm ~/nohup.out
-fi
-
-if [ -f ~/.wrapt.comp ]; then
-    source ~/.wrapt.comp
-    compdef _wrapt wrapt
-fi
-
-if [ -f ~/.snap.zsh ]; then
-    source ~/.snap.zsh
-    compdef _snap snap
 fi
 
 if [ -f ~/.Xresources ]; then
     xrdb -merge ~/.Xresources
 fi
+
+if [ -f /home/simonizor/.config/spm/spm.comp ]; then
+    source /home/simonizor/.config/spm/spm.comp
+    compdef _spm spm
+fi
+
