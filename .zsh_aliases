@@ -4,6 +4,7 @@
 
 alias alarm='$HOME/github/alarm-sh/alarm.sh'
 alias ansiweather='ansiweather -u imperial -l'
+alias betty='$HOME/github/betty/main.rb'
 alias chx='chmod a+x'
 alias clr='clear'
 alias cursor-hide="printf '\e[?25l'"

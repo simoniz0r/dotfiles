@@ -46,7 +46,7 @@ DIR_SYMBOLS () {
                 fi
                 ;;
             /run/media/simonizor/0d208b29-3b29-4ffc-99be-1043b9f3c258*)
-                echo " USB_HDD${PWD:53} "
+                echo " USB_HDD${PWD:57} "
                 ;;
             /)
                 echo " ⚠${PWD:1} "
@@ -159,3 +159,8 @@ if [ -f /home/simonizor/.config/spm/spm.comp ]; then
     compdef _spm spm
 fi
 
+
+if [ -f /home/simonizor/.todo/.todo.comp ]; then
+    source /home/simonizor/.todo/.todo.comp
+    compdef _todo todo
+fi
