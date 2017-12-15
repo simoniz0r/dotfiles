@@ -164,3 +164,8 @@ if [ -f /home/simonizor/.todo/.todo.comp ]; then
     source /home/simonizor/.todo/.todo.comp
     compdef _todo todo
 fi
+
+if [ -f /home/simonizor/.config/appimagedl/appimagedl-completion.sh ]; then
+    source /home/simonizor/.config/appimagedl/appimagedl-completion.sh
+    compdef _appimagedlzsh appimagedl
+fi

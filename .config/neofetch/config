@@ -22,8 +22,8 @@ print_info() {
     info "Theme" theme
     info "Icons" icons
     info "Font" font
-    prin "Terminal" "xterm"
-    prin "Terminal Font" "DejaVu Sans Mono 10"
+    prin "Terminal" "ROXTerm"
+    prin "Terminal Font" "Noto Sans Mono 10"
     info "CPU" cpu
     info "GPU" gpu
     info "Memory" memory
@@ -413,7 +413,7 @@ colors=(distro)
 # Default:  'on'
 # Values:   'on', 'off'
 # Flag:     --bold
-bold="off"
+bold="on"
 
 # Enable/Disable Underline
 #
@@ -447,7 +447,7 @@ underline_char="-"
 #
 # Display colors 0-15 in the blocks. (16 colors)
 # neofetch --block_range 0 15
-block_range=(0 7)
+block_range=(0 15)
 
 # Toggle color blocks
 #
@@ -595,7 +595,7 @@ ascii_colors=(distro)
 # Default: 'on'
 # Values:  'on', 'off'
 # Flag:    --ascii_bold
-ascii_bold="off"
+ascii_bold="on"
 
 
 # Image Options

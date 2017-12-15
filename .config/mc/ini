@@ -65,8 +65,8 @@ editor_cursor_beyond_eol=false
 editor_cursor_after_inserted_block=false
 editor_visible_tabs=true
 editor_visible_spaces=true
-editor_line_state=true
-editor_simple_statusbar=false
+editor_line_state=false
+editor_simple_statusbar=true
 editor_check_new_line=false
 editor_show_right_margin=false
 editor_group_undo=true
@@ -112,12 +112,12 @@ clipboard_paste=xclip -selection c -o
 
 [Colors]
 base_color=blue:normal=blue,darkgray:marked=blue,darkgray:input=blue,darkgray:menu=darkgray,blue:menusel=darkgray,blue:menuhot=darkgray,blue:menuhotsel=darkgray,blue:dfocus=blue,darkgray:dhotnormal=blue,darkgray:dhotfocus=blue,darkgray:executable=blue,darkgray:directory=blue,darkgray:link=blue,darkgray:device=blue,darkgray:special=blue,darkgray:core=blue,darkgray:stalelink=lightblue,darkgray:editnormal=default,default 
-xterm-256color=
+xterm-256color=blue:normal=blue,darkgray:marked=blue,darkgray:input=blue,darkgray:menu=darkgray,blue:menusel=darkgray,blue:menuhot=darkgray,blue:menuhotsel=darkgray,blue:dfocus=blue,darkgray:dhotnormal=blue,darkgray:dhotfocus=blue,darkgray:executable=blue,darkgray:directory=blue,darkgray:link=blue,darkgray:device=blue,darkgray:special=blue,darkgray:core=blue,darkgray:stalelink=lightblue,darkgray:editnormal=default,default 
 color_terminals=
 
-screen-256color=
+screen-256color=blue:normal=blue,darkgray:marked=blue,darkgray:input=blue,darkgray:menu=darkgray,blue:menusel=darkgray,blue:menuhot=darkgray,blue:menuhotsel=darkgray,blue:dfocus=blue,darkgray:dhotnormal=blue,darkgray:dhotfocus=blue,darkgray:executable=blue,darkgray:directory=blue,darkgray:link=blue,darkgray:device=blue,darkgray:special=blue,darkgray:core=blue,darkgray:stalelink=lightblue,darkgray:editnormal=default,default 
 
-xterm=
+xterm=blue:normal=blue,darkgray:marked=blue,darkgray:input=blue,darkgray:menu=darkgray,blue:menusel=darkgray,blue:menuhot=darkgray,blue:menuhotsel=darkgray,blue:dfocus=blue,darkgray:dhotnormal=blue,darkgray:dhotfocus=blue,darkgray:executable=blue,darkgray:directory=blue,darkgray:link=blue,darkgray:device=blue,darkgray:special=blue,darkgray:core=blue,darkgray:stalelink=lightblue,darkgray:editnormal=default,default 
 
 [Panels]
 show_mini_info=true

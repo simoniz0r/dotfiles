@@ -805,6 +805,26 @@
     <application class="*">
       <decor>no</decor>
     </application>
+    <application class="Roxterm">
+      <position force="no">
+        <x>0</x>
+        <y>1065</y>
+      </position>
+      <size>
+        <width>932</width>
+        <height>1056</height>
+      </size>
+    </application>
+    <application class="discord-bootstrap">
+      <position force="no">
+        <x>942</x>
+        <y>1065</y>
+      </position>
+      <size>
+        <width>963</width>
+        <height>1056</height>
+      </size>
+    </application>
     <!--
   # this is an example with comments through out. use these to make your
   # own rules, but without the comments of course.
