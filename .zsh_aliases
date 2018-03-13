@@ -18,7 +18,9 @@ alias fd='fd -c never'
 alias find='fd'
 alias lappy='ssh 10.42.0.1'
 alias load-aliases='. ~/.zsh_aliases'
-alias mce='mcedit'
+alias mce='TERM="xterm" mcedit'
+alias obs='osc'
+alias oneclickui='/usr/sbin/OneClickInstallUI'
 alias rex='remote-exec'
 alias rg='rg --color never'
 alias ssh-vm='ssh 10.42.0.2'
@@ -116,6 +118,19 @@ remote-exec () { bash -c "$(wget --quiet $@ -O -)" }
 
 # Search for and play a youtube video
 mpvyt () { mpv ytdl://ytsearch10:"$*" }
+
+# Use rsstail to view feeds easily
+rss () {
+    case $1 in
+        p*)
+            rsstail -NrHd1plu https://www.phoronix.com/rss.php
+            ;;
+        t*)
+            twreleaselink="$(rsstail -1ln 1 -u http://review.tumbleweed.boombatower.com/feed.xml | tail -n 1 | cut -f2 -d' ')"
+            w3m "$twreleaselink"
+            ;;
+    esac
+}
 
 # Use weather-util to output weather every 300 seconds
 weather-watch () {

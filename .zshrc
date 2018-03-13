@@ -29,7 +29,7 @@ MAIN_COLOR () {
 }
 
 DIR_SYMBOLS () {
-    if [[ "$HOST" != "localhost" ]]; then
+    if [[ "$HOST" != "tumbleweed" ]]; then
         echo "ssh %~ "
     else
         case $PWD in
@@ -150,10 +150,6 @@ if [ -f ~/nohup.out ]; then
     rm ~/nohup.out
 fi
 
-if [ -f ~/.Xresources ]; then
-    xrdb -merge ~/.Xresources
-fi
-
 if [ -f /home/simonizor/.config/spm/spm.comp ]; then
     source /home/simonizor/.config/spm/spm.comp
     compdef _spm spm
@@ -168,4 +164,15 @@ fi
 if [ -f /home/simonizor/.config/appimagedl/appimagedl-completion.sh ]; then
     source /home/simonizor/.config/appimagedl/appimagedl-completion.sh
     compdef _appimagedlzsh appimagedl
+fi
+
+if [[ ! "$TTY" =~ "/dev/tty" ]]; then
+    case $(ps -p $(ps -p $$ -o ppid=) o args=) in
+        tmux*|*vscode*)
+            sleep 0
+            ;;
+        *)
+            tmux
+            ;;
+    esac
 fi

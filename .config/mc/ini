@@ -119,6 +119,8 @@ screen-256color=blue:normal=blue,darkgray:marked=blue,darkgray:input=blue,darkgr
 
 xterm=blue:normal=blue,darkgray:marked=blue,darkgray:input=blue,darkgray:menu=darkgray,blue:menusel=darkgray,blue:menuhot=darkgray,blue:menuhotsel=darkgray,blue:dfocus=blue,darkgray:dhotnormal=blue,darkgray:dhotfocus=blue,darkgray:executable=blue,darkgray:directory=blue,darkgray:link=blue,darkgray:device=blue,darkgray:special=blue,darkgray:core=blue,darkgray:stalelink=lightblue,darkgray:editnormal=default,default 
 
+xterm mc=
+
 [Panels]
 show_mini_info=true
 kilobyte_si=false
@@ -142,6 +144,18 @@ select_flags=6
 simple_swap=false
 
 panel_scroll_center=false
+
+[terminal:xterm-256color]
+up=\\e[A
+down=\\e[B
+left=\\e[D
+right=\\e[C
+
+[terminal:xterm mc]
+up=\\e[A
+down=\\e[B
+left=\\e[D
+right=\\e[C
 
 [Panelize]
 Find *.orig after patching=find . -name \\*.orig -print

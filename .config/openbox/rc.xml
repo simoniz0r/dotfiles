@@ -430,16 +430,70 @@
       </action>
     </keybind>
     <!-- Keybindings for running applications.
-   Commented out as application shortcuts should be handled by lxqt-globalkeys in LXQt sessions.
-  <keybind key="W-q">
-    <action name="Execute">
-      <startupnotify>
-        <enabled>true</enabled>
-        <name>Qupzilla</name>
-      </startupnotify>
-      <command>qupzilla</command>
-    </action>
-  </keybind> -->
+   Commented out as application shortcuts should be handled by lxqt-globalkeys in LXQt sessions. -->
+    <keybind key="A-space">
+      <action name="Execute">
+        <startupnotify>
+          <enabled>false</enabled>
+          <name>rofi</name>
+        </startupnotify>
+        <command>rofi -show run</command>
+      </action>
+    </keybind>
+    <keybind key="S-C-A-j">
+      <action name="Execute">
+        <startupnotify>
+          <enabled>false</enabled>
+          <name>kpassman</name>
+        </startupnotify>
+        <command>kpassman</command>
+      </action>
+    </keybind>
+    <keybind key="Print">
+      <action name="Execute">
+        <startupnotify>
+          <enabled>false</enabled>
+          <name>yadshot</name>
+        </startupnotify>
+        <command>yadshot -c</command>
+      </action>
+    </keybind>
+    <keybind key="XF86AudioNext">
+      <action name="Execute">
+        <startupnotify>
+          <enabled>false</enabled>
+          <name>mpc next</name>
+        </startupnotify>
+        <command>mpc next</command>
+      </action>
+    </keybind>
+    <keybind key="XF86AudioPlay">
+      <action name="Execute">
+        <startupnotify>
+          <enabled>false</enabled>
+          <name>mpc toggle</name>
+        </startupnotify>
+        <command>mpc toggle</command>
+      </action>
+    </keybind>
+    <keybind key="XF86AudioPrev">
+      <action name="Execute">
+        <startupnotify>
+          <enabled>false</enabled>
+          <name>mpc prev</name>
+        </startupnotify>
+        <command>mpc prev</command>
+      </action>
+    </keybind>
+    <keybind key="XF86AudioStop">
+      <action name="Execute">
+        <startupnotify>
+          <enabled>false</enabled>
+          <name>mpc stop</name>
+        </startupnotify>
+        <command>mpc stop</command>
+      </action>
+    </keybind>
   </keyboard>
   <mouse>
     <dragThreshold>3</dragThreshold>
@@ -833,6 +887,16 @@
       <size>
         <width>963</width>
         <height>1056</height>
+      </size>
+    </application>
+    <application title="Open Configuration Center">
+      <position force="no">
+        <x>1915</x>
+        <y>0</y>
+      </position>
+      <size>
+        <width>1905</width>
+        <height>1055</height>
       </size>
     </application>
     <!--

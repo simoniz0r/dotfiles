@@ -158,7 +158,7 @@ tmux_conf_theme_right_separator_sub=''
 #     - #{username}
 #     - #{username_ssh}
 tmux_conf_theme_status_left=' %I:%M:%S | %d %b '
-tmux_conf_theme_status_right='#{prefix} | #{hostname} | ↑#{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,}#{?uptime_m, #{uptime_m}m,} '
+tmux_conf_theme_status_right=' #{prefix} | #{hostname} | ↑#{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,} | 🐧 #(uname -r | cut -f1 -d'-') '
 
 # status left style
 tmux_conf_theme_status_left_fg='blue,black,blue'  # dark gray, white , white
