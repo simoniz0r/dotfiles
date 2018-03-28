@@ -20,7 +20,7 @@
     <focusDelay>750</focusDelay>
     <!-- when followMouse is enabled, the mouse must be inside the window for
        this many milliseconds (1000 = 1 sec) before moving focus to it -->
-    <raiseOnFocus>yes</raiseOnFocus>
+    <raiseOnFocus>no</raiseOnFocus>
     <!-- when followMouse is enabled, and a window is given focus by moving the
        mouse into it, also raise the window -->
   </focus>
@@ -123,10 +123,7 @@
     <number>1</number>
     <firstdesk>1</firstdesk>
     <names>
-      <!-- set names up here if you want to, like this:
-    <name>desktop 1</name>
-    <name>desktop 2</name>
-    -->
+      <name>~</name>
     </names>
     <popupTime>875</popupTime>
     <!-- The number of milliseconds to show the popup for when switching
@@ -431,15 +428,6 @@
     </keybind>
     <!-- Keybindings for running applications.
    Commented out as application shortcuts should be handled by lxqt-globalkeys in LXQt sessions. -->
-    <keybind key="A-space">
-      <action name="Execute">
-        <startupnotify>
-          <enabled>false</enabled>
-          <name>rofi</name>
-        </startupnotify>
-        <command>rofi -show run</command>
-      </action>
-    </keybind>
     <keybind key="S-C-A-j">
       <action name="Execute">
         <startupnotify>
@@ -859,14 +847,34 @@
     <application class="*">
       <decor>no</decor>
     </application>
-    <application class="Roxterm">
+    <application class="Alacritty">
       <position force="no">
         <x>0</x>
-        <y>1065</y>
+        <y>1056</y>
       </position>
       <size>
         <width>932</width>
-        <height>1056</height>
+        <height>1047</height>
+      </size>
+    </application>
+    <application class="Termit">
+      <position force="no">
+        <x>0</x>
+        <y>1056</y>
+      </position>
+      <size>
+        <width>932</width>
+        <height>1047</height>
+      </size>
+    </application>
+    <application class="Roxterm">
+      <position force="no">
+        <x>0</x>
+        <y>1056</y>
+      </position>
+      <size>
+        <width>932</width>
+        <height>1047</height>
       </size>
     </application>
     <application class="nheko">

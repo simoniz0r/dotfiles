@@ -3,6 +3,7 @@
 #######################################
 
 alias alarm='$HOME/github/alarm-sh/alarm.sh'
+alias alsi='alsi; cursor-show'
 alias ansiweather='ansiweather -u imperial -l'
 alias betty='$HOME/github/betty/main.rb'
 alias chx='chmod a+x'
@@ -25,6 +26,7 @@ alias rex='remote-exec'
 alias rg='rg --color never'
 alias ssh-vm='ssh 10.42.0.2'
 alias sudo='sudo '
+alias termbin='nc termbin.com 9999'
 alias tmux='tmux attach-session -t simonizor || tmux new -s simonizor'
 alias dl='wget --show-progress -qO'
 alias weather-mp='echo "$(tput setaf 4)$(tput bold)$(weather --imperial -qaf --no-cache kmrj)"'
@@ -45,7 +47,7 @@ unalias dir
 ####    Variables for long paths    ####
 ########################################
 
-USB_HDD="/run/media/simonizor/0d208b29-3b29-4ffc-99be-1043b9f3c258"
+USBHDD="/run/media/simonizor/USBHDD"
 
 time="$(date +'%l:%M:%S %p')"
 

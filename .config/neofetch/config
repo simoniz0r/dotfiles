@@ -18,16 +18,16 @@ print_info() {
     info "Resolution" resolution
     info "DE" de
     info "WM" wm
-    info "WM Theme" wm_theme
+    # info "WM Theme" wm_theme
     info "Theme" theme
     info "Icons" icons
-    info "Font" font
-    prin "Terminal" "ROXTerm"
-    prin "Terminal Font" "Noto Sans Mono 10"
+    ifno "Font" icons
+    prin "Terminal" "alacritty"
+    prin "Terminal Font" "Noto Mono 10"
     info "CPU" cpu
     info "GPU" gpu
-    info "Memory" memory
     info "GPU Driver" gpu_driver  # Linux only
+    info "Memory" memory
     info "CPU Usage" cpu_usage
     info "Disk" disk
     # info "Battery" battery

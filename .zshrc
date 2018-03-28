@@ -4,7 +4,7 @@ setopt PROMPT_SUBST
 
 MAIN_COLOR () {
     case $PWD in
-        /run/media/simonizor/0d208b29-3b29-4ffc-99be-1043b9f3c258*|$HOME/github*)
+        /run/media/simonizor/USBHDD*|$HOME/github*)
             echo "{green}"
             ;;
         $HOME/.config*)
@@ -45,8 +45,8 @@ DIR_SYMBOLS () {
                     fi
                 fi
                 ;;
-            /run/media/simonizor/0d208b29-3b29-4ffc-99be-1043b9f3c258*)
-                echo " USB_HDD${PWD:57} "
+            /run/media/simonizor/USBHDD*)
+                echo " USBHDD${PWD:27} "
                 ;;
             /)
                 echo " ⚠${PWD:1} "
@@ -100,7 +100,7 @@ EXIT_STATUS () {
 PS1='%K{black}%F$(MAIN_COLOR) %n %S$(DIR_SYMBOLS)%s%k%f '
 RPS1='$(EXIT_STATUS)$(GIT_STATUS)'
 
-setopt histignorealldups sharehistory
+setopt histignorealldups sharehistory menu_complete
 
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
@@ -118,14 +118,14 @@ zstyle ':completion:*' auto-description 'specify: %d'
 # zstyle ':completion:*' completer _expand _complete
 zstyle ':completion:*' format 'Completing %d'
 zstyle ':completion:*' group-name ''
-zstyle ':completion:*' menu select=2
+zstyle ':completion:*' menu select
+zstyle ':completion:*' menu select=5
 zstyle ":completion:*:descriptions" format "%B%d%b"
 eval "$(dircolors -b)"
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
-zstyle ':completion:*' menu select=long
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
 zstyle ':completion:*' use-compctl true
 zstyle ':completion:*' verbose true
@@ -166,13 +166,13 @@ if [ -f /home/simonizor/.config/appimagedl/appimagedl-completion.sh ]; then
     compdef _appimagedlzsh appimagedl
 fi
 
-if [[ ! "$TTY" =~ "/dev/tty" ]]; then
-    case $(ps -p $(ps -p $$ -o ppid=) o args=) in
-        tmux*|*vscode*)
-            sleep 0
-            ;;
-        *)
-            tmux
-            ;;
-    esac
-fi
+# if [[ ! "$TTY" =~ "/dev/tty" ]]; then
+#     case $(ps -p $(ps -p $$ -o ppid=) o args=) in
+#         tmux*|*vscode*)
+#             sleep 0
+#             ;;
+#         *)
+#             tmux
+#             ;;
+#     esac
+# fi
