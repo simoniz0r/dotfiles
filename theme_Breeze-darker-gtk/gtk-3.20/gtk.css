@@ -309,7 +309,7 @@ button.osd {
   -gtk-icon-shadow: none;
   color: #bbbbbc;
   border-color: #31363b;
-  background-image: linear-gradient(to bottom, #31373c, #303439); }
+  background-image: linear-gradient(to bottom, #232629, #232629); }
   notebook > header > tabs > arrow, button.sidebar-button, popover.background.touch-selection button.flat, popover.background.magnifier button.flat,
   button.flat, notebook > header > tabs > arrow.osd, button.osd.sidebar-button {
     border-color: rgba(255, 255, 255, 0);
@@ -352,7 +352,7 @@ button.osd {
   button:backdrop, notebook > header > tabs > arrow.osd:backdrop {
     color: #bbbbbc;
     border-color: #31363b;
-    background-image: linear-gradient(to bottom, #31373c, #303439);
+    background-image: linear-gradient(to bottom, #232629, #232629);
     -gtk-icon-effect: none; }
     notebook > header > tabs > arrow:backdrop:active, popover.background.touch-selection button:backdrop:active, popover.background.magnifier button:backdrop:active,
     button:backdrop:active, notebook > header > tabs > arrow:backdrop:checked, popover.background.touch-selection button:backdrop:checked, popover.background.magnifier button:backdrop:checked,
@@ -1447,7 +1447,7 @@ treeview entry.flat, treeview entry {
     -gtk-icon-shadow: none;
     color: #bbbbbc;
     border-color: #31363b;
-    background-image: linear-gradient(to bottom, #31373c, #303439); }
+    background-image: linear-gradient(to bottom, #232629, #232629); }
     .app-notification button.flat,
     .app-notification.frame button.flat {
       -gtk-icon-shadow: none;
@@ -1484,7 +1484,7 @@ treeview entry.flat, treeview entry {
     .app-notification.frame button:backdrop {
       color: #bbbbbc;
       border-color: #31363b;
-      background-image: linear-gradient(to bottom, #31373c, #303439); }
+      background-image: linear-gradient(to bottom, #232629, #232629); }
   .app-notification border,
   .app-notification.frame border {
     border: none; }
@@ -1772,14 +1772,14 @@ colorswatch#add-color-button {
   -gtk-icon-shadow: none;
   color: #bbbbbc;
   border-color: #31363b;
-  background-image: linear-gradient(to bottom, #31373c, #303439); }
+  background-image: linear-gradient(to bottom, #232629, #232629); }
   colorswatch#add-color-button:hover {
     color: #bbbbbc;
     border-color: #216590; }
   colorswatch#add-color-button:backdrop {
     color: #bbbbbc;
     border-color: #31363b;
-    background-image: linear-gradient(to bottom, #31373c, #303439); }
+    background-image: linear-gradient(to bottom, #232629, #232629); }
   colorswatch#add-color-button overlay {
     border-color: rgba(255, 255, 255, 0);
     background-color: transparent;
