@@ -18,17 +18,17 @@ function adddotfile() {
     cp -r "$2" "$DOTFILE_STORAGE_DIR"/$1 || { echo "Failed to copy $1; exiting..."; exit 1; }
     trywithoutsudo "rm -rf $2"
     trywithoutsudo "ln -s $DOTFILE_STORAGE_DIR/$1 $2"
-    echo "name: $1" > "$DOTFILE_STORAGE_DIR"/stored/"$1".yml
-    echo "location: $2" >> "$DOTFILE_STORAGE_DIR"/stored/"$1".yml
+    echo "name: $1" > "$DOTFILE_STORAGE_DIR"/yml/"$1".yml
+    echo "location: $2" >> "$DOTFILE_STORAGE_DIR"/yml/"$1".yml
     echo "$1 has been added and symlink has been created"
     exit 0
 }
 
 # use yq to set variables for dotfiles
 function parsedotfileinfo() {
-    if [ -f "$DOTFILE_STORAGE_DIR/stored/$1" ]; then
-        DOTFILE_NAME="$(yq r $DOTFILE_STORAGE_DIR/stored/$1 name)"
-        DOTFILE_LOCATION="$(yq r $DOTFILE_STORAGE_DIR/stored/$1 location)"
+    if [ -f "$DOTFILE_STORAGE_DIR/yml/$1" ]; then
+        DOTFILE_NAME="$(yq r $DOTFILE_STORAGE_DIR/yml/$1 name)"
+        DOTFILE_LOCATION="$(yq r $DOTFILE_STORAGE_DIR/yml/$1 location)"
         case $DOTFILE_LOCATION in
             /home/*)
                 DOTFILE_LOCATION="$HOME/$(echo $DOTFILE_LOCATION | cut -f4- -d'/')"
@@ -67,10 +67,10 @@ function symlinkdotfile() {
     unset SKIP_SYMLINK
 }
 
-# run a for loop on all yaml files in DOTFILE_STORAGE_DIR/stored
+# run a for loop on all yaml files in DOTFILE_STORAGE_DIR/yml
 function symlinkloop() {
     echo "Creating symlinks for all dotfiles in $DOTFILE_STORAGE_DIR ..."
-    for dotfile in $(dir -a -C -w 1 "$DOTFILE_STORAGE_DIR"/stored | tail -n +3); do
+    for dotfile in $(dir -a -C -w 1 "$DOTFILE_STORAGE_DIR"/yml | tail -n +3); do
         parsedotfileinfo "$dotfile"
         symlinkdotfile "$DOTFILE_NAME" "$DOTFILE_LOCATION"
     done
@@ -87,7 +87,7 @@ else
     echo
     DOTFILE_STORAGE_DIR="$(readlink -f $STORAGE_DIR_ANSWER)"
     echo "storagedir: $DOTFILE_STORAGE_DIR" > ~/.sdfm.yml
-    [ ! -d "$DOTFILE_STORAGE_DIR/stored" ] && mkdir -p "$DOTFILE_STORAGE_DIR"/stored
+    [ ! -d "$DOTFILE_STORAGE_DIR/yml" ] && mkdir -p "$DOTFILE_STORAGE_DIR"/yml
 fi
 
 # detect argument input
