@@ -1,10 +1,16 @@
 #!/bin/bash
+# Author: simonizor
+# Title: sdfm (simple dotfile manager)
+# Description: Uses yaml files to store info about added dotfiles
+# Dependencies: yq
 
+# try running commands without sudo first
 function trywithoutsudo() {
     COMMAND="$@"
     $COMMAND 2> /dev/null || sudo $COMMAND || { echo "The following failed to execute:" "$COMMAND"; exit 1; }
 }
 
+# copies file/directory to DOTFILE_STORAGE_DIR, removes original, creates symlink, and saves yml file with name and original location
 function adddotfile() {
     [ -f "$DOTFILE_STORAGE_DIR/$1" ] || [ -d "$DOTFILE_STORAGE_DIR/$1" ] && echo "$DOTFILE_STORAGE_DIR/$1 already exists; exiting..." && exit 1
     [ ! -f "$2" ] && [ ! -d "$2" ] && echo "$2 not found; exiting..." && exit 1
@@ -18,6 +24,7 @@ function adddotfile() {
     exit 0
 }
 
+# use yq to set variables for dotfiles
 function parsedotfileinfo() {
     if [ -f "$DOTFILE_STORAGE_DIR/stored/$1" ]; then
         DOTFILE_NAME="$(yq r $DOTFILE_STORAGE_DIR/stored/$1 name)"
@@ -33,6 +40,7 @@ function parsedotfileinfo() {
     fi
 }
 
+# create a symlink from DOTFILE_STORAGE_DIR to location stored in yaml file
 function symlinkdotfile() {
     if [ -f "$2" ] || [ -d "$2" ]; then
         echo "$2 exists!"
@@ -59,6 +67,7 @@ function symlinkdotfile() {
     unset SKIP_SYMLINK
 }
 
+# run a for loop on all yaml files in DOTFILE_STORAGE_DIR/stored
 function symlinkloop() {
     echo "Creating symlinks for all dotfiles in $DOTFILE_STORAGE_DIR ..."
     for dotfile in $(dir -a -C -w 1 "$DOTFILE_STORAGE_DIR"/stored | tail -n +3); do
@@ -70,6 +79,7 @@ function symlinkloop() {
     exit 0
 }
 
+# load DOTFILE_STORAGE_DIR from ~/.sdfm.yml if it exists otherwise prompt for storage dir input
 if [ -f "$HOME/.sdfm.yml" ]; then
     DOTFILE_STORAGE_DIR="$(yq r ~/.sdfm.yml storagedir)"
 else
@@ -80,6 +90,7 @@ else
     [ ! -d "$DOTFILE_STORAGE_DIR/stored" ] && mkdir -p "$DOTFILE_STORAGE_DIR"/stored
 fi
 
+# detect argument input
 case $1 in
     -a|--add)
         [ -z "$3" ] && echo "Missing required input; exiting..." && exit 1
