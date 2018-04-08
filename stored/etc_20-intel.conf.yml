@@ -1,2 +1,2 @@
-name: etc_20-intel.conf.yml
+name: etc_20-intel.conf
 location: /etc/X11/xorg.conf.d/20-intel.conf

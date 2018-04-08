@@ -2,7 +2,7 @@
 
 function trywithoutsudo() {
     COMMAND="$@"
-    $COMMAND 2> /dev/null || sudo $COMMAND || { echo "${CLR_RED}The following failed to execute:${CLR_CLEAR}" "$COMMAND"; exit 1; }
+    $COMMAND 2> /dev/null || sudo $COMMAND || { echo "The following failed to execute:" "$COMMAND"; exit 1; }
 }
 
 function adddotfile() {
@@ -21,7 +21,12 @@ function adddotfile() {
 function parsedotfileinfo() {
     if [ -f "$DOTFILE_STORAGE_DIR/stored/$1" ]; then
         DOTFILE_NAME="$(yq r $DOTFILE_STORAGE_DIR/stored/$1 name)"
-        DOTFILE_LOCATION="$(yq r $DOTFILE_STORAGE_DIR/stored/$1 location | sed "s%/home/*..*/%$HOME/%g")"
+        DOTFILE_LOCATION="$(yq r $DOTFILE_STORAGE_DIR/stored/$1 location)"
+        case $DOTFILE_LOCATION in
+            /home/*)
+                DOTFILE_LOCATION="$HOME/$(echo $DOTFILE_LOCATION | cut -f4- -d'/')"
+                ;;
+        esac
     else
         echo "$1 not found!"
         exit 1
@@ -46,15 +51,17 @@ function symlinkdotfile() {
     fi
     if [ ! "$SKIP_SYMLINK" = "TRUE" ]; then
         echo "Creating symlink from $DOTFILE_STORAGE_DIR/$1 to $2 ..."
+        [ ! -d "$(dirname $2)" ] && trywithoutsudo "mkdir -p $(dirname $2)"
         trywithoutsudo "ln -s $DOTFILE_STORAGE_DIR/$1 $2"
         echo "Symlink for $1 created"
         echo "$1" >> /tmp/sdfmlist.tmp
     fi
+    unset SKIP_SYMLINK
 }
 
 function symlinkloop() {
     echo "Creating symlinks for all dotfiles in $DOTFILE_STORAGE_DIR ..."
-    for dotfile in $(dir -a -C -w 1 "$DOTFILE_STORAGE_DIR"/stored); do
+    for dotfile in $(dir -a -C -w 1 "$DOTFILE_STORAGE_DIR"/stored | tail -n +3); do
         parsedotfileinfo "$dotfile"
         symlinkdotfile "$DOTFILE_NAME" "$DOTFILE_LOCATION"
     done
@@ -92,7 +99,7 @@ case $1 in
             esac
         else
             parsedotfileinfo "$2.yml"
-            symlinkdotfile "$2"
+            symlinkdotfile "$DOTFILE_NAME" "$DOTFILE_LOCATION"
             rm -f /tmp/sdfmlist.tmp
             exit 0
         fi
