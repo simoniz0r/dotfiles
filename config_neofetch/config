@@ -22,7 +22,7 @@ print_info() {
     info "Theme" theme
     info "Icons" icons
     ifno "Font" icons
-    prin "Terminal" "alacritty"
+    prin "Terminal" "kitty"
     prin "Terminal Font" "Noto Mono 10"
     info "CPU" cpu
     info "GPU" gpu
