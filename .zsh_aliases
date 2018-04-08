@@ -19,7 +19,7 @@ alias fd='fd -c never'
 alias find='fd'
 alias lappy='ssh 10.42.0.1'
 alias load-aliases='. ~/.zsh_aliases'
-alias mce='TERM="xterm" mcedit'
+alias mce='mcedit'
 alias obs='osc'
 alias oneclickui='/usr/sbin/OneClickInstallUI'
 alias rex='remote-exec'
@@ -132,6 +132,11 @@ rss () {
             w3m "$twreleaselink"
             ;;
     esac
+}
+
+# watch travis logs
+traviswatch () {
+    watch -tcn 2 "curl -sL "https://api.travis-ci.org/v3/job/$1/log.txt" | tail -n 50"
 }
 
 # Use weather-util to output weather every 300 seconds

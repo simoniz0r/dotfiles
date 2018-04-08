@@ -106,8 +106,8 @@ setopt histignorealldups sharehistory menu_complete
 bindkey -e
 
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=50000
+SAVEHIST=50000
 HISTFILE=~/.zsh_history
 
 # Use modern completion system
@@ -166,13 +166,13 @@ if [ -f /home/simonizor/.config/appimagedl/appimagedl-completion.sh ]; then
     compdef _appimagedlzsh appimagedl
 fi
 
-# if [[ ! "$TTY" =~ "/dev/tty" ]]; then
-#     case $(ps -p $(ps -p $$ -o ppid=) o args=) in
-#         tmux*|*vscode*)
-#             sleep 0
-#             ;;
-#         *)
-#             tmux
-#             ;;
-#     esac
-# fi
+if [[ ! "$TTY" =~ "/dev/tty" ]]; then
+    case $(ps -p $(ps -p $$ -o ppid=) o args=) in
+        tmux*|*vscode*|*xterm*)
+            sleep 0
+            ;;
+        *)
+            tmux
+            ;;
+    esac
+fi
