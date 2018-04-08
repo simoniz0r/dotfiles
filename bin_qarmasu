@@ -1,0 +1,63 @@
+#!/bin/bash
+# Author: simonizor
+# Title: qarmasu
+# Description: A simple script that uses qarma to provide a GUI for su password prompts
+# License: MIT
+
+# detect argument input
+for ARG in $@; do
+    case "$ARG" in
+        -u|--user)
+            shift
+            SU_USER="$1"
+            shift
+            ;;
+        -c|--command)
+            shift
+            SU_CMD="$1"
+            shift
+            ;;
+    esac
+done
+# trim SU_CMD so it doesn't make the dialog box huge
+if [ $(echo "$SU_CMD" | wc -m) -gt 75 ]; then
+    SHOW_CMD="$(echo $SU_CMD | cut -c-75)..."
+else
+    SHOW_CMD="$SU_CMD"
+fi
+# exit if no command entered
+if [ -z "$SU_CMD" ]; then
+    qarma --error --window-icon="/tmp/opendm.png" --title="qarmasu" --text="No command entered!"
+    exit 1
+fi
+# if no user entered, as for password to run SU_CMD as root
+if [ -z "$SU_USER" ]; then
+    SU_PASSWORD_INPUT="$(qarma --entry --window-icon="/tmp/opendm.png" --title="qarmasu" --text="Enter password to run $SHOW_CMD as root:" --hide-text 2> /dev/null)"
+    # exit if cancel pressed
+    case $? in
+        1)
+            exit 1
+            ;;
+    esac
+    # pipe SU_PASSWORD_INPUT to su -c SU_CMD; exit 1 if SU_CMD fails
+    case "$SU_CMD" in
+        /sbin/yast2*)
+            echo "$SU_PASSWORD_INPUT" | env QT_QPA_PLATFORMTHEME="qt5ct" su -c "$SU_CMD" || exit 1
+            ;;
+        *)
+            echo "$SU_PASSWORD_INPUT" | su -c "$SU_CMD" || exit 1
+            ;;
+    esac
+# else pass SU_USER to su
+else
+    SU_PASSWORD_INPUT="$(qarma --entry --window-icon="/tmp/opendm.png" --title="qarmasu" --text="Enter password to run $SHOW_CMD as $SU_USER:" --hide-text 2> /dev/null)"
+    # exit if cancel pressed
+    case $? in
+        1)
+            exit 1
+            ;;
+    esac
+    # pipe SU_PASSWORD_INPUT to su -c SU_CMD SU_USER; exit 1 if SU_CMD fails
+    echo "$SU_PASSWORD_INPUT" | su -c "$SU_CMD" "$SU_USER" || exit 1
+fi
+exit 0
