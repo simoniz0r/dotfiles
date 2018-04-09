@@ -42,7 +42,7 @@ if [ -z "$SU_USER" ]; then
     # pipe SU_PASSWORD_INPUT to su -c SU_CMD; exit 1 if SU_CMD fails
     case "$SU_CMD" in
         /sbin/yast2*)
-            echo "$SU_PASSWORD_INPUT" | env QT_QPA_PLATFORMTHEME="qt5ct" su -c "$SU_CMD" || exit 1
+            echo "$SU_PASSWORD_INPUT" | su -c "$SU_CMD" || exit 1
             ;;
         *)
             echo "$SU_PASSWORD_INPUT" | su -c "$SU_CMD" || exit 1
