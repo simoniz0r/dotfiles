@@ -13,13 +13,13 @@ alias cursor-hide="printf '\e[?25l'"
 alias cursor-show="printf '\e[?25h'"
 alias drive-speed='hdparam -Tt'
 alias echo='/bin/echo'
-alias edit-aliases='mce ~/.zsh_aliases'
-alias edit-zshrc='mce ~/.zshrc'
+alias edit-aliases='micro ~/.zsh_aliases'
+alias edit-zshrc='micro ~/.zshrc'
 alias fd='fd -c never'
 alias find='fd'
 alias lappy='ssh 10.42.0.1'
 alias load-aliases='. ~/.zsh_aliases'
-alias mce='mcedit'
+alias mce='micro'
 alias obs='osc'
 alias oneclickui='/usr/sbin/OneClickInstallUI'
 alias rex='remote-exec'
@@ -54,6 +54,11 @@ time="$(date +'%l:%M:%S %p')"
 ################################
 ####    Simple functions    ####
 ################################
+
+# Use curl and jq to search for packages in the Arch Linux AUR
+aursearch () {
+    curl -sSL "https://aur.archlinux.org/rpc/?v=5&type=search&arg=$@" | jq -r '.results[]'
+}
 
 # Convert to and from binary
 binary-convert () {
@@ -99,6 +104,11 @@ downforme () {
 # List size of file
 filesize () { du -h -a --max-depth=1 "$@" | sort -h -r }
 filesize-a () { du -h -a "$@" | sort -h -r }
+
+# View latest github release
+gitrelease () {
+    curl -sSL "https://api.github.com/repos/$@/releases" | jq -r '.[0].assets[]'
+}
 
 # Output Github commits and messages for chosen repo
 list-commits () {
