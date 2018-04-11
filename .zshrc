@@ -31,13 +31,15 @@ MAIN_COLOR () {
 DIR_TRUNICATED () {
     case $PWD in
         $HOME*)
-            DIR_PREPEND="~"    
+            DIR_PREPEND="~"
+            TRUNICATE_NUM=5
             ;;
         *)
             DIR_PREPEND=""
+            TRUNICATE_NUM=3
             ;;
     esac
-    if [ $(echo "$PWD" | cut -f5- -d'/' | wc -c) -gt 20 ]; then
+    if [ $(echo "$PWD" | cut -f${TRUNICATE_NUM}- -d'/' | wc -c) -gt 20 ]; then
         DIR_ENDING="$(echo "$PWD" | rev | cut -f1-2 -d'/' | rev)"
         echo " $DIR_PREPEND/.../$DIR_ENDING "
     else
