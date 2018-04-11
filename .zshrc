@@ -28,42 +28,20 @@ MAIN_COLOR () {
     esac
 }
 
-DIR_SYMBOLS () {
-    if [[ "$HOST" != "tumbleweed" ]]; then
-        echo "ssh %~ "
+DIR_TRUNICATED () {
+    case $PWD in
+        $HOME*)
+            DIR_PREPEND="~"    
+            ;;
+        *)
+            DIR_PREPEND=""
+            ;;
+    esac
+    if [ $(echo "$PWD" | cut -f5- -d'/' | wc -c) -gt 20 ]; then
+        DIR_ENDING="$(echo "$PWD" | rev | cut -f1-2 -d'/' | rev)"
+        echo " $DIR_PREPEND/.../$DIR_ENDING "
     else
-        case $PWD in
-            $HOME*)
-                if [ $(echo "$PWD" | tr -cd '/' | wc -c) -lt 5 ]; then
-                    echo " %~ "
-                else
-                    if [ $(echo "$PWD" | cut -f6- -d'/' | wc -c) -gt 15 ]; then
-                        DIR_ENDING="$(echo "$PWD" | rev | cut -f1-2 -d'/' | rev)"
-                        echo " ~/.../$DIR_ENDING "
-                    else
-                        echo " %~ "
-                    fi
-                fi
-                ;;
-            /run/media/simonizor/USBHDD*)
-                echo " USBHDD${PWD:27} "
-                ;;
-            /)
-                echo " ⚠${PWD:1} "
-                ;;
-            *)
-                if [ $(echo "$PWD" | tr -cd '/' | wc -c) -lt 3 ]; then
-                    echo " ⚠ $PWD "
-                else
-                    if [ $(echo "$PWD" | cut -f4- -d'/' | wc -c) -gt 15 ]; then
-                        DIR_ENDING="$(echo "$PWD" | rev | cut -f1-2 -d'/' | rev)"
-                        echo " ⚠ /.../$DIR_ENDING "
-                    else
-                        echo " ⚠ $PWD "
-                    fi
-                fi
-                ;;
-        esac
+        echo " %~ "
     fi
 }
 
@@ -97,7 +75,7 @@ EXIT_STATUS () {
     esac
 }
 
-PS1='%K{black}%F$(MAIN_COLOR) %n %S$(DIR_SYMBOLS)%s%k%f '
+PS1='%K{black}%F$(MAIN_COLOR) %n %S$(DIR_TRUNICATED)%s%k%f '
 RPS1='$(EXIT_STATUS)$(GIT_STATUS)'
 
 setopt histignorealldups sharehistory menu_complete
