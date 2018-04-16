@@ -4,22 +4,10 @@ setopt PROMPT_SUBST
 
 MAIN_COLOR () {
     case $PWD in
-        /run/media/simonizor/USBHDD*|$HOME/github*)
-            echo "{green}"
-            ;;
-        $HOME/.config*)
-            echo "{magenta}"
-            ;;
-        /opt*)
-            echo "{white}"
-            ;;
-        /usr/local*)
-            echo "{cyan}"
-            ;;
-        /usr*)
+        /usr*|/opt*)
             echo "{yellow}"
             ;;
-        $HOME*)
+        $HOME*|/run/media/simonizor*)
             echo "{blue}"
             ;;
         *)
@@ -31,7 +19,7 @@ MAIN_COLOR () {
 DIR_TRUNICATED () {
     case $PWD in
         $HOME*)
-            DIR_PREPEND="~"
+            DIR_PREPEND="~/"
             TRUNICATE_NUM=5
             ;;
         *)
@@ -41,7 +29,7 @@ DIR_TRUNICATED () {
     esac
     if [ $(echo "$PWD" | cut -f${TRUNICATE_NUM}- -d'/' | wc -c) -gt 20 ]; then
         DIR_ENDING="$(echo "$PWD" | rev | cut -f1-2 -d'/' | rev)"
-        echo " $DIR_PREPEND/.../$DIR_ENDING "
+        echo " $DIR_PREPEND.../$DIR_ENDING "
     else
         echo " %~ "
     fi
@@ -123,7 +111,7 @@ fi
 
 # Change/remove these to match your settings
 export TERM=xterm-256color
-export EDITOR=/usr/bin/mcedit
+export EDITOR=$HOME/bin/micro
 export MPD_HOST=127.0.0.1
 
 if [ -f ~/nohup.out ]; then
@@ -145,6 +133,8 @@ if [ -f /home/simonizor/.config/appimagedl/appimagedl-completion.sh ]; then
     source /home/simonizor/.config/appimagedl/appimagedl-completion.sh
     compdef _appimagedlzsh appimagedl
 fi
+
+compdef ozypper=zypper
 
 if [[ ! "$TTY" =~ "/dev/tty" ]]; then
     case $(ps -p $(ps -p $$ -o ppid=) o args=) in
