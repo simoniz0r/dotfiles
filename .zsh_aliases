@@ -40,6 +40,7 @@ alias beautiful-load='beautifuldiscord --css /home/simonizor/github/DiscordTheme
 alias passman='$HOME/github/gpgpassman/gpgpassman.sh'
 alias wgetspeed='$HOME/github/scripts/speedtest/speedtest.sh'
 alias wttr-refresh='clr; $HOME/github/scripts/misc/wttrrefresh.sh'
+alias zypper='$HOME/bin/zyp'
 alias dir='dir'
 unalias dir
 
@@ -104,6 +105,33 @@ downforme () {
 # List size of file
 filesize () { du -h -a --max-depth=1 "$@" | sort -h -r }
 filesize-a () { du -h -a "$@" | sort -h -r }
+
+gitinfo () {
+    curl -sSL "https://api.github.com/repos/$1" | jq -r ".$2"
+}
+
+gitissues () {
+REPO_LIST="
+simoniz0r/spm
+simoniz0r/deb2appimage
+simoniz0r/Discord-Linux-Client-Issues
+simoniz0r/discord-css-injection
+simoniz0r/osc-easy-install
+simoniz0r/yadshot
+simoniz0r/OpenDM
+simoniz0r/Discord-AppImage
+simoniz0r/Discord-PTB-AppImage
+simoniz0r/Discord-Canary-AppImage
+"
+    for repo in $(echo $REPO_LIST); do
+        curl -sSL "https://api.github.com/repos/$repo" -o /tmp/gitissues
+        echo "$repo"
+        echo "Open Issues: $(jq -r '.open_issues' /tmp/gitissues)"
+        echo "Watchers: $(jq -r '.watchers' /tmp/gitissues)"
+        echo "Subscribers: $(jq -r '.subscribers_count' /tmp/gitissues)"
+        rm -f /tmp/gitissues
+    done
+}
 
 # View latest github release
 gitrelease () {
