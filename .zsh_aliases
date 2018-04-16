@@ -8,7 +8,6 @@ alias ansiweather='ansiweather -u imperial -l'
 alias betty='$HOME/github/betty/main.rb'
 alias chx='chmod a+x'
 alias clr='clear'
-alias color-invaders='rex "https://raw.githubusercontent.com/meskarune/.scripts/bba3cce5d70cd1e6018cf541358175d85195ba8d/spaceINVADERS.sh"'
 alias cursor-hide="printf '\e[?25l'"
 alias cursor-show="printf '\e[?25h'"
 alias drive-speed='hdparam -Tt'
@@ -40,6 +39,7 @@ alias beautiful-load='beautifuldiscord --css /home/simonizor/github/DiscordTheme
 alias passman='$HOME/github/gpgpassman/gpgpassman.sh'
 alias wgetspeed='$HOME/github/scripts/speedtest/speedtest.sh'
 alias wttr-refresh='clr; $HOME/github/scripts/misc/wttrrefresh.sh'
+alias zyp='$HOME/bin/zyp'
 alias zypper='$HOME/bin/zyp'
 alias dir='dir'
 unalias dir
