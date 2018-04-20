@@ -60,6 +60,7 @@ function searchstart() {
             echo
             ;;
         *)
+            [ "$1" = "-L" ] || [ "$1" = "--local" ] && shift
             zypper se "$@"
             exit 0
             ;;
@@ -243,6 +244,9 @@ function zypstart() {
             shift
             installstart "$@"
             rm -f /tmp/zypsearch /tmp/zypresults
+            ;;
+        ps)
+            sudo zypper ps -s
             ;;
         *)
             zypper "$@" 2> /tmp/zyperrors
