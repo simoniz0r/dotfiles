@@ -243,6 +243,8 @@ tmux_conf_copy_to_os_clipboard=true
 
 # -- user customizations -------------------------------------------------------
 # this is the place to override or undo settings
+# disable setting title
+set -g set-titles off
 
 # bigger and faster
 set -g history-limit 50000
