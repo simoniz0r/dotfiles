@@ -40,14 +40,7 @@ if [ -z "$SU_USER" ]; then
             ;;
     esac
     # pipe SU_PASSWORD_INPUT to su -c SU_CMD; exit 1 if SU_CMD fails
-    case "$SU_CMD" in
-        /sbin/yast2*)
-            echo "$SU_PASSWORD_INPUT" | su -c "$SU_CMD" || exit 1
-            ;;
-        *)
-            echo "$SU_PASSWORD_INPUT" | su -c "$SU_CMD" || exit 1
-            ;;
-    esac
+    echo "$SU_PASSWORD_INPUT" | su -c "$SU_CMD" || exit 1
 # else pass SU_USER to su
 else
     SU_PASSWORD_INPUT="$(qarma --entry --window-icon="/tmp/opendm.png" --title="qarmasu" --text="Enter password to run $SHOW_CMD as $SU_USER:" --hide-text 2> /dev/null)"
