@@ -134,7 +134,7 @@ if [ -f /home/simonizor/.config/appimagedl/appimagedl-completion.sh ]; then
     compdef _appimagedlzsh appimagedl
 fi
 
-compdef ozypper=zypper
+compdef zyp=zypper
 
 if [[ ! "$TTY" =~ "/dev/tty" ]]; then
     case $(ps -p $(ps -p $$ -o ppid=) o args=) in
