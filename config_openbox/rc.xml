@@ -452,7 +452,7 @@
           <enabled>false</enabled>
           <name>yadshot</name>
         </startupnotify>
-        <command>yadshot -c</command>
+        <command>yadshot -s</command>
       </action>
     </keybind>
     <!-- <keybind key="XF86AudioNext">
