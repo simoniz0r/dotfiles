@@ -257,9 +257,9 @@ set -g mouse on
 #   really you should export VISUAL or EDITOR environment variable, see manual
 set -g status-keys vi
 set -g mode-keys vi
-unbind C-S-c
-run -b 'tmux bind -t vi-copy C-S-c copy-selection 2> /dev/null || true'
-run -b 'tmux bind -T copy-mode-vi C-S-c send -X copy-selection-and-cancel 2> /dev/null || true'
+unbind C-c
+run -b 'tmux bind -t vi-copy C-c copy-selection 2> /dev/null || true'
+run -b 'tmux bind -T copy-mode-vi C-c send -X copy-selection-and-cancel 2> /dev/null || true'
 bind o run "xdg-open $(xclip -selection clipboard -o)"
 
 # force emacs mode
