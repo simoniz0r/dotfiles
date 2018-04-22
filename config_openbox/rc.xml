@@ -432,9 +432,9 @@
       <action name="Execute">
         <startupnotify>
           <enabled>false</enabled>
-          <name>yad-runner</name>
+          <name>lxqt-runner</name>
         </startupnotify>
-        <command>yad-runner</command>
+        <command>lxqt-runner</command>
       </action>
     </keybind>
     <keybind key="S-C-A-j">
