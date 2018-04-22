@@ -243,8 +243,6 @@ tmux_conf_copy_to_os_clipboard=true
 
 # -- user customizations -------------------------------------------------------
 # this is the place to override or undo settings
-# disable setting title
-set -g set-titles off
 
 # bigger and faster
 set -g history-limit 50000
@@ -259,9 +257,9 @@ set -g mouse on
 #   really you should export VISUAL or EDITOR environment variable, see manual
 set -g status-keys vi
 set -g mode-keys vi
-unbind C-c
-run -b 'tmux bind -t vi-copy C-c copy-selection 2> /dev/null || true'
-run -b 'tmux bind -T copy-mode-vi C-c send -X copy-selection-and-cancel 2> /dev/null || true'
+unbind C-S-c
+run -b 'tmux bind -t vi-copy C-S-c copy-selection 2> /dev/null || true'
+run -b 'tmux bind -T copy-mode-vi C-S-c send -X copy-selection-and-cancel 2> /dev/null || true'
 bind o run "xdg-open $(xclip -selection clipboard -o)"
 
 # force emacs mode
@@ -283,8 +281,12 @@ bind C-a send-prefix
 run-shell ~/.tmux/plugins/tmux-resurrect/resurrect.tmux
 # - tmux-resurrect options -
 set -g @resurrect-processes 'false'
+set -g @scroll-speed-num-lines-per-scroll "3"
 # -- tmux-better-mouse-mode - faster scrolling, better mouse behavior --
 # https://github.com/NHDaly/tmux-better-mouse-mode.git
 run-shell ~/.tmux/plugins/tmux-better-mouse-mode/scroll_copy_mode.tmux
 # - tmux-better-mouse-mode options -
 set -g @scroll-without-changing-pane "on"
+set -g set-titles off
+set -g @emulate-scroll-for-no-mouse-alternate-buffer "off"
+unbind -T copy-mode-vi MouseDragEnd1Pane
