@@ -303,14 +303,14 @@ function zypstart() {
     esac
 }
 
-if [ "$1" = "-R" ] || [ "$1" = "--root" ]; then
+if [ "$1" = "-S" ] || [ "$1" = "--skip-check" ]; then
     shift
 # elif [ "$ZYPALLOWROOT" = "TRUE" ]; then
 #     sleep 0
 elif [ $EUID -eq 0 ]; then
     echo "It is not recommended to run 'zyp' as root."
     echo "'zyp' will automatically escalate privileges when necessary."
-    echo "Run 'zyp --root' to bypass this check."
+    echo "Run 'zyp --skip-check' or 'zyp -S' to bypass this check."
     exit 1
 fi
 
