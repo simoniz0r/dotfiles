@@ -228,6 +228,9 @@ DisabledSemiTransparent=true
 DisabledValue=1
 Size=22
 
+[PreviewSettings]
+MaximumRemoteSize=0
+
 [SmallIcons]
 ActiveColor=169,156,255
 ActiveColor2=0,0,0
