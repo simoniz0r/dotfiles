@@ -35,6 +35,7 @@ function askquestion() {
 
 # function to search for packages
 function searchpackages() {
+    # get distro version from /etc/os-release and only search for packages for that distro
     . /etc/os-release
     local DISTRO="$(echo $NAME | cut -f2 -d' ')"
     case "$DISTRO" in
@@ -47,13 +48,15 @@ function searchpackages() {
     esac
     [ ! -z "$SEARCH_RESULTS" ] && echo -e "$SEARCH_RESULTS" || echo "null"
 }
-
+# function that searches for packages
 function searchstart() {
     case "$1" in
+        # skip using repos in list
         -O|--osc|--obs|--OBS)
             shift
             sleep 0
             ;;
+        # only send -s and package searches to osc; everything else goes to zypper and exits
         -s|[a-z]*|[A-Z]*|[0-9]*)
             zypper se "$@"
             local ZYPPER_EXIT=$?
@@ -67,6 +70,7 @@ function searchstart() {
     esac
     echo "openSUSE Build Service results:"
     echo
+    # run searchpackages function and set it as SEARCH_RESULTS variable
     local SEARCH_RESULTS="$(searchpackages "$@")"
     case "$SEARCH_RESULTS" in
         null)
@@ -75,26 +79,28 @@ function searchstart() {
             ;;
         *)
             LINE_LENGTH=0
+            # for loop to detect length of project name to set spacing
             for line in $SEARCH_RESULTS; do
                 NEW_LINE_LENGTH=$(echo $line | rev | cut -f4- -d'/' | rev | wc -m)
                 [ $NEW_LINE_LENGTH -gt $LINE_LENGTH ] && LINE_LENGTH=$(($NEW_LINE_LENGTH+2))
             done
             printf "%-11s %-${LINE_LENGTH}s %-12s %s\n" "Version" "Project" "Repo" "Package"
             printf "%-11s %-${LINE_LENGTH}s %-12s %s\n" "-------" "-------" "----" "-------"
+            # for loop that outputs results from osc in a sorted list
             for result in $SEARCH_RESULTS; do
                 printf "%-12s %-${LINE_LENGTH}s %-12s %s\n" "|$(echo $result | rev | cut -f1 -d'/' | cut -f2 -d'-' | rev | cut -c-10)" \
                 "$(echo $result | rev | cut -f4- -d'/' | rev)" \
                 "$(echo $result | rev | cut -f3 -d'/' | rev | cut -f2 -d'_')" "$(echo $result | rev | cut -f1 -d'/' | cut -f3- -d'-' | rev)" >> /tmp/zypresults
             done
             echo "$(cat /tmp/zypresults | sort -fbdir -t\|)" > /tmp/zypresults
-            # echo "$(awk "BEGIN l = $LINE_LENGTH { printf "%-12s %-" l "s %-12s %s\n",$1,$2,$3,$4; }" /tmp/zypresults)" > /tmp/zypresults
             cat /tmp/zypresults | cut -f2 -d'|'
             ;;
     esac
 }
-
+# function that displays a list of packages for install from OBS repos if none are available in repo list
 function installstart() {
     case "$1" in
+        # skip using repos in list
         -O|--osc|--obs|--OBS)
             shift
             case "$1" in
@@ -106,6 +112,7 @@ function installstart() {
             esac
             sleep 0
             ;;
+        # set priority for repo when adding
         -p|--priority)
             shift
             export REPO_PRIORITY=$1
@@ -115,6 +122,7 @@ function installstart() {
             sudo zypper in "$@" 
             ZYPPER_EXIT=$?
             case $ZYPPER_EXIT in
+                # if zypper exits 104, package wasn't found, so search with osc
                 104)
                     echo "Package not found in repo list; searching with osc..."
                     echo
@@ -125,34 +133,43 @@ function installstart() {
             esac
             ;;
     esac
+    # set priority to 100 by default
     [ -z "$REPO_PRIORITY" ] && export REPO_PRIORITY=100
+    # run searchpackages function and send results to /tmp/zypsearch
     searchpackages "$@" > /tmp/zypsearch 2>&1
     if [ ! "$(cat /tmp/zypsearch)" = "null" ]; then
         local START_NUM=11
         local LINE_LENGTH=0
+        # for loop to detect length of project name to set spacing
         for line in $(cat /tmp/zypsearch); do
             NEW_LINE_LENGTH=$(echo $line | rev | cut -f4- -d'/' | rev | wc -m)
             [ $NEW_LINE_LENGTH -gt $LINE_LENGTH ] && LINE_LENGTH=$(($NEW_LINE_LENGTH+2))
         done
+        # for loop that outputs results from osc in a sorted list to /tmp/zypresults
         for result in $(cat /tmp/zypsearch); do
             printf "%-14s %-${LINE_LENGTH}s %-12s %s\n" "$START_NUM|$(echo $result | rev | cut -f1 -d'/' | cut -f2 -d'-' | rev | cut -c-10)" \
             "$(echo $result | rev | cut -f4- -d'/' | rev)" \
             "$(echo $result | rev | cut -f3 -d'/' | rev | cut -f2 -d'_')" "$(echo $result | rev | cut -f1 -d'/' | cut -f3- -d'-' | rev)" >> /tmp/zypresults
             local START_NUM=$(($START_NUM+1))
         done
+        # sort based on version number
         echo "$(cat /tmp/zypresults | sort -fbdir -t\| -k2 | tr ' ' '%')" > /tmp/zypresults
+        # ask which package user wants to install
         askquestion "Select a package to install or press ENTER to exit:" "$(printf "%-14s %-${LINE_LENGTH}s %-12s %s\n" \
         " Version" " Project" " Repo" " Package")\n$(printf "%-14s %-${LINE_LENGTH}s %-12s %s\n" " -------" " -------" " ----" " -------")" \
         $(cat /tmp/zypresults | cut -f2 -d'|' | tr '\n' ' ')
+        # get selected package based on number input from function above by using sed to select chosen row
         SELECTED_RESULT="$(sed "${SELECTED_OPTION}q;d" /tmp/zypresults | cut -f1 -d'|')"
         SELECTED_RESULT=$(($SELECTED_RESULT-10))
         SELECTED_PACKAGE="$(sed "${SELECTED_RESULT}q;d" /tmp/zypsearch)"
         [ -z "$SELECTED_PACKAGE" ] && exit 0
+        # output description of package from osc ymp data
         echo "Description:"
-        local API_PACKAGE="$(echo $SELECTED_PACKAGE | sed 's%:/%:%g')"
-        echo -e "$(osc api /published/$API_PACKAGE?view=ymp | tac | awk '/<\/metapackage/,/<\/repositories>/' | awk '/<\/description>/,/<description>/' | cut -f2 -d'>' | cut -f1 -d'<' | tac)\n"
         echo "Selection:"
         echo -e "$SELECTED_PACKAGE\n"
+        local API_PACKAGE="$(echo $SELECTED_PACKAGE | sed 's%:/%:%g')"
+        echo -e "$(osc api /published/$API_PACKAGE?view=ymp | tac | awk '/<\/metapackage/,/<\/repositories>/' | awk '/<\/description>/,/<description>/' | cut -f2 -d'>' | cut -f1 -d'<' | tac)\n"
+        # ask if package should be installed and run addobsrepo function if anything other than no chosen
         read -p "$(tput bold)Add repository and install package? [y/n] (y):$(tput sgr0) " INSTALL_ANSWER
         echo
         case $INSTALL_ANSWER in
@@ -168,7 +185,8 @@ function installstart() {
         exit 104
     fi
 }
-
+# function that checks if package is installed then checks if repo is in list
+# if repo is not in list, repo is added with default priority of 100
 function addobsrepo() {
     local PACKAGE="$(echo $1 | rev | cut -f1 -d'/' | cut -f2- -d'-' | rev)"
     local REPO_URL="http://download.opensuse.org/repositories/$(echo $1 | rev | cut -f3- -d'/' | rev)"
@@ -197,7 +215,7 @@ function addobsrepo() {
         esac
     fi
 }
-
+# function that installs package and then runs askremove function if SKIP_REPOREM=FALSE
 function installpackage() {
     local SKIP_REPOREM="$1"
     local REPO_NAME="$2"
@@ -213,7 +231,7 @@ function installpackage() {
             ;;
     esac
 }
-
+# function that asks if repo should be removed after install if it wasn't already in list
 function askremoverepo() {
     local REPO_NAME="$1"
     local ZYPPER_EXIT=$2
@@ -230,7 +248,17 @@ function askremoverepo() {
             ;;
     esac
 }
-
+# function to display zyp's help
+function zyphelp() {
+    printf '%s\n' "
+     Subarguments provided by zyp:
+         --obs, -O              Search for or install only packages from openSUSE Build Service repos.
+         --local, -L            Search for or install only packages from repos already in list.
+         --priority, -P         Set the priority for the repository when installing packages from OBS repos.
+                                (default is 100)
+    "
+}
+# function to handle argument input
 function zypstart() {
     case "$1" in
         se|search)
@@ -248,7 +276,16 @@ function zypstart() {
         ps)
             sudo zypper ps -s
             ;;
+        help|-h|--help)
+            zypper help
+            zyphelp
+            ;;
         *)
+            if [ -z "$1" ]; then
+                zypper help
+                zyphelp
+                exit 0
+            fi
             zypper "$@" 2> /tmp/zyperrors
             local ZYPPER_EXIT=$?
             case $ZYPPER_EXIT in
