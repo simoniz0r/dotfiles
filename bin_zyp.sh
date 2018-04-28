@@ -153,14 +153,14 @@ function installstart() {
         echo -e "$(osc api /published/$API_PACKAGE?view=ymp | tac | awk '/<\/metapackage/,/<\/repositories>/' | awk '/<\/description>/,/<description>/' | cut -f2 -d'>' | cut -f1 -d'<' | tac)\n"
         echo "Selection:"
         echo -e "$SELECTED_PACKAGE\n"
-        read -p "Add repository and install package? y/n " INSTALL_ANSWER
+        read -p "$(tput bold)Add repository and install package? [y/n] (y):$(tput sgr0) " INSTALL_ANSWER
         echo
         case $INSTALL_ANSWER in
-            y|Y)
-                addobsrepo "$SELECTED_PACKAGE"
+            N*|n*)
+                exit 0
                 ;;
             *)
-                exit 0
+                addobsrepo "$SELECTED_PACKAGE"
                 ;;
         esac
     else
@@ -217,15 +217,15 @@ function installpackage() {
 function askremoverepo() {
     local REPO_NAME="$1"
     local ZYPPER_EXIT=$2
-    read -p "Keep '$REPO_NAME' in the list of repositories? y/n " ASKREMOVE_ANSWER
+    read -p "$(tput bold)Keep '$REPO_NAME' in the list of repositories? [y/n] (y):$(tput sgr0) " ASKREMOVE_ANSWER
     case "$ASKREMOVE_ANSWER" in
-        Y|y)
-            exit $ZYPPER_EXIT
-            ;;
-        *)
+        N*|n*)
             unset ZYPPER_EXIT
             sudo zypper rr "$REPO_NAME"
             local ZYPPER_EXIT=$?
+            exit $ZYPPER_EXIT
+            ;;
+        *)
             exit $ZYPPER_EXIT
             ;;
     esac
