@@ -15,6 +15,7 @@ img.emoji { height: 35px !important; width: 35px !important; }
 /* change margins on chat and channel list to remove wasted space */
 .scroller-NXV0-d { margin-top: 15% !important; margin-right: 0px !important; }
 .messages-wrapper { margin-left: -20px !important; }
+/* make avatars smaller */
 .avatar-large {
     background-size: 35px 35px;
     height: 35px;
