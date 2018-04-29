@@ -7,12 +7,9 @@ remove username and account # from status display below channel list */
 .containerDefault-3GGEv_, video[class*="spacing-"], div[class*="accountDetails-"] { display: none !important; }
 /* change channel list padding so it takes up less room */
 div[class*="containerDefault-"] { padding: 2px; }
-/* change font size, image size, and emoji size to be larger so they can be read easily when zoom level is at lowest
-.markup, textarea[class*="textAreaEnabled-"] { font-size: 130% !important; }
-textarea[class*="textAreaEnabled-"] { height: 40px !important; }
-.theme-dark .chat form .typing { font-size: 90% !important; }
-.message-group h2 .timestamp { font-size: 85% !important; } */
+/* change username size to be smaller */
 .message-group h2 strong { font-size: 80% !important; font-weight: 600 !important; }
+/* change emojis to be larger */
 img.emoji.jumboable { height: 50px !important; width: 50px !important; }
 img.emoji { height: 35px !important; width: 35px !important; }
 /* change margins on chat and channel list to remove wasted space */
