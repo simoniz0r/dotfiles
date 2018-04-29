@@ -164,9 +164,9 @@ function installstart() {
         SELECTED_PACKAGE="$(sed "${SELECTED_RESULT}q;d" /tmp/zypsearch)"
         [ -z "$SELECTED_PACKAGE" ] && exit 0
         # output description of package from osc ymp data
-        echo "Description:"
         echo "Selection:"
         echo -e "$SELECTED_PACKAGE\n"
+        echo "Description:"
         local API_PACKAGE="$(echo $SELECTED_PACKAGE | sed 's%:/%:%g')"
         echo -e "$(osc api /published/$API_PACKAGE?view=ymp | tac | awk '/<\/metapackage/,/<\/repositories>/' | awk '/<\/description>/,/<description>/' | cut -f2 -d'>' | cut -f1 -d'<' | tac)\n"
         # ask if package should be installed and run addobsrepo function if anything other than no chosen
