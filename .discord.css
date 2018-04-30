@@ -27,9 +27,9 @@ img.emoji { height: 35px !important; width: 35px !important; }
 
 :root {
   --accent: #216590;
-  --dark-highlight: #232629;
-  --dark-primary: #1D1F23;
-  --dark-secondary: #1D1F23;
+  --dark-highlight: #1D1F23;
+  --dark-primary: #232629;
+  --dark-secondary: #232629;
   --light-dark-text: #2e3136;
   --light-highlight: #216590;
   --light-primary: #cccecf;
