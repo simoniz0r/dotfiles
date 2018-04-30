@@ -1,5 +1,8 @@
 #!/bin/bash
-# A wrapper script for 'zypper' and 'osc' that adds install and search for openSUSE Build Sevice packages
+# Author: simonizor
+# License: MIT
+# Dependencies: zypper, osc
+# Description: A wrapper script for 'zypper' and 'osc' that adds install and search for openSUSE Build Sevice packages
 
 # Function to ask questions.  Automatically detects number of options inputted.
 # Detects if user inputs valid option and passes text of selected option on as SELECTED_OPTION variable
