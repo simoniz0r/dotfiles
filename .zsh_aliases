@@ -39,8 +39,6 @@ alias beautiful-load='beautifuldiscord --css /home/simonizor/github/DiscordTheme
 alias passman='$HOME/github/gpgpassman/gpgpassman.sh'
 alias wgetspeed='$HOME/github/scripts/speedtest/speedtest.sh'
 alias wttr-refresh='clr; $HOME/github/scripts/misc/wttrrefresh.sh'
-alias zyp='$HOME/bin/zyp'
-alias zypper='$HOME/bin/zyp'
 alias dir='dir'
 unalias dir
 
