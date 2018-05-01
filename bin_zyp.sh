@@ -204,6 +204,7 @@ function addobsrepo() {
     if zypper lr -U | grep -qm1 "$REPO_URL"; then
         echo "$REPO_URL is already in the list of repositories."
         SKIP_REPOREM="TRUE"
+        installpackage "$SKIP_REPOREM" "$REPO_NAME" "$PACKAGE"
     else
         SKIP_REPOREM="FALSE"
         sudo zypper ar -f -p $REPO_PRIORITY -n "$REPO_NAME/$REPO_RELEASE" ${REPO_URL}/${PROJECT_NAME}.repo
