@@ -5,7 +5,7 @@
 function yadlockscreen() {
     unset PASSWORD
     (sleep 1 && wmctrl -F -a "yadlock" -b add,above) &
-    PASSWORD="$(yad --entry --hide-text --title="yadlock" --undecorated --text="Enter password for $USER" --no-escape --borders=15 --button=gtk-ok:0 --center --on-top --width=300 --height=100)"
+    PASSWORD="$(yad --entry --hide-text --title="yadlock" --undecorated --text="Enter password for $USER" --no-escape --borders=15 --button=gtk-ok:0 --center --width=300 --height=100)"
     yadpasscheck "$PASSWORD" "$1"
 }
 
@@ -21,7 +21,7 @@ function yadpasscheck() {
 }
 
 (sleep 1 && wmctrl -F -a "fullscreenimage" -b add,above) &
-yad --image="$HOME/.yadlock.png" --title="fullscreenimage" --no-focus --no-escape --undecorated --on-top --skip-taskbar --no-buttons --fullscreen & 
+yad --image="$HOME/.yadlock.png" --title="fullscreenimage" --no-focus --no-escape --undecorated --skip-taskbar --no-buttons --fullscreen & 
 YADLOCK_PID=$!
 sleep 2
 yadlockscreen "$YADLOCK_PID"
