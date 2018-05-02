@@ -38,6 +38,17 @@ img.emoji { height: 35px !important; width: 35px !important; }
 
 /* Discord_Theme by AlexFlipnote */
 
+.theme-dark .themed-popout div[class*="header-"] {
+  background-color: var(--dark-highlight) !important; }
+.theme-dark .themed-popout div[class*="footer-"] {
+  background-color: var(--dark-secondary) !important; }
+.theme-dark .themed-popout .body {
+  background-color: var(--dark-primary) !important; }
+.theme-dark .themed-popout .body .friend {
+  background: transparent; }
+.theme-dark .themed-popout .body .friend.selected, .theme-dark .themed-popout .body .friend:hover {
+  background-color: var(--dark-highlight) !important; }
+
 .theme-dark .chat .title-wrap {
   background-color: var(--dark-highlight) !important;
   border: 0; }
@@ -229,7 +240,7 @@ div[class*="autocomplete-"] li .active {
   padding-left: 10px;
   padding-right: 10px;
   position: absolute;
-  top: -27px;
+  top: -26px;
   width: auto; }
 
 .theme-dark #autocomplete-popout .row.selected, .theme-dark #autocomplete-popout #autocomplete-popout .row:hover {
