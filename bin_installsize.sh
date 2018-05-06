@@ -1,0 +1,15 @@
+#!/bin/bash
+
+TOTAL_SIZE=0
+for directory in $(dir -Cw1 / | grep -v 'proc' | grep -v 'tmp' | grep -v 'run' | grep -v 'home' | grep -v 'media' | grep -v 'snap'); do
+    DIR_SIZE=$(sudo du -b --max-depth=0 "/$directory" | cut -f1 -d'/' | tr -d '[:blank:]')
+    TOTAL_SIZE=$(($TOTAL_SIZE+$DIR_SIZE))
+done
+KB_SIZE=$(($TOTAL_SIZE/1024))
+MB_SIZE=$(($KB_SIZE/1024))
+GB_SIZE=$(($MB_SIZE/1024))
+printf '%s\n' "Total Install Size:
+Bytes:      $TOTAL_SIZE
+KBs:        $KB_SIZE
+MBs:        $MB_SIZE
+GBs:        $GB_SIZE"

@@ -26,17 +26,17 @@ img.emoji { height: 35px !important; width: 35px !important; }
 /* SET THEME COLORS */
 
 :root {
-  --accent: #216590;
+  --accent: #2c8ebe; /* 216590 */
   --dark-highlight: #1D1F23;
   --dark-primary: #232629;
   --dark-secondary: #232629;
   --light-dark-text: #2e3136;
-  --light-highlight: #216590;
+  --light-highlight: #2c8ebe; /* 216590 */
   --light-primary: #cccecf;
   --light-secondary: #6b6968;
-  --notif: #2c8ebe; }
+  --notif: #216590; } /* 2c8ebe */
 
-/* Discord_Theme by AlexFlipnote */
+/* Highly customized  Discord_Theme by AlexFlipnote https://github.com/AlexFlipnote/Discord_Theme */
 
 .theme-dark .themed-popout div[class*="header-"] {
   background-color: var(--dark-highlight) !important; }

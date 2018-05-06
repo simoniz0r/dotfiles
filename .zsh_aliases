@@ -34,7 +34,8 @@ alias xclip-i='xclip -selection primary -i'
 alias xclip-o='xclip -selection primary -o'
 alias gspm='$HOME/github/spm/spm'
 alias lyrics='tput reset; $HOME/github/scripts/misc/lyrics.sh'
-alias lyrics-playing='tput reset; $HOME/github/scripts/misc/lyrics.sh "$(mpc -f %artist% | head -n 1)" "$(mpc -f %title% | head -n 1)"'
+alias lyrics-playing="jq -r '.songLyrics' ~/.config/Google\ Play\ Music\ Desktop\ Player/json_store/playback.json"
+# alias lyrics-playing='tput reset; $HOME/github/scripts/misc/lyrics.sh "$(mpc -f %artist% | head -n 1)" "$(mpc -f %title% | head -n 1)"'
 alias beautiful-load='beautifuldiscord --css /home/simonizor/github/DiscordThemes/compact-discord/compact-discord.css'
 alias passman='$HOME/github/gpgpassman/gpgpassman.sh'
 alias wgetspeed='$HOME/github/scripts/speedtest/speedtest.sh'
@@ -89,8 +90,15 @@ calc () {
     echo "scale=$SCALE; $INPUT" | bc
 }
 
+# check Discord client versions
+discord-versions () {
+    echo "Canary: $(curl -sSL -I -X GET "https://discordapp.com/api/download/canary?platform=linux&format=tar.gz" | grep -im1 '^location:' | rev | cut -f1 -d'/' | rev)"
+    echo "PTB: $(curl -sSL -I -X GET "https://discordapp.com/api/download/ptb?platform=linux&format=tar.gz" | grep -im1 '^location:' | rev | cut -f1 -d'/' | rev)"
+    echo "Stable: $(curl -sSL -I -X GET "https://discordapp.com/api/download?platform=linux&format=tar.gz" | grep -im1 '^location:' | rev | cut -f1 -d'/' | rev)"    
+}
+
 # List size of directories
-dirsize () { du -h --max-depth=1 "$@" | sort -h -r }
+dirsize () { du -h --max-depth=0 "$@" | sort -h -r }
 dirsize-a () { du -h "$@" | sort -h -r }
 
 discord-status () { curl -s "https://status.discordapp.com/" | grep 'class="name"\|class="component-status"' -A 1 | grep -v '<\|\-' | sed '1~2s%      %%g;0~2s%      %-%g' }
@@ -156,6 +164,8 @@ remote-exec () { bash -c "$(wget --quiet $@ -O -)" }
 
 # Search for and play a youtube video
 mpvyt () { mpv ytdl://ytsearch10:"$*" }
+
+# show latest builds from openqa.opensuse.org
 
 # Use rsstail to view feeds easily
 rss () {

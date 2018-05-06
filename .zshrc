@@ -118,12 +118,6 @@ if [ -f ~/nohup.out ]; then
     rm ~/nohup.out
 fi
 
-if [ -f /home/simonizor/.config/spm/spm.comp ]; then
-    source /home/simonizor/.config/spm/spm.comp
-    compdef _spm spm
-fi
-
-
 if [ -f /home/simonizor/.todo/.todo.comp ]; then
     source /home/simonizor/.todo/.todo.comp
     compdef _todo todo
@@ -134,11 +128,12 @@ if [ -f /home/simonizor/.config/appimagedl/appimagedl-completion.sh ]; then
     compdef _appimagedlzsh appimagedl
 fi
 
+compdef spm=spm2
 compdef zyp=zypper
 
 if [[ ! "$TTY" =~ "/dev/tty" ]]; then
     case $(ps -p $(ps -p $$ -o ppid=) o args=) in
-        tmux*|*vscode*|*xterm*)
+        tmux*|*vscode*|*xterm*|*kdevelop*)
             sleep 0
             ;;
         *)
