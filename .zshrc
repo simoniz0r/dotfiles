@@ -111,12 +111,17 @@ fi
 
 # Change/remove these to match your settings
 export TERM=xterm-256color
-export EDITOR=$HOME/bin/micro
+export EDITOR=/usr/bin/micro
 export MPD_HOST=127.0.0.1
 
 if [ -f ~/nohup.out ]; then
     rm ~/nohup.out
 fi
+
+# if [ -f /home/simonizor/.config/spm/spm.comp ]; then
+#     source /home/simonizor/.config/spm/spm.comp
+#     compdef _spm spm
+# fi
 
 if [ -f /home/simonizor/.todo/.todo.comp ]; then
     source /home/simonizor/.todo/.todo.comp

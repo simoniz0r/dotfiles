@@ -455,7 +455,7 @@
         <command>yadshot -s</command>
       </action>
     </keybind>
-    <!-- <keybind key="XF86AudioNext">
+    <keybind key="XF86AudioNext">
       <action name="Execute">
         <startupnotify>
           <enabled>false</enabled>
@@ -490,7 +490,7 @@
         </startupnotify>
         <command>mpc stop</command>
       </action>
-    </keybind> -->
+    </keybind>
   </keyboard>
   <mouse>
     <dragThreshold>3</dragThreshold>
