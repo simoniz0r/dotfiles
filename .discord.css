@@ -36,7 +36,10 @@ img.emoji { height: 35px !important; width: 35px !important; }
   --light-secondary: #6b6968;
   --notif: #216590; } /* 2c8ebe */
 
-/* Highly customized  Discord_Theme by AlexFlipnote https://github.com/AlexFlipnote/Discord_Theme */
+/* Highly customized Discord_Theme by AlexFlipnote https://github.com/AlexFlipnote/Discord_Theme */
+
+div[class*="modal-"] div[class*="header-"] + div[class*="scrollerWrap-"] div[class*="message-"] {
+  background: transparent !important; }
 
 .theme-dark .themed-popout div[class*="header-"] {
   background-color: var(--dark-highlight) !important; }
