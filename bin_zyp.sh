@@ -87,13 +87,13 @@ function searchstart() {
                 NEW_LINE_LENGTH=$(echo $line | rev | cut -f4- -d'/' | rev | wc -m)
                 [ $NEW_LINE_LENGTH -gt $LINE_LENGTH ] && LINE_LENGTH=$(($NEW_LINE_LENGTH+2))
             done
-            printf "%-11s %-${LINE_LENGTH}s %-12s %s\n" "Version" "Project" "Repo" "Package"
-            printf "%-11s %-${LINE_LENGTH}s %-12s %s\n" "-------" "-------" "----" "-------"
+            printf "%-11s %-${LINE_LENGTH}s %-20s %s\n" "Version" "Project" "Repo" "Package"
+            printf "%-11s %-${LINE_LENGTH}s %-20s %s\n" "-------" "-------" "----" "-------"
             # for loop that outputs results from osc in a sorted list
             for result in $SEARCH_RESULTS; do
-                printf "%-12s %-${LINE_LENGTH}s %-12s %s\n" "|$(echo $result | rev | cut -f1 -d'/' | cut -f2 -d'-' | rev | cut -c-10)" \
+                printf "%-12s %-${LINE_LENGTH}s %-20s %s\n" "|$(echo $result | rev | cut -f1 -d'/' | cut -f2 -d'-' | rev | cut -c-10)" \
                 "$(echo $result | rev | cut -f4- -d'/' | rev)" \
-                "$(echo $result | rev | cut -f3 -d'/' | rev | cut -f2 -d'_')" "$(echo $result | rev | cut -f1 -d'/' | cut -f3- -d'-' | rev)" >> /tmp/zypresults
+                "$(echo $result | rev | cut -f3 -d'/' | rev | cut -f2- -d'_')" "$(echo $result | rev | cut -f1 -d'/' | cut -f3- -d'-' | rev)" >> /tmp/zypresults
             done
             echo "$(cat /tmp/zypresults | sort -fbdir -t\|)" > /tmp/zypresults
             cat /tmp/zypresults | cut -f2 -d'|'
@@ -150,16 +150,16 @@ function installstart() {
         done
         # for loop that outputs results from osc in a sorted list to /tmp/zypresults
         for result in $(cat /tmp/zypsearch); do
-            printf "%-14s %-${LINE_LENGTH}s %-12s %s\n" "$START_NUM|$(echo $result | rev | cut -f1 -d'/' | cut -f2 -d'-' | rev | cut -c-10)" \
+            printf "%-14s %-${LINE_LENGTH}s %-20s %s\n" "$START_NUM|$(echo $result | rev | cut -f1 -d'/' | cut -f2 -d'-' | rev | cut -c-10)" \
             "$(echo $result | rev | cut -f4- -d'/' | rev)" \
-            "$(echo $result | rev | cut -f3 -d'/' | rev | cut -f2 -d'_')" "$(echo $result | rev | cut -f1 -d'/' | cut -f3- -d'-' | rev)" >> /tmp/zypresults
+            "$(echo $result | rev | cut -f3 -d'/' | rev | cut -f2- -d'_')" "$(echo $result | rev | cut -f1 -d'/' | cut -f3- -d'-' | rev)" >> /tmp/zypresults
             local START_NUM=$(($START_NUM+1))
         done
         # sort based on version number
         echo "$(cat /tmp/zypresults | sort -fbdir -t\| -k2 | tr ' ' '%')" > /tmp/zypresults
         # ask which package user wants to install
-        askquestion "Select a package to install or press ENTER to exit:" "$(printf "%-14s %-${LINE_LENGTH}s %-12s %s\n" \
-        " Version" " Project" " Repo" " Package")\n$(printf "%-14s %-${LINE_LENGTH}s %-12s %s\n" " -------" " -------" " ----" " -------")" \
+        askquestion "Select a package to install or press ENTER to exit:" "$(printf "%-14s %-${LINE_LENGTH}s %-20s %s\n" \
+        " Version" " Project" " Repo" " Package")\n$(printf "%-14s %-${LINE_LENGTH}s %-20s %s\n" " -------" " -------" " ----" " -------")" \
         $(cat /tmp/zypresults | cut -f2 -d'|' | tr '\n' ' ')
         # get selected package based on number input from function above by using sed to select chosen row
         SELECTED_RESULT="$(sed "${SELECTED_OPTION}q;d" /tmp/zypresults | cut -f1 -d'|')"
