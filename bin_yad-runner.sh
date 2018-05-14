@@ -12,7 +12,7 @@ done | sort -u | grep -v "$(cat ~/.cache/yad-runner.log)")"
 APP_LIST="$(echo -e "$APP_LIST" | tr '\n' '!')"
 
 RUN_CMD="$(yad --align="center" --title="yad-runner" --window-icon="emblem-link" --close-on-unfocus --on-top --center \
---no-buttons --separator="" --undecorated --width=300 --form --field="":CE "$APP_LIST" $@)"
+--no-buttons --separator="" --undecorated --width=300 --height=10 --form --field="":CE "$APP_LIST" $@)"
 
 if [ -n "$RUN_CMD" ]; then
     rm -rf ~/.cache/yad-runner-out.log
