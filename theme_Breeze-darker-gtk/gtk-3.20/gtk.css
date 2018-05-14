@@ -340,14 +340,14 @@ button.osd {
   button:checked, notebook > header > tabs > arrow.osd:checked {
     color: #bbbbbc;
     border-color: #216590;
-    background-image: linear-gradient(to bottom, #45b1ea, #25a4e6);
+    background-image: linear-gradient(to bottom, #216590, #216590);
     transition-duration: 50ms; }
     notebook > header > tabs > arrow:active:hover, popover.background.touch-selection button:active:hover, popover.background.magnifier button:active:hover,
     button:active:hover, notebook > header > tabs > arrow:checked:hover, popover.background.touch-selection button:checked:hover, popover.background.magnifier button:checked:hover,
     button:checked:hover {
       color: #bbbbbc;
       border-color: #216590;
-      background-image: linear-gradient(to bottom, #45b1ea, #25a4e6); }
+      background-image: linear-gradient(to bottom, #216590, #216590); }
   notebook > header > tabs > arrow:backdrop, popover.background.touch-selection button:backdrop, popover.background.magnifier button:backdrop,
   button:backdrop, notebook > header > tabs > arrow.osd:backdrop {
     color: #bbbbbc;
@@ -359,7 +359,7 @@ button.osd {
     button:backdrop:checked {
       color: #bbbbbc;
       border-color: #216590;
-      background-image: linear-gradient(to bottom, #45b1ea, #25a4e6); }
+      background-image: linear-gradient(to bottom, #216590, #216590); }
     notebook > header > tabs > arrow:backdrop:disabled, popover.background.touch-selection button:backdrop:disabled, popover.background.magnifier button:backdrop:disabled,
     button:backdrop:disabled {
       color: rgba(216, 218, 221, 0.35);
@@ -475,7 +475,7 @@ button {
   -gtk-icon-shadow: none;
   color: #bbbbbc;
   border-color: #216590;
-  background-image: linear-gradient(to bottom, #40afe9, #35abe8); }
+  background-image: linear-gradient(to bottom, #216590, #216590); }
   popover.background.touch-selection button.suggested-action.flat, popover.background.magnifier button.suggested-action.flat, popover.background.touch-selection button.suggested-action.osd button.flat, popover.background.magnifier button.suggested-action.osd button.flat,
   button.suggested-action.flat,
   button.suggested-action.osd popover.background.touch-selection button.flat,
@@ -527,7 +527,7 @@ button {
   button:checked {
     color: white;
     border-color: #216590;
-    background-image: linear-gradient(to bottom, #45b1ea, #25a4e6); }
+    background-image: linear-gradient(to bottom, #216590, #216590); }
   popover.background.touch-selection button.suggested-action:backdrop, popover.background.magnifier button.suggested-action:backdrop, popover.background.touch-selection button.suggested-action.flat:backdrop, popover.background.magnifier button.suggested-action.flat:backdrop, popover.background.touch-selection button.suggested-action.osd button:backdrop, popover.background.magnifier button.suggested-action.osd button:backdrop, popover.background.touch-selection button.suggested-action.osd button.flat:backdrop, popover.background.magnifier button.suggested-action.osd button.flat:backdrop,
   button.suggested-action:backdrop,
   button.suggested-action.flat:backdrop,
@@ -549,7 +549,7 @@ button {
   button.flat:backdrop {
     color: white;
     border-color: #31363b;
-    background-image: linear-gradient(to bottom, #40afe9, #35abe8); }
+    background-image: linear-gradient(to bottom, #216590, #216590); }
     popover.background.touch-selection button.suggested-action:backdrop:active, popover.background.magnifier button.suggested-action:backdrop:active, popover.background.touch-selection button.suggested-action:backdrop:checked, popover.background.magnifier button.suggested-action:backdrop:checked, popover.background.touch-selection button.suggested-action.flat:backdrop:active, popover.background.magnifier button.suggested-action.flat:backdrop:active, popover.background.touch-selection button.suggested-action.flat:backdrop:checked, popover.background.magnifier button.suggested-action.flat:backdrop:checked, popover.background.touch-selection button.suggested-action.osd button:backdrop:active, popover.background.magnifier button.suggested-action.osd button:backdrop:active, popover.background.touch-selection button.suggested-action.osd button:backdrop:checked, popover.background.magnifier button.suggested-action.osd button:backdrop:checked, popover.background.touch-selection button.suggested-action.osd button.flat:backdrop:active, popover.background.magnifier button.suggested-action.osd button.flat:backdrop:active, popover.background.touch-selection button.suggested-action.osd button.flat:backdrop:checked, popover.background.magnifier button.suggested-action.osd button.flat:backdrop:checked,
     button.suggested-action:backdrop:active,
     button.suggested-action:backdrop:checked,
@@ -589,7 +589,7 @@ button {
     button.flat:backdrop:checked {
       color: white;
       border-color: #216590;
-      background-image: linear-gradient(to bottom, #45b1ea, #25a4e6); }
+      background-image: linear-gradient(to bottom, #216590, #216590); }
     popover.background.touch-selection button.suggested-action:backdrop:disabled, popover.background.magnifier button.suggested-action:backdrop:disabled, popover.background.touch-selection button.suggested-action.flat:backdrop:disabled, popover.background.magnifier button.suggested-action.flat:backdrop:disabled, popover.background.touch-selection button.suggested-action.osd button:backdrop:disabled, popover.background.magnifier button.suggested-action.osd button:backdrop:disabled, popover.background.touch-selection button.suggested-action.osd button.flat:backdrop:disabled, popover.background.magnifier button.suggested-action.osd button.flat:backdrop:disabled,
     button.suggested-action:backdrop:disabled,
     button.suggested-action.flat:backdrop:disabled,
@@ -1469,7 +1469,7 @@ treeview entry.flat, treeview entry {
     .app-notification.frame button:backdrop:checked {
       color: #bbbbbc;
       border-color: #216590;
-      background-image: linear-gradient(to bottom, #45b1ea, #25a4e6); }
+      background-image: linear-gradient(to bottom, #216590, #216590); }
     .app-notification button:disabled, .app-notification button:backdrop:disabled,
     .app-notification.frame button:disabled,
     .app-notification.frame button:backdrop:disabled {
@@ -1883,12 +1883,12 @@ headerbar {
     headerbar button:checked {
       color: #bbbbbc;
       border-color: #216590;
-      background-image: linear-gradient(to bottom, #45b1ea, #25a4e6); }
+      background-image: linear-gradient(to bottom, #216590, #216590); }
       headerbar button:active:hover,
       headerbar button:checked:hover {
         color: #bbbbbc;
         border-color: #216590;
-        background-image: linear-gradient(to bottom, #45b1ea, #25a4e6); }
+        background-image: linear-gradient(to bottom, #216590, #216590); }
       headerbar button:active:backdrop,
       headerbar button:checked:backdrop {
         background-image: none;
