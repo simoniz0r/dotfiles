@@ -170,6 +170,9 @@ mpvyt () { mpv ytdl://ytsearch10:"$*" }
 # Use rsstail to view feeds easily
 rss () {
     case $1 in
+        o*)
+            rsstail -NrHd1plu  https://build.opensuse.org/main/latest_updates.rss
+            ;;
         p*)
             rsstail -NrHd1plu https://www.phoronix.com/rss.php
             ;;
