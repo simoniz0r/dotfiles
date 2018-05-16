@@ -9,7 +9,7 @@ KB_SIZE=$(($TOTAL_SIZE/1024))
 MB_SIZE=$(($KB_SIZE/1024))
 GB_SIZE=$(($MB_SIZE/1024))
 printf '%s\n' "Total Install Size:
-Bytes:      $TOTAL_SIZE
+Bytes:       $TOTAL_SIZE
 KiBs:        $KB_SIZE
 MiBs:        $MB_SIZE
 GiBs:        $GB_SIZE"
