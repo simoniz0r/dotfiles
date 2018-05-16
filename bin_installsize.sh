@@ -1,7 +1,7 @@
 #!/bin/bash
 
 TOTAL_SIZE=0
-for directory in $(dir -Cw1 / | grep -v 'proc' | grep -v 'tmp' | grep -v 'run' | grep -v 'home' | grep -v 'media' | grep -v 'snap'); do
+for directory in $(dir -Cw1 / | grep -v 'proc' | grep -v 'tmp' | grep -v 'run' | grep -v 'home' | grep -v 'media' | grep -v 'snap' | grep -v 'var'); do
     DIR_SIZE=$(sudo du -b --max-depth=0 "/$directory" | cut -f1 -d'/' | tr -d '[:blank:]')
     TOTAL_SIZE=$(($TOTAL_SIZE+$DIR_SIZE))
 done
