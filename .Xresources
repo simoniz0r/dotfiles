@@ -54,8 +54,8 @@ URxvt*background: #232629
 
 ! Set colorscheme
 ! Black
-*VT100*color0: #252525
-*VT100*color8: #263238
+*VT100*color0: #1D1F23
+*VT100*color8: #2D3135
 
 !Red
 *VT100*color1: #a54b4b
@@ -66,11 +66,11 @@ URxvt*background: #232629
 *VT100*color10: #849900
 
 !Yellow
-*VT100*color3: #83653a
-*VT100*color11: #b48800
+*VT100*color3: #836539
+*VT100*color11: #C59B3D
 
 !Blue
-*VT100*color4: #2e8ac3
+*VT100*color4: #216590
 *VT100*color12: #3cb9fc
 
 !Magenta
@@ -78,12 +78,12 @@ URxvt*background: #232629
 *VT100*color13: #ad7fa8
 
 !Cyan
-*VT100*color6: #109c9c
+*VT100*color6: #0F9C9C
 *VT100*color14: #4ed6d6
 
 !White
-*VT100*color7: #727272
-*VT100*color15: #cce0ea
+*VT100*color7: #B6B6B6
+*VT100*color15: #D3D7CF
 
 ! URxvt settings
 URxvt*title: OptiPlex
