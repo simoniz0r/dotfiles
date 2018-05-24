@@ -141,7 +141,7 @@ simoniz0r/Discord-Canary-AppImage
 
 # View latest github release
 gitrelease () {
-    curl -sSL "https://api.github.com/repos/$@/releases" | jq -r '.[0].assets[]'
+    curl -sSL "https://api.github.com/repos/$1/$2/releases" | jq -r ".[$3].assets[]"
 }
 
 # Output Github commits and messages for chosen repo
