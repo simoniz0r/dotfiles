@@ -163,7 +163,7 @@ div[class*="modal-"] div[class*="header-"] + div[class*="scrollerWrap-"] div[cla
 .message-group .edit-message .edit-container-inner .theme-dark div[class*="channelTextAreaEnabled-"] div[class*="inner-"], .message-group .edit-message .edit-container-inner div[class*="channelTextAreaEnabledNoAttach"],
 .message-group .edit-message .edit-container-inner .theme-dark div[class*="channelTextAreaDisabled-"] div[class*="innerDisabled-"], .message-group .edit-message .edit-container-inner div[class*="channelTextAreaEnabled-"] {
   padding-top: 10px; }
-.message-group .edit-message .edit-container-inner .theme-dark div[class*="channelTextAreaEnabled-"] div[class*="inner-"] div[class*="inner-"], .message-group .edit-message .edit-container-inner div[class*="channelTextAreaEnabledNoAttach"] div[class*="inner-"],
+div[class*="inner-"], .message-group .edit-message .edit-container-inner .theme-dark div[class*="channelTextAreaEnabled-"] div[class*="inner-"] div[class*="inner-"], .message-group .edit-message .edit-container-inner div[class*="channelTextAreaEnabledNoAttach"] div[class*="inner-"],
 .message-group .edit-message .edit-container-inner .theme-dark div[class*="channelTextAreaDisabled-"] div[class*="innerDisabled-"] div[class*="inner-"], .message-group .edit-message .edit-container-inner div[class*="channelTextAreaEnabled-"] div[class*="inner-"] {
   background-color: var(--dark-primary) !important;
   border-radius: 5px; }
@@ -297,7 +297,7 @@ div[class*="autocomplete-"] li .active {
 .theme-dark textarea[class*="textArea-"], .theme-dark div[class*="inner-"] {
   background: transparent; }
 
-.theme-dark div[class*="channelTextAreaEnabled-"] div[class*="inner-"], div[class*="channelTextAreaEnabledNoAttach"],
+div[class*="inner-"], .theme-dark div[class*="channelTextAreaEnabled-"] div[class*="inner-"], div[class*="channelTextAreaEnabledNoAttach"],
 .theme-dark div[class*="channelTextAreaDisabled-"] div[class*="innerDisabled-"] {
   background-color: var(--dark-secondary) !important;
   border-radius: 0;
