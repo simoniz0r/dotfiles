@@ -702,7 +702,7 @@ case "$DE" in
     ;;
 
     lxqt)
-    su_lxqt
+    su_lumina
     ;;
 
     lumina)
