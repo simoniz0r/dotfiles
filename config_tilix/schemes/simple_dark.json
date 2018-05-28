@@ -1,5 +1,5 @@
 {
-    "background-color": "#1D1E23",
+    "background-color": "#232629",
     "badge-color": "#FFFFFF",
     "bold-color": "#FFFFFF",
     "comment": "",
@@ -10,7 +10,7 @@
     "highlight-foreground-color": "#FFFFFF",
     "name": "simple_dark",
     "palette": [
-        "#232629",
+        "#1D1E23",
         "#A54B4B",
         "#59934F",
         "#836439",
