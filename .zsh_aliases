@@ -271,3 +271,14 @@ x () {
         echo "'$1' is not a file"
     fi
 }
+
+zyp () {
+    case "$1" in
+        in|rm|dup)
+            /usr/bin/zyp "$@"
+            ;;
+        *)
+            /usr/bin/zyp -q "$@"
+            ;;
+    esac
+}

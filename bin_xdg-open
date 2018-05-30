@@ -937,6 +937,15 @@ open_lumina()
     esac
 }
 
+open_yad()
+{
+    if type yad-open > /dev/null 2>&1; then
+        yad-open "$1"
+    else
+        open_generic "$1"
+    fi
+}
+
 [ x"$1" != x"" ] || exit_failure_syntax
 
 url=
@@ -1022,7 +1031,7 @@ case "$DE" in
     ;;
 
     generic|lxqt)
-    open_lumina "$url"
+    open_yad "$url"
     ;;
     
     lumina)

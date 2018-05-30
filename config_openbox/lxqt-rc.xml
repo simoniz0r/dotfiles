@@ -896,16 +896,6 @@
         <height>1056</height>
       </size>
     </application>
-    <application class="nheko">
-      <position force="yes">
-        <x>1915</x>
-        <y>1065</y>
-      </position>
-      <size>
-        <width>1905</width>
-        <height>1056</height>
-      </size>
-    </application>
     <application class="discord">
       <position force="no">
         <x>946</x>
