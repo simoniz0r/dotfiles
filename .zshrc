@@ -146,3 +146,6 @@ if [[ ! "$TTY" =~ "/dev/tty" ]]; then
             ;;
     esac
 fi
+
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source ~/github/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
