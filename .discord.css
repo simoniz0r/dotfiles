@@ -6,12 +6,12 @@ remove channel categories (channels list looks like it did before)
 remove username and account # from status display below channel list */
 .containerDefault-3GGEv_, video[class*="spacing-"], div[class*="accountDetails-"] { display: none !important; }
 /* change channel list padding so it takes up less room */
-div[class*="containerDefault-"] { padding: 2px; }
+div[class*="containerDefault-"] { padding: 1px; }
 /* change username size to be smaller */
-.message-group h2 strong { font-size: 80% !important; font-weight: 600 !important; }
+/* .message-group h2 strong { font-size: 80% !important; font-weight: 600 !important; }
 /* change emojis to be larger */
-img.emoji.jumboable { height: 50px !important; width: 50px !important; }
-img.emoji { height: 35px !important; width: 35px !important; }
+img.emoji.jumboable { height: 40px !important; width: 40px !important; }
+img.emoji { height: 30px !important; width: 30px !important; }
 /* change margins on chat and channel list to remove wasted space */
 .scroller-NXV0-d { margin-top: 15% !important; margin-right: 0px !important; }
 .messages-wrapper { margin-left: -20px !important; }
