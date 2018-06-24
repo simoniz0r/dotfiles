@@ -1,5 +1,7 @@
 # Set up the prompt
 
+setopt no_nullglob
+setopt no_nomatch
 setopt PROMPT_SUBST
 
 MAIN_COLOR () {
@@ -106,9 +108,6 @@ if [ -f ~/.zsh_aliases ]; then
     . ~/.zsh_aliases
 fi
 
-# Set zsh as SHELL
-# export SHELL=/bin/zsh
-
 # Change/remove these to match your settings
 export TERM=xterm-256color
 export EDITOR=/usr/bin/micro
@@ -117,12 +116,9 @@ export MPD_HOST=127.0.0.1
 if [ -f ~/nohup.out ]; then
     rm ~/nohup.out
 fi
-
-# if [ -f /home/simonizor/.config/spm/spm.comp ]; then
-#     source /home/simonizor/.config/spm/spm.comp
-#     compdef _spm spm
-# fi
-
+############################
+# REMOVE FROM HERE ON DOWN #
+############################
 if [ -f /home/simonizor/.todo/.todo.comp ]; then
     source /home/simonizor/.todo/.todo.comp
     compdef _todo todo
@@ -133,9 +129,7 @@ if [ -f /home/simonizor/.config/appimagedl/appimagedl-completion.sh ]; then
     compdef _appimagedlzsh appimagedl
 fi
 
-compdef spm=spm2
-compdef zyp=zypper
-
+# start tmux if not already running
 if [[ ! "$TTY" =~ "/dev/tty" ]]; then
     case $(ps -p $(ps -p $$ -o ppid=) o args=) in
         tmux*|*vscode*|*xterm*|*kdevelop*)
@@ -147,5 +141,7 @@ if [[ ! "$TTY" =~ "/dev/tty" ]]; then
     esac
 fi
 
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# source ~/github/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+compdef spm=spm2
+compdef zyp=zypper
+
+# source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
