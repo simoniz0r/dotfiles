@@ -79,15 +79,9 @@ binary-convert () {
     esac
 }
 
-# Make bc more intuitive to use
+# Fuck bc; use awk
 calc () {
-    if [[ ! -z "$2" ]]; then
-        SCALE=$2
-    else
-        SCALE=0
-    fi
-    INPUT="$(echo $1 | tr 'x' '*')"
-    echo "scale=$SCALE; $INPUT" | bc
+    awk "BEGIN {print $@}"
 }
 
 cht () {
