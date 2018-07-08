@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # Author: simonizor
 # Title: qarmasu
 # Description: A simple script that uses qarma to provide a GUI for su password prompts
