@@ -271,7 +271,7 @@ x () {
 
 zyp () {
     case "$1" in
-        in|rm|dup|lr|ar|rr|-F)
+        dup|in|ar|rr|-F)
             /usr/bin/zyp "$@"
             ;;
         *)
