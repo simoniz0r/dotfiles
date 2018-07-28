@@ -190,6 +190,9 @@ Speedbar Width=102
 View Style=Simple
 listViewIconSize=0
 
+[KShortcutsDialog Settings]
+Dialog Size=600,480
+
 [MainToolbarIcons]
 ActiveColor=169,156,255
 ActiveColor2=0,0,0
