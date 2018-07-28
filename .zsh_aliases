@@ -7,6 +7,7 @@ alias alsi='alsi; cursor-show'
 alias ansiweather='ansiweather -u imperial -l'
 alias betty='$HOME/github/betty/main.rb'
 alias chx='chmod a+x'
+alias clean='sed "s,\x1B\[[0-9;]*[a-zA-Z],,g"'
 alias clr='clear'
 alias cursor-hide="printf '\e[?25l'"
 alias cursor-show="printf '\e[?25h'"
@@ -43,6 +44,17 @@ alias wgetspeed='$HOME/github/scripts/speedtest/speedtest.sh'
 alias wttr-refresh='clr; $HOME/github/scripts/misc/wttrrefresh.sh'
 alias dir='dir'
 unalias dir
+#-- Global --#
+alias -g L="| less"
+alias -g H="| head"
+alias -g T="| tail"
+alias -g G="| grep --color=auto"
+alias -g N=">/dev/null"
+#-- Suffix --#
+alias -s html='$BROWSER'
+alias -s com='$BROWSER'
+alias -s org='$BROWSER'
+alias -s .git='git clone'
 
 ########################################
 ####    Variables for long paths    ####
@@ -84,8 +96,8 @@ calc () {
     awk "BEGIN {print $@}"
 }
 
-cht () {
-    curl "https://cht.sh/$@"
+help () {
+    curl -s "https://cht.sh/$@"
 }
 
 # check Discord client versions
@@ -155,6 +167,11 @@ mpc-current () {
         echo
         echo "$(tput setaf 4)$(mpc current --wait -f "\n\nArtist: %artist%\nSong: %title%")"
     done
+}
+
+# Show resource use for specific process
+sps () {
+    ps -eo pid,rss,%cpu,comm --sort -rss | grep -i "%CPU\|$@" | grep -v 'grep'
 }
 
 # Execute bash scripts remotely
@@ -271,11 +288,8 @@ x () {
 
 zyp () {
     case "$1" in
-        dup|in|ar|rr|-F)
-            /usr/bin/zyp "$@"
-            ;;
-        *)
-            /usr/bin/zyp -q "$@"
-            ;;
+        dup|in|ar|rr|-*) zypper zyp "$@";;
+        rm) zypper zyp -n "$@";;
+        *) zypper zyp -q "$@";;
     esac
 }
