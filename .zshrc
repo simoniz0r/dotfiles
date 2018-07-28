@@ -132,7 +132,7 @@ fi
 # start tmux if not already running
 if [[ ! "$TTY" =~ "/dev/tty" ]]; then
     case $(ps -p $(ps -p $$ -o ppid=) o args=) in
-        tmux*|*vscode*|*xterm*|*kdevelop*)
+        tmux*|*vscode*|*xterm*|*kdevelop*|*ascii*)
             sleep 0
             ;;
         *)
