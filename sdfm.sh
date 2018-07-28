@@ -4,20 +4,19 @@
 # Description: Uses yaml files to store info about added dotfiles
 # Dependencies: yq
 
-# try running commands without sudo first
-function trywithoutsudo() {
-    COMMAND="$@"
-    $COMMAND 2> /dev/null || sudo $COMMAND || { echo "The following failed to execute:" "$COMMAND"; exit 1; }
-}
-
 # copies file/directory to DOTFILE_STORAGE_DIR, removes original, creates symlink, and saves yml file with name and original location
 function adddotfile() {
     [ -f "$DOTFILE_STORAGE_DIR/$1" ] || [ -d "$DOTFILE_STORAGE_DIR/$1" ] && echo "$DOTFILE_STORAGE_DIR/$1 already exists; exiting..." && exit 1
     [ ! -f "$2" ] && [ ! -d "$2" ] && echo "$2 not found; exiting..." && exit 1
     echo "Copying $2 to $DOTFILE_STORAGE_DIR/$1 and creating symlink..."
     cp -r "$2" "$DOTFILE_STORAGE_DIR"/$1 || { echo "Failed to copy $1; exiting..."; exit 1; }
-    trywithoutsudo "rm -rf $2"
-    trywithoutsudo "ln -s $DOTFILE_STORAGE_DIR/$1 $2"
+    if [[ ! -w "$2" ]]; then
+        sudo rm -rf "$2"
+        sudo ln -s "$DOTFILE_STORAGE_DIR"/"$1" "$2"
+    else
+        rm -rf "$2"
+        ln -s "$DOTFILE_STORAGE_DIR"/"$1" "$2"
+    fi
     echo "name: $1" > "$DOTFILE_STORAGE_DIR"/yml/"$1".yml
     echo "location: $2" >> "$DOTFILE_STORAGE_DIR"/yml/"$1".yml
     echo "$1 has been added and symlink has been created"
@@ -47,7 +46,11 @@ function symlinkdotfile() {
         read -p "Remove $2 and create symlink? Y/N " REMOVE_DOTFILE_ANSWER
         case $REMOVE_DOTFILE_ANSWER in
             Y|y)
-                trywithoutsudo "rm -rf $2"
+                if [[ ! -w "$2" ]]; then
+                    sudo rm -rf "$2"
+                else
+                    rm -rf "$2"
+                fi
                 SKIP_SYMLINK="FALSE"
                 ;;
             *)
@@ -59,8 +62,17 @@ function symlinkdotfile() {
     fi
     if [ ! "$SKIP_SYMLINK" = "TRUE" ]; then
         echo "Creating symlink from $DOTFILE_STORAGE_DIR/$1 to $2 ..."
-        [ ! -d "$(dirname $2)" ] && trywithoutsudo "mkdir -p $(dirname $2)"
-        trywithoutsudo "ln -s $DOTFILE_STORAGE_DIR/$1 $2"
+        if [[ ! -d "$(dirname $2)" ]]; then
+            if [[ ! -w "$(dirname $2)" ]]; then
+                sudo mkdir -p "$(dirname $2)"
+            else
+                mkdir -p "$(dirname $2)"
+            fi
+        if [[ ! -w "$2" ]]; then
+            sudo ln -s "$DOTFILE_STORAGE_DIR"/"$1" "$2"
+        else
+            ln -s "$DOTFILE_STORAGE_DIR"/"$1" "$2"
+        fi
         echo "Symlink for $1 created"
         echo "$1" >> /tmp/sdfmlist.tmp
     fi
@@ -91,7 +103,7 @@ else
 fi
 
 # detect argument input
-case $1 in
+case "$1" in
     -a|--add)
         [ -z "$3" ] && echo "Missing required input; exiting..." && exit 1
         adddotfile "$2" "$(readlink -f $3)"
