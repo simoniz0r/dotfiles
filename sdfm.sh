@@ -68,6 +68,7 @@ function symlinkdotfile() {
             else
                 mkdir -p "$(dirname $2)"
             fi
+        fi
         if [[ ! -w "$2" ]]; then
             sudo ln -s "$DOTFILE_STORAGE_DIR"/"$1" "$2"
         else
@@ -89,6 +90,23 @@ function symlinkloop() {
     echo "Created $(cat /tmp/sdfmlist.tmp | wc -l) symlinks"
     rm -f /tmp/sdfmlist.tmp
     exit 0
+}
+
+function helpfunc() {
+echo -e "Usage: sdfm.sh [argument]
+
+Arguments:
+--add, -a       Add dotfile to dotfile directory
+Ex:
+sdfm.sh --add filename.ext /path/to/filename.ext
+sdfm.sh --add directoryname /path/to/directory
+
+--symlink, -s   Symlink file from dotfile directory back to their original location
+                If no file name is given, all files in dotfile directory will be symlinked
+Ex:
+sdfm.sh --symlink filename.ext
+sdfm.sh --symlink
+"
 }
 
 # load DOTFILE_STORAGE_DIR from ~/.sdfm.yml if it exists otherwise prompt for storage dir input
@@ -126,5 +144,9 @@ case "$1" in
             rm -f /tmp/sdfmlist.tmp
             exit 0
         fi
+        ;;
+    *)
+        helpfunc
+        exit 0
         ;;
 esac
