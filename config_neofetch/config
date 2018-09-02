@@ -16,7 +16,8 @@ print_info() {
     info "Packages" packages
     info "Shell" shell
     info "Resolution" resolution
-    info "DE" de
+    # info "DE" de
+    prin "DE" "Lumina"
     info "WM" wm
     # info "WM Theme" wm_theme
     info "Theme" theme

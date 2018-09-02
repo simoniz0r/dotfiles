@@ -111,8 +111,6 @@ discord-versions () {
 dirsize () { du -h --max-depth=0 "$@" | sort -h -r }
 dirsize-a () { du -h "$@" | sort -h -r }
 
-discord-status () { curl -s "https://status.discordapp.com/" | grep 'class="name"\|class="component-status"' -A 1 | grep -v '<\|\-' | sed '1~2s%      %%g;0~2s%      %-%g' }
-
 #Check to see if site is down for you or everyone
 downforme () {
     wget -qO - "http://downforeveryoneorjustme.com/$1" | grep -qo "It's just you" && echo -e "$(tput setaf 1)It's just you.\n$(tput setaf 2)$1 is up.$(tput sgr0)" || echo -e "$(tput setaf 3)It's not just you! \n$(tput setaf 1)$1 looks down from here.$(tput sgr0)"

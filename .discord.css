@@ -120,6 +120,20 @@ div[class*="emojiPicker-"] div[class*="dimmer-"].visible {
     margin-top: 0;
     border-left: 1px solid #373c49;
 }
+.theme-dark .status-2s6iDp {
+    border-color: var(--dark);
+}
+.theme-dark .guildsAdd-21_IdK {
+    background: var(--dark);
+    border-color: var(--dark);
+}
+.theme-dark .friends-table .messages .message-group-blocked.revealed, .theme-dark .messages-wrapper .messages .message-group-blocked.revealed {
+    background: var(--grey);
+    border-color: #2f3136;
+}
+.theme-dark .friends-table .messages .message-group-blocked .message-group-blocked-btn:hover, .theme-dark .messages-wrapper .messages .message-group-blocked .message-group-blocked-btn:hover {
+    background: var(--dark);
+}
 .private-channels .search-bar,
 .scroller-2FKFPG{
     border-right: 1px solid var(--dark);
@@ -141,7 +155,7 @@ a,.wrapper-O5i5-0 .instantInviteModal-3vhcvC .clipboardInputInner-RLx2hK input {
 .wordmark-2iDDfm path {fill: #000;}
 
 .typing-2GQL18 {
-    top: -20px !important;
+    top: -6px !important;
     border-radius: 6px;
     background: var(--grey) !important;
     
@@ -160,6 +174,7 @@ a,.wrapper-O5i5-0 .instantInviteModal-3vhcvC .clipboardInputInner-RLx2hK input {
 .theme-dark .dockItem-2kQDqg:hover,
 .theme-dark .divider-1pnAR2,
 .theme-dark .searchBar-1MOL6S,
+.theme-dark .guildsWrapper-5TJh6A,
 #bd-settingspane-container .ui-switch-item .ui-switch-wrapper .ui-switch,
 .theme-dark .member-3W1lQa:hover .content-OzHfo4,
 .guilds-wrapper .scroller-wrap .scroller,
@@ -223,7 +238,8 @@ a,.wrapper-O5i5-0 .instantInviteModal-3vhcvC .clipboardInputInner-RLx2hK input {
 .theme-dark .item-1GzJrl:hover,
 .theme-dark .ui-standard-sidebar-view .content-region,
 .theme-dark .friends-table, .theme-dark .messages-wrapper,
-.theme-dark .chat form,
+.flex-spacer.flex-vertical form,
+.flex-spacer.flex-vertical,
 .theme-dark .headerBar-UHpsPw,
 .need-help-modal.deprecated .form-inner.loading,
 .need-help-modal.deprecated .footer,
