@@ -3,7 +3,7 @@
 # COLORS
 # color support is limited to your terminal
 # for most terminals, valid colors are 000-256
-# run 'prompt_color_samples' for a preview of the colors
+# run 'prompt_fg_samples' and 'prompt_bg_samples' for a preview of the colors
 # set these colors to the same color to disable the prompt changing color based on directory
 # color for the prompt when in $HOME directory
 COLOR_HOME="004"
@@ -41,10 +41,15 @@ setopt PROMPT_SUBST
 setopt no_nullglob
 setopt no_nomatch
 ###
-### FUNCTION TO OUTPUT COLOR SAMPLES ###
-prompt_color_samples () {
+### FUNCTIONS TO OUTPUT COLOR SAMPLES ###
+prompt_fg_samples () {
     for i in {000..265}; do
-        echo -e "$(tput sgr0)$i: $(tput setaf $i)Sample text here.$(tput sgr0)"
+        print -P -- "$(tput sgr0)$i: %{$(BACKGROUND_COLOR)%}%${i}F %n %S$(DIR_TRUNCATED)%s%k%f"
+    done
+}
+prompt_bg_samples () {
+    for i in {000..265}; do
+        print -P -- "$(tput sgr0)$i: %{$(echo -e "\033[48;5;${i}m")%}%$(MAIN_COLOR)F %n %S$(DIR_TRUNCATED)%s%k%f"
     done
 }
 ### FUCTION TO CHANGE COLOR BASED ON $PWD ###
@@ -62,9 +67,9 @@ MAIN_COLOR () {
     esac
 }
 ###
-### FUNCTION TO SET THE BACKGROUND COLOR
+### FUNCTION TO SET THE BACKGROUND COLOR ###
 BACKGROUND_COLOR () {
-    echo "$COLOR_BG"
+    echo -e "\033[48;5;${COLOR_BG}m"
 }
 ### FUNCTION TO TRUNCATE LONG DIRECTORIES IN THE PROMPT ###
 DIR_TRUNCATED () {
@@ -102,7 +107,7 @@ parse_git_state () {
 }
 GIT_STATUS () {
     local git_where="$(parse_git_branch)"
-    [ -n "$git_where" ] && echo "%$(MAIN_COLOR)F%S%$(BACKGROUND_COLOR)K ʮ ${git_where#(refs/heads/|tags/)} $(parse_git_state)%s%f%k"
+    [ -n "$git_where" ] && echo "%$(MAIN_COLOR)F%S%{$(BACKGROUND_COLOR)%} ʮ ${git_where#(refs/heads/|tags/)} $(parse_git_state)%s%f%k"
 }
 ###
 ### FUNCTION TO SET THE EXIT STATUS PROMPT ###
@@ -113,13 +118,13 @@ EXIT_STATUS () {
             echo ""
             ;;
         *)
-            echo "%$(MAIN_COLOR)F%S%$(BACKGROUND_COLOR)K✘ "$EXIT "%s%f%k"
+            echo "%$(MAIN_COLOR)F%S%{$(BACKGROUND_COLOR)%}✘ "$EXIT "%s%f%k"
             ;;
     esac
 }
 ###
 ### SET THE PROMPT ###
-PS1='%$(BACKGROUND_COLOR)K%$(MAIN_COLOR)F %n %S$(DIR_TRUNCATED)%s%k%f '
+PS1='%{$(BACKGROUND_COLOR)%}%$(MAIN_COLOR)F %n %S$(DIR_TRUNCATED)%s%k%f '
 if [ "$ENABLE_RPS1" = "TRUE" ]; then
     RPS1='$(EXIT_STATUS)$(GIT_STATUS)'
 else
