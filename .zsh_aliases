@@ -6,6 +6,7 @@ alias alarm='$HOME/github/alarm-sh/alarm.sh'
 alias alsi='alsi; cursor-show'
 alias ansiweather='ansiweather -u imperial -l'
 alias betty='$HOME/github/betty/main.rb'
+alias cat='bat --paging=never --style=plain'
 alias chx='chmod a+x'
 alias clean='sed "s,\x1B\[[0-9;]*[a-zA-Z],,g"'
 alias clr='clear'
@@ -18,6 +19,7 @@ alias edit-zshrc='micro ~/.zshrc'
 alias fd='fd -c never'
 alias find='fd'
 alias lappy='ssh 10.42.0.1'
+alias less='bat --style=plain'
 alias load-aliases='. ~/.zsh_aliases'
 alias mce='micro'
 alias obs='osc'
@@ -32,8 +34,8 @@ alias tmux='tmux attach-session -t simonizor || tmux new -s simonizor'
 alias dl='wget --show-progress -qO'
 alias weather-mp='echo "$(tput setaf 4)$(tput bold)$(weather --imperial -qaf --no-cache kmrj)"'
 alias which='/usr/bin/which'
-alias xclip-i='xclip -selection primary -i'
-alias xclip-o='xclip -selection primary -o'
+alias xclip-i='xclip -i -selection clipboard'
+alias xclip-o='xclip -o -selection clipboard'
 alias gspm='$HOME/github/spm/spm'
 alias lyrics='tput reset; $HOME/github/scripts/misc/lyrics.sh'
 alias lyrics-playing="jq -r '.songLyrics' ~/.config/Google\ Play\ Music\ Desktop\ Player/json_store/playback.json"
@@ -45,6 +47,8 @@ alias wttr-refresh='clr; $HOME/github/scripts/misc/wttrrefresh.sh'
 alias dir='dir'
 unalias dir
 #-- Global --#
+alias -g C="|xclip -i -selection clipboard"
+alias -g P="xclip -o -selection clipboard"
 alias -g L="| less"
 alias -g H="| head"
 alias -g T="| tail"
@@ -98,6 +102,10 @@ calc () {
 
 help () {
     curl -s "https://cht.sh/$@"
+}
+
+define () {
+    curl -sL "https://owlbot.info/api/v2/dictionary/"$1"?format=json" | yq r - '*'
 }
 
 # check Discord client versions
@@ -157,6 +165,11 @@ list-commits () {
     wget -qO - "https://api.github.com/repos/simoniz0r/$1/commits" | jq -r '.[] | .sha, .commit.message' | head -n $2 | paste -sd ' \n'
 }
 
+# Use bat to view man pages
+man (){
+    /usr/bin/man "$1" | bat --style=plain
+}
+
 # Output currently playing mpc song
 mpc-current () {
     printf '\e[?25l'
@@ -169,7 +182,7 @@ mpc-current () {
 
 # Show resource use for specific process
 sps () {
-    ps -eo pid,rss,%cpu,comm --sort -rss | grep -i "%CPU\|$@" | grep -v 'grep'
+    ps -eLo pid,rss,%cpu,comm --sort -rss | grep -i "%CPU\|$@" | grep -v 'grep'
 }
 
 # Execute bash scripts remotely
@@ -290,4 +303,9 @@ zyp () {
         rm) zypper zyp -n "$@";;
         *) zypper zyp -q "$@";;
     esac
+}
+
+# Search for youtube videos
+yt() {
+    curl -sL "https://www.w3.org/services/html2txt?url=https%3A%2F%2Fwww.youtube.com%2Fresults%3Fsearch_query%3D"$(echo "$@" | sed "s/ /%2520/g")"&noinlinerefs=on&nonums=on&endrefs=on" | grep " http.*watch?v=" | cut -f4 -d" " | grep .
 }
