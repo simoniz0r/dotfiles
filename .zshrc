@@ -115,6 +115,10 @@ COLOR_ROOT="009"
 COLOR_BG="000"
 # PROMPT
 # set the contents of the prompt
+# '%$(MAIN_COLOR)F' is the color based on the $PWD as set above
+# '%{$(BACKGROUND_COLOR)%}' is the background color as set above
+# '$(DIR_TRUNCATED)' is a function in this .zshrc which truncates long directories in the prompt
+# see http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html#Prompt-Expansion for more info
 PS1_CONTENTS="%{$(BACKGROUND_COLOR)%}%$(MAIN_COLOR)F %n %S$(DIR_TRUNCATED)%s%k%f "
 # set whether exit status and git status prompt on right side is enabled
 # must be set to TRUE or FALSE
