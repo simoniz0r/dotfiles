@@ -1,16 +1,18 @@
 ### IT IS SAFE TO EDIT THIS SECTION ###
 ### PROMPT OPTIONS ###
 # COLORS
-# valid color choices are black, red, green, yellow, blue, magenta, cyan, or white
+# color support is limited to your terminal
+# for most terminals, valid colors are 000-256
+# run 'prompt_color_samples' for a preview of the colors
 # set these colors to the same color to disable the prompt changing color based on directory
 # color for the prompt when in $HOME directory
-COLOR_HOME="blue"
+COLOR_HOME="004"
 # color for the prompt when in /usr/* and /opt/*
-COLOR_USR="yellow"
+COLOR_USR="011"
 # color for the prompt when in /*
-COLOR_ROOT="red"
+COLOR_ROOT="001"
 # background color for the prompt
-COLOR_BG="black"
+COLOR_BG="000"
 # set whether exit status and git status prompt on right side is enabled
 # must be set to TRUE or FALSE
 ENABLE_RPS1="TRUE"
@@ -39,24 +41,30 @@ setopt PROMPT_SUBST
 setopt no_nullglob
 setopt no_nomatch
 ###
+### FUNCTION TO OUTPUT COLOR SAMPLES ###
+prompt_color_samples () {
+    for i in {000..265}; do
+        echo -e "$(tput sgr0)$i: $(tput setaf $i)Sample text here.$(tput sgr0)"
+    done
+}
 ### FUCTION TO CHANGE COLOR BASED ON $PWD ###
 MAIN_COLOR () {
     case $PWD in
         /usr*|/opt*)
-            echo "{$COLOR_USR}"
+            echo "$COLOR_USR"
             ;;
         $HOME*|/run/media/simonizor*)
-            echo "{$COLOR_HOME}"
+            echo "$COLOR_HOME"
             ;;
         *)
-            echo "{$COLOR_ROOT}"
+            echo "$COLOR_ROOT"
             ;;
     esac
 }
 ###
-## FUNCTION TO SET THE BACKGROUND COLOR ###
+### FUNCTION TO SET THE BACKGROUND COLOR
 BACKGROUND_COLOR () {
-    echo "{$COLOR_BG}"
+    echo "$COLOR_BG"
 }
 ### FUNCTION TO TRUNCATE LONG DIRECTORIES IN THE PROMPT ###
 DIR_TRUNCATED () {
@@ -94,7 +102,7 @@ parse_git_state () {
 }
 GIT_STATUS () {
     local git_where="$(parse_git_branch)"
-    [ -n "$git_where" ] && echo "%F$(MAIN_COLOR)%S%K$(BACKGROUND_COLOR) ʮ ${git_where#(refs/heads/|tags/)} $(parse_git_state)%s%f%k"
+    [ -n "$git_where" ] && echo "%$(MAIN_COLOR)F%S%$(BACKGROUND_COLOR)K ʮ ${git_where#(refs/heads/|tags/)} $(parse_git_state)%s%f%k"
 }
 ###
 ### FUNCTION TO SET THE EXIT STATUS PROMPT ###
@@ -105,13 +113,13 @@ EXIT_STATUS () {
             echo ""
             ;;
         *)
-            echo "%F$(MAIN_COLOR)%S%K$(BACKGROUND_COLOR)✘ "$EXIT "%s%f%k"
+            echo "%$(MAIN_COLOR)F%S%$(BACKGROUND_COLOR)K✘ "$EXIT "%s%f%k"
             ;;
     esac
 }
 ###
 ### SET THE PROMPT ###
-PS1='%K$(BACKGROUND_COLOR)%F$(MAIN_COLOR) %n %S$(DIR_TRUNCATED)%s%k%f '
+PS1='%$(BACKGROUND_COLOR)K%$(MAIN_COLOR)F %n %S$(DIR_TRUNCATED)%s%k%f '
 if [ "$ENABLE_RPS1" = "TRUE" ]; then
     RPS1='$(EXIT_STATUS)$(GIT_STATUS)'
 else
