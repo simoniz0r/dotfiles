@@ -10,7 +10,7 @@ COLOR_HOME="004"
 # color for the prompt when in /usr/* and /opt/*
 COLOR_USR="011"
 # color for the prompt when in /*
-COLOR_ROOT="001"
+COLOR_ROOT="009"
 # background color for the prompt
 COLOR_BG="000"
 # set whether exit status and git status prompt on right side is enabled
