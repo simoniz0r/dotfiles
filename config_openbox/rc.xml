@@ -184,22 +184,6 @@
      Ensure that any existing clashes in the rc.xml are removed first
 -->
     <!-- "Tiling" keybinds -->
-    <!-- Grow to edge -->
-    <keybind key="C-Right">
-      <action name="GrowToEdgeEast"/>
-    </keybind>
-    <keybind key="C-Left">
-      <action name="GrowToEdgeWest"/>
-    </keybind>
-    <keybind key="C-Down">
-      <action name="GrowToEdgeSouth"/>
-    </keybind>
-    <keybind key="C-Up">
-      <action name="GrowToEdgeNorth"/>
-    </keybind>
-    <keybind key="C-KP_5">
-      <action name="GrowToFill"/>
-    </keybind>
     <!-- Move and resize -->
     <keybind key="W-KP_4">
       <!-- MoveResizeTo Left half of screen -->
@@ -876,24 +860,14 @@
         <height>1056</height>
       </size>
     </application>
-    <application class="Termit">
+    <application name="lumina-search">
       <position force="no">
-        <x>5</x>
-        <y>1065</y>
+        <x>1710</x>
+        <y>939</y>
       </position>
       <size>
-        <width>932</width>
-        <height>1056</height>
-      </size>
-    </application>
-    <application class="Tilix">
-      <position force="no">
-        <x>5</x>
-        <y>1065</y>
-      </position>
-      <size>
-        <width>932</width>
-        <height>1056</height>
+        <width>417</width>
+        <height>278</height>
       </size>
     </application>
     <application class="discord">

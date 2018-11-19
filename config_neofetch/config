@@ -13,7 +13,7 @@ print_info() {
     info "Kernel" kernel
     info "Install Date" install_date
     info "Uptime" uptime
-    info "Packages" packages
+    prin "Packages" "$(zypper --no-refresh pa -i | tail -n +4 | cut -f3 -d'|' | tr -d ' ' | sort -u | wc -l)"
     info "Shell" shell
     info "Resolution" resolution
     # info "DE" de
