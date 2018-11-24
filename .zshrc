@@ -9,17 +9,17 @@ setopt no_nomatch
 ###
 ### FUNCTIONS TO OUTPUT COLOR SAMPLES ###
 prompt_fg_samples () {
-    for i in {000..265}; do
-        print -P -- "$(tput sgr0)$i: %{$(BACKGROUND_COLOR)%}%${i}F %n %S$(DIR_TRUNCATED)%s%k%f"
+    for i in {000..256}; do
+        print -P -- "$(tput sgr0)$i: %{$(BG_COLOR $COLOR_BG)%}%${i}F %n %S %25<$(echo "/${${PWD#/*}%%/*}/" | sed 's%\/home\/%\~\/%')...<%~ %s%k%f"
     done
 }
 prompt_bg_samples () {
-    for i in {000..265}; do
-        print -P -- "$(tput sgr0)$i: %{$(echo -e "\033[48;5;${i}m")%}%$(MAIN_COLOR)F %n %S$(DIR_TRUNCATED)%s%k%f"
+    for i in {000..256}; do
+        print -P -- "$(tput sgr0)$i: %{$(echo -e "\033[48;5;${i}m")%}%$(FG_COLOR)F %n %S %25<$(echo "/${${PWD#/*}%%/*}/" | sed 's%\/home\/%\~\/%')...<%~ %s%k%f"
     done
 }
 ### FUCTION TO CHANGE COLOR BASED ON $PWD ###
-MAIN_COLOR () {
+FG_COLOR () {
     case $PWD in
         /usr*|/opt*)
             echo "$COLOR_USR"
@@ -32,31 +32,17 @@ MAIN_COLOR () {
             ;;
     esac
 }
+MAIN_COLOR () {
+    FG_COLOR
+}
 ###
 ### FUNCTION TO SET THE BACKGROUND COLOR ###
+BG_COLOR () {
+    echo -e "\033[48;5;${1}m"
+}
 BACKGROUND_COLOR () {
     echo -e "\033[48;5;${COLOR_BG}m"
 }
-### FUNCTION TO TRUNCATE LONG DIRECTORIES IN THE PROMPT ###
-DIR_TRUNCATED () {
-    case "$(pwd)" in
-        $HOME*)
-            DIR_PREPEND="~/"
-            TRUNCATE_NUM=4
-            ;;
-        *)
-            DIR_PREPEND=""
-            TRUNCATE_NUM=3
-            ;;
-    esac
-    if [ $(echo "$(pwd)" | cut -f${TRUNCATE_NUM}- -d'/' | wc -m) -gt 20 ]; then
-        DIR_ENDING="$(echo "$(pwd)" | rev | cut -f1-2 -d'/' | rev)"
-        echo " $DIR_PREPEND.../$DIR_ENDING "
-    else
-        echo " %~ "
-    fi
-}
-###
 ### FUNCTIONS TO GET THE GIT STATUS OF THE CURRENT DIRECTORY ###
 parse_git_branch () {
     (git symbolic-ref -q HEAD || git name-rev --name-only --no-undefined --always HEAD) 2> /dev/null
@@ -73,7 +59,7 @@ parse_git_state () {
 }
 GIT_STATUS () {
     local git_where="$(parse_git_branch)"
-    [ -n "$git_where" ] && echo "%$(MAIN_COLOR)F%S%{$(BACKGROUND_COLOR)%} ʮ ${git_where#(refs/heads/|tags/)} $(parse_git_state)%s%f%k"
+    [ -n "$git_where" ] && echo "%$(FG_COLOR)F%S%{$(BG_COLOR $COLOR_BG)%} ʮ ${git_where#(refs/heads/|tags/)} $(parse_git_state)%s%f%k"
 }
 ###
 ### FUNCTION TO SET THE EXIT STATUS PROMPT ###
@@ -84,7 +70,7 @@ EXIT_STATUS () {
             echo ""
             ;;
         *)
-            echo "%$(MAIN_COLOR)F%S%{$(BACKGROUND_COLOR)%}✘ "$EXIT "%s%f%k"
+            echo "%$(FG_COLOR)F%S%{$(BG_COLOR $COLOR_BG)%} ✘ "$EXIT "%s%f%k"
             ;;
     esac
 }
@@ -105,15 +91,21 @@ cat > "$HOME"/.zsh_prompt.conf << 'EOL'
 # for most terminals, valid colors are 000-256
 # run 'prompt_fg_samples' and 'prompt_bg_samples' for a preview of the colors
 # set these colors to the same color to disable the prompt changing color based on directory
-# color for the prompt when in $HOME directory
+# foreground color for the prompt when in $HOME directory
 COLOR_HOME="004"
-# color for the prompt when in /usr/* and /opt/*
+# foreground color for the prompt when in /usr/* and /opt/*
 COLOR_USR="011"
-# color for the prompt when in /*
+# foreground color for the prompt when in /*
 COLOR_ROOT="009"
 # background color for the prompt
 COLOR_BG="000"
 # PROMPT
+# set the contents of the prompt
+# '%$(FG_COLOR)F' is the color based on the $PWD as set in ~/.zsh_prompt.conf
+# '%{$(BG_COLOR $COLOR_BG)%}' is the background color as set in ~/.zsh_prompt.conf
+# '%25<$(echo "/${${PWD#/*}%%/*}/" | sed 's%\/home\/%\~\/%')...<%~' truncates the current directory if more than 25 characters
+# see http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html#Prompt-Expansion for more info
+PS1='%{$(BG_COLOR $COLOR_BG)%}%$(FG_COLOR)F %n %S %25<$(echo "/${${PWD#/*}%%/*}/" | sed 's%\/home\/%\~\/%')...<%~ %s%k%f '
 # set whether exit status and git status prompt on right side is enabled
 # must be set to TRUE or FALSE
 ENABLE_RPS1="TRUE"
@@ -137,12 +129,9 @@ EOL
 source "$HOME"/.zsh_prompt.conf
 fi
 ### SET THE PROMPT ###
-# set the contents of the prompt
-# '%$(MAIN_COLOR)F' is the color based on the $PWD as set in ~/.zsh_prompt.conf
-# '%{$(BACKGROUND_COLOR)%}' is the background color as set in ~/.zsh_prompt.conf
-# '$(DIR_TRUNCATED)' is a function in this .zshrc which truncates long directories in the prompt
-# see http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html#Prompt-Expansion for more info
-PS1='%{$(BACKGROUND_COLOR)%}%$(MAIN_COLOR)F %n %S$(DIR_TRUNCATED)%s%k%f '
+if [ -z "$PS1" ]; then
+    PS1='%{$(BG_COLOR $COLOR_BG)%}%$(FG_COLOR)F %n %S %25<$(echo "/${${PWD#/*}%%/*}/" | sed 's%\/home\/%\~\/%')...<%~ %s%k%f '
+fi
 if [ "$ENABLE_RPS1" = "TRUE" ]; then
     RPS1='$(EXIT_STATUS)$(GIT_STATUS)'
 else
