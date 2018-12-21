@@ -417,6 +417,9 @@ detectDE()
          X-Generic)
            DE=generic
            ;;
+         Lumina|lumina)
+           DE=lumina;
+           ;;
       esac
     fi
 
@@ -1031,7 +1034,8 @@ case "$DE" in
     ;;
 
     generic|lxqt)
-    open_yad "$url"
+#     open_yad "$url"
+    open_lumina "$url"
     ;;
     
     lumina)

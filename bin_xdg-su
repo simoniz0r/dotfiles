@@ -415,6 +415,9 @@ detectDE()
          X-Generic)
            DE=generic
            ;;
+         Lumina|lumina)
+           DE=lumina;
+           ;;
       esac
     fi
 
