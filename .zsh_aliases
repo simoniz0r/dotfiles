@@ -2,6 +2,7 @@
 ####    Frequently used aliases    ####
 #######################################
 
+alias B='bash -c'
 alias alarm='$HOME/github/alarm-sh/alarm.sh'
 alias alsi='alsi; cursor-show'
 alias ansiweather='ansiweather -u imperial -l'
@@ -21,6 +22,7 @@ alias find='fd'
 alias lappy='ssh 10.42.0.1'
 alias less='bat --style=plain'
 alias load-aliases='. ~/.zsh_aliases'
+alias ls='dir'
 alias mce='micro'
 alias obs='osc'
 alias oneclickui='/usr/sbin/OneClickInstallUI'
@@ -239,6 +241,9 @@ urlencode () {
 weather () {
     location="$(echo "$@" | sed 's/ /%20/g')"
     curl -sL "https://www.w3.org/services/html2txt?url=https%3A%2F%2Fwww.google.com%2Fsearch%3Fq%3Dweather%2520$location&noinlinerefs=on&nonums=on&endrefs=on" | grep '°C\|°F' | cut -f1 -d'|' | sed 's/^[ \t]*//' | tr '�' '°' | tr -d '\n'
+    locationn="$(echo "$@" | sed 's/ /%2520/g')"
+    echo
+    curl -sL "http://motyar.info/webscrapemaster/api/?url=https%3A%2F%2Fwww.google.com%2Fsearch%3Fq%3Dweather%2520$locationn&xpath=%2F%2F*%5B%40id%3D%22wob_tci%22%5D" | grep '"src":' | cut -f4 -d'"'
     echo
 }
 
@@ -327,5 +332,5 @@ x () {
 
 # Search for youtube videos
 yt() {
-    curl -sL "https://www.w3.org/services/html2txt?url=https%3A%2F%2Fwww.youtube.com%2Fresults%3Fsearch_query%3D"$(echo "$@" | sed "s/ /%2520/g")"&noinlinerefs=on&nonums=on&endrefs=on" | grep " http.*watch?v=" | cut -f4 -d" " | grep .
+    curl -sL "https://www.w3.org/services/html2txt?url=https%3A%2F%2Fwww.youtube.com%2Fresults%3Fsearch_query%3D"$(echo "$@" | sed "s/ /%2520/g")"&noinlinerefs=on&nonums=on&endrefs=on" | grep " http.*watch?v=" | grep -v 'https:\/\/www\.google.*' | cut -f4 -d" " | grep .
 }
