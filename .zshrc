@@ -201,7 +201,7 @@ if [ "$ENABLE_TMUX" = "TRUE" ]; then
     # start tmux if not already running
     if [[ ! "$TTY" =~ "/dev/tty" ]]; then
         case $(ps -p $(ps -p $$ -o ppid=) o args=) in
-            tmux*|*vscode*|*xterm*|*kdevelop*|*ascii*)
+            tmux*|*code*|*xterm*|*kdevelop*|*ascii*|*vscodium*)
                 sleep 0
                 ;;
             *)

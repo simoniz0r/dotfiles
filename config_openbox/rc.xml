@@ -872,12 +872,12 @@
     </application>
     <application class="discord">
       <position force="no">
-        <x>946</x>
-        <y>1068</y>
+        <x>942</x>
+        <y>1065</y>
       </position>
       <size>
         <width>963</width>
-        <height>1056</height>
+        <height>1055</height>
       </size>
     </application>
     <application title="Open Configuration Center">

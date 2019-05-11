@@ -24,8 +24,10 @@ alias less='bat --style=plain'
 alias load-aliases='. ~/.zsh_aliases'
 alias ls='dir'
 alias mce='micro'
+alias myip='curl -sL "https://api.ipify.org"; echo'
 alias obs='osc'
 alias oneclickui='/usr/sbin/OneClickInstallUI'
+alias qbin='nc qbin.io 90'
 alias rex='remote-exec'
 alias rg='rg --color never'
 alias rsst='rsstail -NrHd1plu'
@@ -38,7 +40,7 @@ alias which='/usr/bin/which'
 alias xclip-i='xclip -i -selection clipboard'
 alias xclip-o='xclip -o -selection clipboard'
 alias gspm='$HOME/github/spm/spm'
-alias lyrics='tput reset; $HOME/github/scripts/misc/lyrics.sh'
+# alias lyrics='tput reset; $HOME/github/scripts/misc/lyrics.sh'
 alias lyrics-playing="jq -r '.songLyrics' ~/.config/Google\ Play\ Music\ Desktop\ Player/json_store/playback.json"
 # alias lyrics-playing='tput reset; $HOME/github/scripts/misc/lyrics.sh "$(mpc -f %artist% | head -n 1)" "$(mpc -f %title% | head -n 1)"'
 alias beautiful-load='beautifuldiscord --css /home/simonizor/github/DiscordThemes/compact-discord/compact-discord.css'
@@ -75,7 +77,7 @@ time="$(date +'%l:%M:%S %p')"
 
 # Use curl and jq to search for packages in the Arch Linux AUR
 aursearch () {
-    curl -sSL "https://aur.archlinux.org/rpc/?v=5&type=search&arg=$@" | jq -r '.results[]'
+    curl -sL "https://aur.archlinux.org/rpc/?v=5&type=search&arg=$@" | jq -r '.results[]'
 }
 
 # Convert to and from binary
@@ -170,17 +172,37 @@ simoniz0r/Discord-Canary-AppImage
 
 # View latest github release
 gitrelease () {
-    curl -sSL "https://api.github.com/repos/$1/$2/releases" | jq -r ".[$3].assets[]"
+    curl -sL "https://api.github.com/repos/$1/$2/releases" | jq -r ".[].assets[$3]"
 }
 
 # Output Github commits and messages for chosen repo
 gitcommits () {
-    wget -qO - "https://api.github.com/repos/$1/$2/commits" | jq -r '.[] | .sha, .commit.message' | paste -sd ' \n' | tail -n +2
+    curl -sL "https://api.github.com/repos/$1/$2/commits" | jq -r '.[] | .sha, .commit.message' | paste -sd ' \n' | tail -n +2
 }
 
-# Use bat to view man pages
+# Find a command in history and copy it to clipboard
+hist () {
+    tac ./.zsh_history | grep -m1 "$@" | tr -d '\n' | xclip -i -selection clipboard
+}
+
+# Get song lyrics from azlyrics.com using motyar and jq
+lyrics () {
+    local artist="$(echo $1 | tr -d ' ')"
+    local song="$(echo $2 | tr -d ' ')"
+    echo "Lyrics for $1 - $2"
+    curl -sL "http://motyar.info/webscrapemaster/api/?url=https%3A%2F%2Fwww.azlyrics.com%2Flyrics%2F$artist%2F$song.html&xpath=/html/body/div[3]/div/div[2]/div[5]" \
+    | jq -r '.[0].text'
+}
+
+# Use xfw to view man pages
 man (){
-    /usr/bin/man "$1" | bat --style=plain
+    /usr/bin/man --ascii "$@" > /tmp/xfwman.out
+    xfw --read-only /tmp/xfwman.out > /dev/null 2>&1 & disown
+    sleep 1
+    rm -f /tmp/xfwman.out
+#     /usr/bin/man --html=~/bin/yad-browser "$@"
+#     /usr/bin/man --html=cat "$@" 2>/dev/null > /tmp/manout.html
+#     falkon /tmp/manout.html
 }
 
 # Output currently playing mpc song
@@ -201,6 +223,13 @@ sps () {
 # Execute bash scripts remotely
 remote-exec () { bash -c "$(wget --quiet $@ -O -)" }
 
+# Use mathjs api with curl to solve equations
+mathjs () {
+    local EXPRESSION="$(urlencode $@)"
+    curl -sL "http://api.mathjs.org/v4/?precision=10&expr=$EXPRESSION"
+    echo
+}
+
 # Search for and play a youtube video
 mpvyt () { mpv ytdl://ytsearch10:"$*" }
 
@@ -220,6 +249,12 @@ rss () {
             w3m "$twreleaselink"
             ;;
     esac
+}
+
+# translate with google api
+translate () {
+    T_QUERY="$(urlencode $@)"
+    curl -sL -H "User-Agent: nc/0.0.1" "https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=en&dt=t&ie=UTF-8&oe=UTF-&q=$T_QUERY" | jq -r '.[0][0][0]'
 }
 
 # watch travis logs
