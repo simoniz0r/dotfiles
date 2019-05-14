@@ -7,9 +7,16 @@ autodetach on
 
 # Allow bold colors - necessary for some reason
 attrcolor b ".I"
+attrcolor i "+b"
+
+# Set the colors for screen messages to default on blue background.
+sorendition = md
 
 # Suppress trailing blank lines when scrolling up in the history buffer.
 compacthist on
+
+# Enable mouse
+defmousetrack on
 
 # Save lots of scrollback.
 defscrollback 50000
@@ -22,18 +29,6 @@ startup_message off
 
 ### Status Line Configuration Options
 
-# Always display the caption line. Displays the:
-# %H - hostname
-# %l - current load
-# %Y-%m-%d - year-month-day
-# %C:%s %A - 12 hour time + AM/PM
-# %u - other users on this window (if any)
-
 backtick 1 30 15 uname -r
 
-# Force the status line to be the last line. Displays the:
-# %-w - all window numbers and names up to the current window
-# %n - current window number
-# %t - current window title
-# %+w - all window numbers and names following the current window
 hardstatus alwayslastline "%{= dd} %-w%{= md} %n %t %{= dd}%+w   %{= md} %H %{= dd} %l %{= md} %Y-%m-%d%C:%s %A %{= dd} %1` %="
