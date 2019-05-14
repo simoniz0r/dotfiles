@@ -201,11 +201,13 @@ if [ "$ENABLE_TMUX" = "TRUE" ]; then
     # start tmux if not already running
     if [[ ! "$TTY" =~ "/dev/tty" ]]; then
         case $(ps -p $(ps -p $$ -o ppid=) o args=) in
-            tmux*|*code*|*xterm*|*kdevelop*|*ascii*|*vscodium*)
+            tmux*|*code*|*xterm*|*kdevelop*|*ascii*|*vscodium*|*screen*|*SCREEN*)
                 sleep 0
                 ;;
             *)
-                tmux
+                # tmux
+                screen -d -R
+                sleep 0
                 ;;
         esac
     fi

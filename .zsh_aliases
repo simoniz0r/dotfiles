@@ -39,6 +39,7 @@ alias dl='wget --show-progress -qO'
 alias which='/usr/bin/which'
 alias xclip-i='xclip -i -selection clipboard'
 alias xclip-o='xclip -o -selection clipboard'
+alias yta='youtube-dl -i --extract-audio --audio-format best --audio-quality 0'
 alias gspm='$HOME/github/spm/spm'
 # alias lyrics='tput reset; $HOME/github/scripts/misc/lyrics.sh'
 alias lyrics-playing="jq -r '.songLyrics' ~/.config/Google\ Play\ Music\ Desktop\ Player/json_store/playback.json"
@@ -218,6 +219,11 @@ mpc-current () {
 # Show resource use for specific process
 sps () {
     ps -eLo pid,rss,%cpu,comm --sort -rss | grep -i "%CPU\|$@" | grep -v 'grep'
+}
+
+# Use awk for regex replacements
+regex () {
+    awk "{gsub(/$1/,\"$2\")}1"
 }
 
 # Execute bash scripts remotely

@@ -1,0 +1,39 @@
+### GNU Screen Configuration File
+
+### General Configuration Options
+
+# if we accidentally hangup, don't be all attached when we come back. 
+autodetach on
+
+# Allow bold colors - necessary for some reason
+attrcolor b ".I"
+
+# Suppress trailing blank lines when scrolling up in the history buffer.
+compacthist on
+
+# Save lots of scrollback.
+defscrollback 50000
+
+# Ignore case when searching.
+ignorecase on
+
+# Disable the startup splash message.
+startup_message off
+
+### Status Line Configuration Options
+
+# Always display the caption line. Displays the:
+# %H - hostname
+# %l - current load
+# %Y-%m-%d - year-month-day
+# %C:%s %A - 12 hour time + AM/PM
+# %u - other users on this window (if any)
+
+backtick 1 30 15 uname -r
+
+# Force the status line to be the last line. Displays the:
+# %-w - all window numbers and names up to the current window
+# %n - current window number
+# %t - current window title
+# %+w - all window numbers and names following the current window
+hardstatus alwayslastline "%{= dd} %-w%{= md} %n %t %{= dd}%+w   %{= md} %H %{= dd} %l %{= md} %Y-%m-%d%C:%s %A %{= dd} %1` %="
