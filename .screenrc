@@ -2,20 +2,32 @@
 
 ### General Configuration Options
 
-# if we accidentally hangup, don't be all attached when we come back. 
+# Misc settings that seem good
+# Do I really need these?
+altscreen on
+defbce on
+defflow auto
+deflogin off
+defutf8 on
+silencewait 15
+vbell off
+
+# Disable the startup splash message.
+startup_message off
+
+# Shorten the time a message is displayed.
+msgwait 1
+
+# Set up UTF-8 as the default encoding.
+encoding UTF-8
+
+# If we accidentally hangup, don't be all attached when we come back. 
 autodetach on
 
-# Allow bold colors - necessary for some reason
-attrcolor b ".I"
-attrcolor i "+b"
-
-# Set the colors for screen messages to default on blue background.
-sorendition = md
-
 # Suppress trailing blank lines when scrolling up in the history buffer.
-compacthist on
+# compacthist on
 
-# Enable mouse
+# Enable mouse.
 defmousetrack on
 
 # Save lots of scrollback.
@@ -24,12 +36,34 @@ defscrollback 50000
 # Ignore case when searching.
 ignorecase on
 
-# Disable the startup splash message.
-startup_message off
+# Allow bold colors - necessary for some reason.
+attrcolor b ".I"
+attrcolor i "+b"
+
+# disable use of the "alternate" terminal
+# thus allowing scrollbars to function as normal in
+# many terminal emulators! <3 it
+# Do I really need this?
+termcapinfo xterm* ti@:te@
+
+# Set the colors for screen messages.
+rendition bell = md
+rendition monitor = md
+rendition silence = md
+rendition so = dd
 
 ### Status Line Configuration Options
 
-backtick 1 30 15 "$HOME"/.screen/kernel
-backtick 2 30 15 "$HOME"/.screen/uptime
+# Commands for hardstatus.
+backtick 1 300 150 "$HOME"/.screen/kernel
+backtick 2 60 30 "$HOME"/.screen/uptime
+
+# Blank line for extra padding before hardstatus.
+caption always
+caption string "%="
 
 hardstatus alwayslastline "%{= Kd} %-w%{= md} %n %t %{= Kd}%+w %{= dd}%=%{= md} %l %{= Kd} %Y-%m-%d%C:%s %A %{= md} %H %{= Kd} %1` %{= md} up %2` "
+
+# Autoload screens
+screen -t rss 1
+screen -t zsh 0
