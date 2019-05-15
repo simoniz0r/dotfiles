@@ -9,7 +9,7 @@ defbce on
 defflow auto
 deflogin off
 defutf8 on
-silencewait 15
+silencewait 1
 vbell off
 
 # Disable the startup splash message.
