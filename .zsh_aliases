@@ -3,7 +3,7 @@
 #######################################
 
 alias betty='$HOME/github/betty/main.rb'
-alias cat='bat --paging=never --style=plain'
+# alias cat='bat --paging=never --style=plain --theme=GitHub'
 alias chx='chmod a+x'
 alias clean='sed "s,\x1B\[[0-9;]*[a-zA-Z],,g"'
 alias clr='clear'
@@ -25,7 +25,7 @@ alias rsst='rsstail -NrHd1plu'
 alias screen='screen -d -R'
 alias sudo='sudo '
 alias termbin='nc termbin.com 9999'
-alias tmux='tmux attach-session -t simonizor || tmux new -s simonizor'
+alias tmux='/usr/bin/screen -d -R'
 alias which='/usr/bin/which'
 alias xclip-i='xclip -i -selection clipboard'
 alias xclip-o='xclip -o -selection clipboard'

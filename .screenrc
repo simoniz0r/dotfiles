@@ -77,7 +77,7 @@ backtick 2 60 30 "$HOME"/.screen/uptime
 caption always
 caption string "%="
 
-hardstatus alwayslastline "%{= Kd} %-w%{= md} %n %t %{= Kd}%+w %{= dd}%=%{= md} %l %{= Kd} %Y-%m-%d%C:%s %A %{= md} %H %{= Kd} %1` %{= md} up %2` "
+hardstatus alwayslastline "%{= Kd} %-w%{= md} %n %t %{= Kd}%+w %{= dd}%=%{= md} %l %{= Kd} %m-%d %C:%s %A %{= md} %H %{= Kd} %1` %{= md} up %2` "
 
 # Autoload screens
 screen -t rss 1

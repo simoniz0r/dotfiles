@@ -22,9 +22,9 @@ print_info() {
     # info "WM Theme" wm_theme
     info "Theme" theme
     info "Icons" icons
-    ifno "Font" icons
-    prin "Terminal" "kitty"
-    prin "Terminal Font" "Noto Mono 10"
+    info "Font" icons
+    info "Terminal" term
+    prin "Terminal Font" "Noto Sans Mono 10"
     info "CPU" cpu
     info "GPU" gpu
     info "GPU Driver" gpu_driver  # Linux only
