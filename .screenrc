@@ -4,13 +4,29 @@
 
 # Misc settings that seem good
 # Do I really need these?
-altscreen on
-defbce on
-defflow auto
 deflogin off
-defutf8 on
+
+# Enables “alternate screen” support (ti and te termcap settings) for screen windows.
+altscreen off
+
+# All characters cleared by an erase/insert/scroll/clear operation will be displayed in the current background color.
+defbce on
+
+# Sets the flow-control mode for this window. 
+defflow auto
+
+# Set the silence timeout for all windows.
 silencewait 1
+
+# Sets or toggles the visual bell.
 vbell off
+
+# Set the maximum window number screen will create.
+maxwin 2
+
+# If the output buffer contains more bytes than the specified limit, no more data will be read from the windows.
+# The default value is 256. If you have a fast display (like xterm), you can set it to some higher value.
+obuflimit 512
 
 # Disable the startup splash message.
 startup_message off
@@ -31,7 +47,7 @@ autodetach on
 defmousetrack on
 
 # Save lots of scrollback.
-defscrollback 50000
+defscrollback 10000
 
 # Ignore case when searching.
 ignorecase on
@@ -43,7 +59,6 @@ attrcolor i "+b"
 # disable use of the "alternate" terminal
 # thus allowing scrollbars to function as normal in
 # many terminal emulators! <3 it
-# Do I really need this?
 termcapinfo xterm* ti@:te@
 
 # Set the colors for screen messages.

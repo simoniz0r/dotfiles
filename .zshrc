@@ -206,7 +206,13 @@ if [ "$ENABLE_TMUX" = "TRUE" ]; then
                 ;;
             *)
                 # tmux
-                screen -d -R
+                # screen -d -R
+                if [[ ! "$(pgrep dtach)" ]]; then
+                    echo "Starting discord-rss-bot..."
+                    sleep 5
+                    dtach -n /tmp/dtachrss -z discord-rss-bot
+                fi
+                dtach -A /tmp/dtach1234 -z zsh
                 sleep 0
                 ;;
         esac
